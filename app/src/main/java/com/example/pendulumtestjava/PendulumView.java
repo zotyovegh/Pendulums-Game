@@ -1,48 +1,40 @@
 package com.example.pendulumtestjava;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.Shader;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.view.Display;
 import android.view.View;
-
 import androidx.annotation.Nullable;
 
 public class PendulumView extends View {
     Paint paintCircle, paintThread;
-    Path pathThread1, pathThread2, pathHolder;
+    Path pathThread1, pathThread2;
 
 
-    float circlePositionX = 0;
-    float threadPositionX = 0;
-    float circlePositionY = 0;
-    float threadPositionY = 0;
-
-    int x_dir;
-    int y_dir;
-
-    double thread_x_dir;
-    int circle_x;
-    double thread_y_dir;
-    int circle_y;
-    double thread_x;
-    double thread_y;
-    float r1 = 100;
-    float r2 = 100;
-    float m1 = 40;
-    float m2 = 40;
-    float a1 = 0;
-    float a2 = 0;
+    float r1 = 400;
+    float r2 = 400;
+    float m1 = 30;
+    float m2 = 30;
+    float a1 = (float)Math.toDegrees(Math.PI / 2);
+    float a2 = (float)Math.toDegrees(Math.PI / 2);
     float x1;
     float y1;
+    float x2;
+    float y2;
+    float a1_v = 0;
+    float a2_v = 0;
+//    float a1_a = (float)0.01;
+//    float a2_a = -(float)0.01;
+    float g = 1;
 
 
-    //    float boundryRight;
-    public PendulumView(Context context) {
+     public PendulumView(Context context) {
         super(context);
         init();
     }
@@ -56,14 +48,13 @@ public class PendulumView extends View {
         super(context, attrs, defStyleAttr);
         init();
     }
+
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         int xCenter = getWidth() / 2;
-//        float boundryRight = xCenter + 200;
-//        float boundryLeft = xCenter - 200;
 
-        Log.i("width ", String.valueOf(getWidth()));
+
 
         paintCircle = new Paint();
         paintThread = new Paint();
@@ -74,57 +65,67 @@ public class PendulumView extends View {
         paintThread.setStrokeWidth(3);
         pathThread1 = new Path();
         pathThread2 = new Path();
+        canvas.translate(xCenter, 100);
+        canvas.drawCircle(0, 0, 10, paintCircle);
+        pathThread1.moveTo(0, 0);
+        pathThread2.moveTo(x1, y1);
 
-        canvas.drawCircle(xCenter, 100, 10, paintCircle);
-        pathThread1.moveTo(xCenter, 100);
-//        float threadNewLine = xCenter + threadPositionX;
-//        Log.i("thread Line ", String.valueOf(threadNewLine));
+//
+//        float num1 = -g * (2 * m1 + m2) * (float)Math.sin(Math.toRadians(a1));
+//        float num2 = -m2 * g * (float)Math.sin(Math.toRadians(a1 - 2 * a2));
+//        float num3 = -2 * (float)Math.sin(Math.toRadians(a1 - a2)) * m2;
+//        float num4 = a2_v * a2_v * r2 + a1_v * a1_v * r1 * (float)Math.cos(Math.toRadians(a1 - a2));
+//        float den = r1 * (2 * m1 + m2 - m2 * (float)Math.cos(Math.toRadians(2 * a1 - 2 * a2)));
+//        float a1_a = (num1 + num2 + num3 * num4) / den;
+//
+//        num1 = 2 * (float)Math.sin(Math.toRadians(a1 - a2));
+//        num2 = a1_v * a1_v * r1 * (m1 + m2);
+//        num3 = g * (m1 + m2) * (float)Math.cos(Math.toRadians(a1));
+//        num4 = a2_v * a2_v * r2 * m2 * (float)Math.cos(Math.toRadians(a1 - a2));
+//        den = r2 * (2 * m1 + m2 - m2 * (float)Math.cos(Math.toRadians(2 * a1 - 2 * a2)));
+//        float a2_a = (num1 * (num2 + num3 + num4)) / den;
 
 
 
 
-        x1 = r1 * (float)Math.toDegrees(Math.sin(a1));
-        y1 = r1 * (float)Math.toDegrees(Math.cos(a1));
+
+
+        x1 = r1 * (float)Math.sin(Math.toRadians(a1));
+        y1 = r1 * (float)Math.cos(Math.toRadians(a1));
+        x2 = x1 + r2 * (float)Math.sin(Math.toRadians(a2));
+        y2 = y1 + r2 * (float)Math.cos(Math.toRadians(a2));
+
+
+//        a1_v += a1_a;
+//        a2_v += a2_a;
+//        a1 += a1_v;
+//        a2 += a2_v;
+
+        a1 += 1;
+        a2 -= 1.5;
+
+
 
         pathThread1.lineTo(x1, y1);
-        canvas.drawCircle(x1, y1, m1, paintCircle);
+        canvas.drawCircle(x1, y1, 20, paintCircle);
+        pathThread2.lineTo(x2, y2);
+        canvas.drawCircle(x2, y2, 20, paintCircle);
 
 
 
-
-
-
-
-
-
-
-//        if (circle_x >= boundryRight) {
-//
-//            x_dir -= 5;
-//        }
-//
-//        if (circle_x <= boundryLeft) {
-//
-//            x_dir += 5;
-//
-//        }
-//        circle_x = circle_x + x_dir;
-//        thread_x = thread_x + x_dir;
 
 
         canvas.drawPath(pathThread1, paintThread);
+        canvas.drawPath(pathThread2, paintThread);
 
         invalidate();
     }
 
     public void init() {
 
-//        x1 = 180;
-//        y1 = 180;
-//        x_dir = 5;
-//        thread_x_dir = 9.5;
-//        circle_x =  540;
-//        thread_x =  540;
+        x1 = 1800;
+        y1 = 1800;
+
 
     }
 }
