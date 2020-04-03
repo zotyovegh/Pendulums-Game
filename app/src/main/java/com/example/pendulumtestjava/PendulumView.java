@@ -7,13 +7,14 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.Display;
 import android.view.View;
 
 import androidx.annotation.Nullable;
 
 public class PendulumView extends View {
     Paint paintCircle, paintThread;
-    Path pathThread,pathHolder;
+    Path pathThread1, pathThread2, pathHolder;
 
 
     float circlePositionX = 0;
@@ -30,6 +31,15 @@ public class PendulumView extends View {
     int circle_y;
     double thread_x;
     double thread_y;
+    float r1 = 100;
+    float r2 = 100;
+    float m1 = 40;
+    float m2 = 40;
+    float a1 = 0;
+    float a2 = 0;
+    float x1;
+    float y1;
+
 
     //    float boundryRight;
     public PendulumView(Context context) {
@@ -50,8 +60,9 @@ public class PendulumView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         int xCenter = getWidth() / 2;
-        float boundryRight = xCenter + 200;
-        float boundryLeft = xCenter - 200;
+//        float boundryRight = xCenter + 200;
+//        float boundryLeft = xCenter - 200;
+
         Log.i("width ", String.valueOf(getWidth()));
 
         paintCircle = new Paint();
@@ -61,32 +72,22 @@ public class PendulumView extends View {
         paintThread.setColor(Color.BLACK);
         paintThread.setStyle(Paint.Style.STROKE);
         paintThread.setStrokeWidth(3);
-        pathThread = new Path();
-        pathHolder = new Path();
-        pathHolder.moveTo(xCenter + 100,100);
-        pathHolder.lineTo(xCenter - 100,100);
-        pathThread.moveTo(xCenter, 100);
+        pathThread1 = new Path();
+        pathThread2 = new Path();
+
         canvas.drawCircle(xCenter, 100, 10, paintCircle);
-
-        float threadNewLine = xCenter + threadPositionX;
-
-
-        pathThread.lineTo((float) thread_x, 600);
-        canvas.drawCircle(circle_x, 600, 30, paintCircle);
+        pathThread1.moveTo(xCenter, 100);
+//        float threadNewLine = xCenter + threadPositionX;
+//        Log.i("thread Line ", String.valueOf(threadNewLine));
 
 
-        if (circle_x >= boundryRight) {
 
-            x_dir -= 5;
-        }
 
-        if (circle_x <= boundryLeft) {
+        x1 = r1 * (float)Math.toDegrees(Math.sin(a1));
+        y1 = r1 * (float)Math.toDegrees(Math.cos(a1));
 
-            x_dir += 5;
-
-        }
-        circle_x = circle_x + x_dir;
-        thread_x = thread_x + x_dir;
+        pathThread1.lineTo(x1, y1);
+        canvas.drawCircle(x1, y1, m1, paintCircle);
 
 
 
@@ -95,20 +96,35 @@ public class PendulumView extends View {
 
 
 
-        canvas.drawPath(pathThread, paintThread);
-        canvas.drawPath(pathHolder,paintThread);
-        Log.i("thread Line ", String.valueOf(threadNewLine));
+
+
+//        if (circle_x >= boundryRight) {
+//
+//            x_dir -= 5;
+//        }
+//
+//        if (circle_x <= boundryLeft) {
+//
+//            x_dir += 5;
+//
+//        }
+//        circle_x = circle_x + x_dir;
+//        thread_x = thread_x + x_dir;
+
+
+        canvas.drawPath(pathThread1, paintThread);
+
         invalidate();
     }
 
     public void init() {
 
-        x_dir = 5;
+//        x1 = 180;
+//        y1 = 180;
+//        x_dir = 5;
 //        thread_x_dir = 9.5;
-
-
-        circle_x = 360;
-        thread_x = 360;
+//        circle_x =  540;
+//        thread_x =  540;
 
     }
 }
