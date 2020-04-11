@@ -1,14 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <com.example.pendulumtestjava.PendulumView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <FrameLayout
+        android:id="@+id/frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white">
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/stickBox"
+            android:layout_width="2dp"
+            android:layout_height="200dp"
+            android:background="@drawable/stick"
+            android:transformPivotX="1dp" />
+
+        <TextView
+            android:id="@+id/stickBox2"
+            android:layout_width="2dp"
+            android:layout_height="200dp"
+            android:background="@drawable/stick"
+            android:transformPivotX="1dp" />
+
+        <ImageView
+            android:id="@+id/ball"
+            android:layout_width="68px"
+            android:layout_height="68px"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/pelota"/>
+        <ImageView
+            android:id="@+id/middleBall"
+            android:layout_width="10px"
+            android:layout_height="10px"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/pelota"/>
+        <ImageView
+            android:id="@+id/ball2"
+            android:layout_width="68px"
+            android:layout_height="68px"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/pelota" />
+
+
+
+
+
+    </FrameLayout>
+
+</LinearLayout>
