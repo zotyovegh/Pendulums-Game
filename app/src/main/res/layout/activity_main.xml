@@ -1,50 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <FrameLayout
-        android:id="@+id/frame"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/white">
+    <Button
+        android:id="@+id/button"
+        android:layout_width="142dp"
+        android:layout_height="83dp"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-
-
-        <TextView
-            android:id="@+id/stickBox"
-            android:layout_width="2dp"
-            android:layout_height="200dp"
-            android:background="@drawable/stick"
-            android:transformPivotX="1dp" />
-
-        <TextView
-            android:id="@+id/stickBox2"
-            android:layout_width="2dp"
-            android:layout_height="200dp"
-            android:background="@drawable/stick"
-            android:transformPivotX="1dp" />
-
-        <TextView
-            android:id="@+id/ballPaint"
-            android:layout_width="60px"
-            android:layout_height="60px"
-            android:background="@drawable/ball"/>
-        <TextView
-            android:id="@+id/ballPaint2"
-            android:layout_width="60px"
-            android:layout_height="60px"
-            android:background="@drawable/ball"/>
-        <TextView
-            android:id="@+id/middlePaint"
-            android:layout_width="10px"
-            android:layout_height="10px"
-            android:background="@drawable/ball"
-            />
-
-    </FrameLayout>
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
