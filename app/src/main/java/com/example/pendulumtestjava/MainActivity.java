@@ -3,6 +3,7 @@ package com.example.pendulumtestjava;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.ViewGroup;
@@ -13,8 +14,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity{
-    private ImageView ball, ball2, middleBall;
-    private TextView stickB, stickB2;
+
+    private TextView stickB, stickB2, ballPaint, ballPaint2, middlePaint;
 
     private Handler handler = new Handler();
     private Timer timer = new Timer();
@@ -39,11 +40,11 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ball = (ImageView) findViewById(R.id.ball);
-        ball2 = (ImageView) findViewById(R.id.ball2) ;
-        middleBall = (ImageView) findViewById(R.id.middleBall) ;
         stickB = (TextView) findViewById(R.id.stickBox);
         stickB2 = (TextView) findViewById(R.id.stickBox2);
+        ballPaint = (TextView) findViewById(R.id.ballPaint);
+        ballPaint2 = (TextView) findViewById(R.id.ballPaint2);
+        middlePaint = (TextView) findViewById(R.id.middlePaint);
 
         ViewGroup.LayoutParams param = stickB.getLayoutParams();
         param.height = (int)Math.round(r1);
@@ -51,12 +52,11 @@ public class MainActivity extends AppCompatActivity{
         param2.height = (int)Math.round(r2);
         stickB2.setLayoutParams(param2);
 
-        widthMiddleBall = (getWindowManager().getDefaultDisplay().getWidth() / 2) - 34;
-        heightMiddleBall = (getWindowManager().getDefaultDisplay().getHeight() / 8) - 34;
+        widthMiddleBall = (getWindowManager().getDefaultDisplay().getWidth() / 2) - 30;
+        heightMiddleBall = (getWindowManager().getDefaultDisplay().getHeight() / 8) - 30;
         widthMiddle = getWindowManager().getDefaultDisplay().getWidth() / 2;
         heightPoint = getWindowManager().getDefaultDisplay().getHeight() / 8;
-        middleBall.setX((float)(widthMiddle - 5));
-        middleBall.setY((float)(heightPoint - 5));
+
 
         timer.schedule(new TimerTask() {
             @Override
@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity{
                     draw();
                 });
             }
-        },0, 10);
+        },0, 15);
     }
 
     public void draw(){
@@ -75,13 +75,17 @@ public class MainActivity extends AppCompatActivity{
         stickB.setY((float)(heightPoint));
 
         stickB2.setRotation((float)Math.toDegrees(-a2));
-        stickB2.setX((float)(x1+32));
-        stickB2.setY((float)(y1+34));
+        stickB2.setX((float)(x1+28));
+        stickB2.setY((float)(y1+30));
 
-        ball.setX((float)x1);
-        ball.setY((float)y1);
-        ball2.setX((float)x2);
-        ball2.setY((float)y2);
+        ballPaint.setX((float)x1);
+        ballPaint.setY((float)y1);
+        ballPaint2.setX((float)x2);
+        ballPaint2.setY((float)y2);
+
+        middlePaint.setX((float)(widthMiddle -5));
+        middlePaint.setY((float)(heightPoint - 5));
+        middlePaint.setBackgroundResource(R.color.colorPrimaryDark);
     }
 
     public void calc()
@@ -100,14 +104,14 @@ public class MainActivity extends AppCompatActivity{
         den = r2 * ((2 * m1) + m2 - (m2 * (Math.cos((2 * a1) - (2 * a2)))));
         double a2_a = (num1 * (num2 + num3 + num4)) / den;
 
-        x1 = widthMiddleBall + (r1 * Math.sin(a1));
-        y1 = heightMiddleBall + (r1 * Math.cos(a1));
-        x2 = x1 + (r2 * Math.sin(a2));
-        y2 = y1 + (r2 * Math.cos(a2));
-
         a1_v += a1_a;
         a2_v += a2_a;
         a1 += a1_v;
         a2 += a2_v;
+
+        x1 = widthMiddleBall + (r1 * Math.sin(a1));
+        y1 = heightMiddleBall + (r1 * Math.cos(a1));
+        x2 = x1 + (r2 * Math.sin(a2));
+        y2 = y1 + (r2 * Math.cos(a2));
     }
 }
