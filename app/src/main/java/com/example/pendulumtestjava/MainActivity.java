@@ -18,26 +18,39 @@ import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity{
 
-    private Button button;
+    private Button doublePendulum, singlePendulum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        button = (Button) findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
+        singlePendulum = (Button) findViewById(R.id.singlePendulum);
+        singlePendulum.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openPendulumActivity();
+                openSinglePendulumActivity();
+            }
+        });
+        doublePendulum = (Button) findViewById(R.id.doublePendulum);
+        doublePendulum.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openDoublePendulumActivity();
             }
         });
 
     }
 
-    public void openPendulumActivity()
+    public void openDoublePendulumActivity()
     {
         Intent intent = new Intent(this, DoublePendulum.class);
+        startActivity(intent);
+    }
+
+    public void openSinglePendulumActivity()
+    {
+        Intent intent = new Intent(this, SinglePendulum.class);
         startActivity(intent);
     }
 }

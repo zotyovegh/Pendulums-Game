@@ -7,13 +7,25 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="142dp"
-        android:layout_height="83dp"
-        android:text="Button"
+        android:id="@+id/singlePendulum"
+        android:layout_width="160dp"
+        android:layout_height="80dp"
+        android:text="Single Pendulum"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.279" />
+
+    <Button
+        android:id="@+id/doublePendulum"
+        android:layout_width="160dp"
+        android:layout_height="80dp"
+        android:text="Double Pendulum"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/singlePendulum" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

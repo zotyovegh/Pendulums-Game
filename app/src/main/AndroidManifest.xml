@@ -9,9 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DoublePendulum"></activity>
+        <activity android:name=".SinglePendulum"/>
+        <activity android:name=".DoublePendulum" />
         <activity android:name=".MainActivity">
-<!--        <activity android:name=".DoublePendulum">   &lt;!&ndash;Temporarily changed later use the above lines&ndash;&gt;-->
+
+            <!-- <activity android:name=".DoublePendulum">   &lt;!&ndash;Temporarily changed later use the above lines&ndash;&gt; -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
