@@ -25,8 +25,8 @@ public class DoublePendulum extends AppCompatActivity {
 
     double r1 = 250;
     double r2 = 250;
-    double a1 = Math.PI /8;
-    double a2 = Math.PI;
+    double a1 = Math.PI / 2;
+    double a2 = Math.PI / 2;
     double x1, y1, x2, y2;
     double widthMiddleBall;
     double heightMiddleBall;
@@ -85,8 +85,8 @@ public class DoublePendulum extends AppCompatActivity {
 
         ballPaint.setX((float)x1);
         ballPaint.setY((float)y1);
-//        ballPaint2.setX((float)x2);
-//        ballPaint2.setY((float)y2);
+        ballPaint2.setX((float)x2);
+        ballPaint2.setY((float)y2);
 
 
         middlePaint.setX((float)(widthMiddle -5));
