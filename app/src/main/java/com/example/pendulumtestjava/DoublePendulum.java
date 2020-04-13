@@ -16,7 +16,6 @@ import java.util.TimerTask;
 import static android.content.ContentValues.TAG;
 
 public class DoublePendulum extends AppCompatActivity {
-
     private TextView stickB, stickB2, ballPaint, ballPaint2, middlePaint;
 
     private Handler handler = new Handler();
@@ -28,10 +27,8 @@ public class DoublePendulum extends AppCompatActivity {
     double a1 = Math.PI / 2;
     double a2 = Math.PI / 2;
     double x1, y1, x2, y2;
-    double widthMiddleBall;
-    double heightMiddleBall;
-    double widthMiddle;
-    double heightPoint;
+    double widthMiddleBall, heightMiddleBall;
+    double widthMiddle, heightPoint;
     double a1_v = 0;
     double a2_v = 0;
     double g = 1;
@@ -49,7 +46,6 @@ public class DoublePendulum extends AppCompatActivity {
         ballPaint2 = (TextView) findViewById(R.id.ballPaint2);
         middlePaint = (TextView) findViewById(R.id.middlePaint);
         path = (DrawingPath) findViewById(R.id.path);
-
 
         ViewGroup.LayoutParams param = stickB.getLayoutParams();
         param.height = (int)Math.round(r1);
@@ -88,11 +84,8 @@ public class DoublePendulum extends AppCompatActivity {
         ballPaint2.setX((float)x2);
         ballPaint2.setY((float)y2);
 
-
         middlePaint.setX((float)(widthMiddle -5));
         middlePaint.setY((float)(heightPoint - 5));
-//        middlePaint.setX(((MyApplication) this.getApplication()).getX());
-//        middlePaint.setY(((MyApplication) this.getApplication()).getY());
         middlePaint.setBackgroundResource(R.color.colorPrimaryDark);
     }
 
@@ -123,6 +116,5 @@ public class DoublePendulum extends AppCompatActivity {
         y2 = y1 + (r2 * Math.cos(a2));
 
        path.setVariables(x2, y2);
-
     }
 }
