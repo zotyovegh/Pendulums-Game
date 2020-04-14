@@ -2,14 +2,10 @@ package com.example.pendulumtestjava;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -19,12 +15,13 @@ import java.util.TimerTask;
 
 import static android.content.ContentValues.TAG;
 
-public class DoublePendulum extends AppCompatActivity {
+public class DoublePendulum extends AppCompatActivity implements View.OnClickListener {
     private TextView stick, stick2, ball, ball2, middle;
 
     private Handler handler = new Handler();
     private Timer timer = new Timer();
     private DrawingPath path, path2;
+    private Button reset, pause, settings;
 
     private double r1 = 250;
     private double r2 = 250;
@@ -43,6 +40,7 @@ public class DoublePendulum extends AppCompatActivity {
     private boolean onHold = false;
     private int color1 = 0xFFFF0000;
     private int color2 = 0xFF0000FF;
+    private boolean stop = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,11 +54,18 @@ public class DoublePendulum extends AppCompatActivity {
         middle = (TextView) findViewById(R.id.middlePaint);
         path = (DrawingPath) findViewById(R.id.path);
         path2 = (DrawingPath) findViewById(R.id.path2);
+        reset = (Button) findViewById(R.id.reset);
+        pause = (Button) findViewById(R.id.pause);
+        settings = (Button) findViewById(R.id.settings);
 
         widthMiddle = getWindowManager().getDefaultDisplay().getWidth() / 2;
         heightPoint = getWindowManager().getDefaultDisplay().getHeight() / 8;
         widthMiddleBall = widthMiddle - 30;
         heightMiddleBall = heightPoint - 30;
+
+        reset.setOnClickListener(this);
+        pause.setOnClickListener(this);
+        settings.setOnClickListener(this);
 
         middle.setX((float)(widthMiddle -5));
         middle.setY((float)(heightPoint - 5));
@@ -75,7 +80,7 @@ public class DoublePendulum extends AppCompatActivity {
             @Override
             public void run() {
                 handler.post(() -> {
-                    if (!onHold) {
+                    if (!stop && !onHold) {
                         calc();
                     }
                     draw();
@@ -199,5 +204,22 @@ public class DoublePendulum extends AppCompatActivity {
 
         path.setVariables(x1, y1, trace1, color1);
         path2.setVariables(x2, y2, trace2, color2);
+    }
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.reset:
+
+                break;
+            case R.id.pause:
+                if (stop) {
+                    stop = false;
+                } else {
+                    stop = true;
+                }
+                break;
+            case R.id.settings:
+                break;
+        }
     }
 }

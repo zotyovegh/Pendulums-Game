@@ -28,8 +28,8 @@ public class DrawingPath extends View {
         super(context, attrs);
 
         paint = new Paint();
-//        paint.setColor(Color.BLACK);
         paint.setStrokeWidth(5);
+
     }
 
     public DrawingPath(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
