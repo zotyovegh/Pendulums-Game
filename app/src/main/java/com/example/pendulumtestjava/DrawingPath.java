@@ -16,8 +16,7 @@ import androidx.annotation.Nullable;
 public class DrawingPath extends View {
     private Paint paint;
     private float x, y, tempX, tempY;
-    private int trace = 50000;
-    private float[] p = new float[trace];
+    private float[] p = new float[100];
     private int flag = 0;
     private int counter = 0;
 
@@ -44,7 +43,11 @@ public class DrawingPath extends View {
         canvas.drawLines(p, paint);
         invalidate();
     }
-    public void setVariables(double x, double y) {
+    public void setVariables(double x, double y, int trace) {
+        if(counter == 0)
+        {
+            p = new float[trace];
+        }
         this.x = (float) x + 30;
         this.y = (float) y + 30;
 
