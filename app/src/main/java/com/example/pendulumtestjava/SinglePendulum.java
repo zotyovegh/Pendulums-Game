@@ -25,7 +25,7 @@ public class SinglePendulum extends AppCompatActivity {
     private float gravity = (float) 0.4;
     private double angularAcc, angularVel;
     private float damping = (float) 0.999;
-    private int trace = 160;
+    private int trace = 100;
     private boolean onHold = false;
 
     @Override
@@ -98,11 +98,23 @@ public class SinglePendulum extends AppCompatActivity {
                 onHold = true;
                 x = newx;
                 y = newy;
-                if (newy - heightPoint > 0) {
+                if (newy - heightMiddleBall > 0) {
                     a = Math.atan((newx - widthMiddleBall) / (newy - heightMiddleBall));
 
-                } else {
+                }
+                if(newy - heightMiddleBall < 0) {
                     a = Math.atan((newx - widthMiddleBall) / (newy - heightMiddleBall)) + Math.PI;
+
+                }
+                if(newy - heightMiddleBall == 0)
+                {
+                    if(newx-widthMiddleBall >= 0)
+                    {
+                        a = Math.PI / 2;
+                    } else
+                    {
+                        a = -(Math.PI / 2);
+                    }
 
                 }
                 r = Math.sqrt(((newx - widthMiddleBall) * (newx - widthMiddleBall)) + ((newy - heightMiddleBall) * (newy - heightMiddleBall)));
