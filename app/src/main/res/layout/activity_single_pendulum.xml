@@ -20,7 +20,7 @@
         <TextView
             android:id="@+id/stickBox"
             android:layout_width="2dp"
-            android:layout_height="200dp"
+            android:layout_height="10dp"
             android:background="@drawable/stick"
             android:transformPivotX="1dp" />
 
