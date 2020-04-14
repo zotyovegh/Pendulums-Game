@@ -28,7 +28,7 @@ public class DrawingPath extends View {
         super(context, attrs);
 
         paint = new Paint();
-        paint.setColor(Color.BLACK);
+//        paint.setColor(Color.BLACK);
         paint.setStrokeWidth(5);
     }
 
@@ -43,7 +43,8 @@ public class DrawingPath extends View {
         canvas.drawLines(p, paint);
         invalidate();
     }
-    public void setVariables(double x, double y, int trace) {
+    public void setVariables(double x, double y, int trace, int color) {
+        this.paint.setColor(color);
         if(counter == 0)
         {
             p = new float[trace];

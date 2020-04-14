@@ -13,7 +13,7 @@
         <activity android:name=".DoublePendulum" />
         <activity android:name=".MainActivity">
 
-            <!-- <activity android:name=".DoublePendulum">   &lt;!&ndash;Temporarily changed later use the above lines&ndash;&gt; -->
+<!--             <activity android:name=".DoublePendulum">   &lt;!&ndash;Temporarily changed later use the above lines&ndash;&gt;-->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

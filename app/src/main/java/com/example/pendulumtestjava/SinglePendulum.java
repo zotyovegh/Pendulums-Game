@@ -17,16 +17,19 @@ public class SinglePendulum extends AppCompatActivity {
     private Handler handler = new Handler();
     private Timer timer = new Timer();
     private DrawingPath path;
+
     private double widthMiddleBall, heightMiddleBall;
     private double widthMiddle, heightPoint;
-    private double r = 400;
-    private double x, y;
+    private double angularAcc, angularVel;
+
     private double a = Math.PI / 2;
     private float gravity = (float) 0.4;
-    private double angularAcc, angularVel;
     private float damping = (float) 0.999;
-    private int trace = 100;
     private boolean onHold = false;
+    private int color = 0xF0000000;
+    private int trace = 100;
+    private double r = 300;
+    private double x, y;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +86,7 @@ public class SinglePendulum extends AppCompatActivity {
         x = widthMiddleBall + (r * Math.sin(a));
         y = heightMiddleBall + (r * Math.cos(a));
 
-        path.setVariables(x, y, trace);
+        path.setVariables(x, y, trace, color);
     }
 
     @Override
@@ -119,7 +122,7 @@ public class SinglePendulum extends AppCompatActivity {
                 }
                 r = Math.sqrt(((newx - widthMiddleBall) * (newx - widthMiddleBall)) + ((newy - heightMiddleBall) * (newy - heightMiddleBall)));
                 stick.setLayoutParams(new FrameLayout.LayoutParams(5, (int) r));
-                path.setVariables(x, y, trace);
+                path.setVariables(x, y, trace, color);
                 angularVel = 0;
                 angularAcc = 0;
 

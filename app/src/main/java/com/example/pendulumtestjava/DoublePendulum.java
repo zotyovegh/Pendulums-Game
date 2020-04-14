@@ -2,12 +2,16 @@ package com.example.pendulumtestjava;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import java.util.Timer;
@@ -20,7 +24,7 @@ public class DoublePendulum extends AppCompatActivity {
 
     private Handler handler = new Handler();
     private Timer timer = new Timer();
-    private DrawingPath path;
+    private DrawingPath path, path2;
 
     private double r1 = 250;
     private double r2 = 250;
@@ -32,9 +36,13 @@ public class DoublePendulum extends AppCompatActivity {
     private double a1_v = 0;
     private double a2_v = 0;
     private double g = 1;
-    private double m1 = 20;
-    private double m2 = 20;
-    private int trace = 50000;
+    private double m1 = 10;
+    private double m2 = 10;
+    private int trace1 = 100;
+    private int trace2 = 200;
+    private boolean onHold = false;
+    private int color1 = 0xFFFF0000;
+    private int color2 = 0xFF0000FF;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,23 +55,29 @@ public class DoublePendulum extends AppCompatActivity {
         ball2 = (TextView) findViewById(R.id.ballPaint2);
         middle = (TextView) findViewById(R.id.middlePaint);
         path = (DrawingPath) findViewById(R.id.path);
+        path2 = (DrawingPath) findViewById(R.id.path2);
 
-        ViewGroup.LayoutParams param = stick.getLayoutParams();
-        param.height = (int)Math.round(r1);
-        ViewGroup.LayoutParams param2 = stick2.getLayoutParams();
-        param2.height = (int)Math.round(r2);
-
-        widthMiddleBall = (getWindowManager().getDefaultDisplay().getWidth() / 2) - 30;
-        heightMiddleBall = (getWindowManager().getDefaultDisplay().getHeight() / 8) - 30;
         widthMiddle = getWindowManager().getDefaultDisplay().getWidth() / 2;
         heightPoint = getWindowManager().getDefaultDisplay().getHeight() / 8;
+        widthMiddleBall = widthMiddle - 30;
+        heightMiddleBall = heightPoint - 30;
 
+        middle.setX((float)(widthMiddle -5));
+        middle.setY((float)(heightPoint - 5));
+        middle.setBackgroundResource(R.color.colorPrimaryDark);
 
+        update();
+    }
+
+    public void update()
+    {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
                 handler.post(() -> {
-                    calc();
+                    if (!onHold) {
+                        calc();
+                    }
                     draw();
                 });
             }
@@ -83,14 +97,9 @@ public class DoublePendulum extends AppCompatActivity {
         ball.setY((float)y1);
         ball2.setX((float)x2);
         ball2.setY((float)y2);
-
-        middle.setX((float)(widthMiddle -5));
-        middle.setY((float)(heightPoint - 5));
-        middle.setBackgroundResource(R.color.colorPrimaryDark);
     }
 
-    public void calc()
-    {
+    public void calc(){
         double num1 = -g * (2 * m1 + m2) * (Math.sin((a1)));
         double num2 = -m2 * g * (Math.sin(a1 - (2 * a2)));
         double num3 = -2 * (Math.sin(a1 - a2)) * m2;
@@ -110,11 +119,85 @@ public class DoublePendulum extends AppCompatActivity {
         a1 += a1_v;
         a2 += a2_v;
 
+        calcPositions();
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        int newx = (int) event.getX() - 28;
+        int newy = (int) event.getY() - 90;
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+            case MotionEvent.ACTION_MOVE:
+                onHold = true;
+                double difference1 = Math.sqrt(((newx - x1) * (newx - x1)) + ((newy - y1) * (newy - y1)));
+                double difference2 = Math.sqrt(((newx - x2) * (newx - x2)) + ((newy - y2) * (newy - y2)));
+
+                if(difference1 < difference2)
+                {
+                    x1 = newx;
+                    y1 = newy;
+                    if (newy - heightMiddleBall > 0) {
+                        a1 = Math.atan((newx - widthMiddleBall) / (newy - heightMiddleBall));
+                    }
+                    if(newy - heightMiddleBall < 0) {
+                        a1 = Math.atan((newx - widthMiddleBall) / (newy - heightMiddleBall)) + Math.PI;
+                    }
+                    if(newy - heightMiddleBall == 0)
+                    {
+                        if(newx-widthMiddleBall >= 0)
+                        {
+                            a1 = Math.PI / 2;
+                        } else
+                        {
+                            a1 = -(Math.PI / 2);
+                        }
+                    }
+                    r1 = Math.sqrt(((newx - widthMiddleBall) * (newx - widthMiddleBall)) + ((newy - heightMiddleBall) * (newy - heightMiddleBall)));
+                    stick.setLayoutParams(new FrameLayout.LayoutParams(5, (int) r1));
+                } else{
+                    x2 = newx;
+                    y2 = newy;
+                    if (newy - y1 > 0) {
+                        a2 = Math.atan((newx - x1) / (newy - y1));
+                    }
+                    if(newy - y1 < 0) {
+                        a2 = Math.atan((newx - x1) / (newy - y1)) + Math.PI;
+                    }
+                    if(newy - y1 == 0)
+                    {
+                        if(newx-x1 >= 0)
+                        {
+                            a2 = Math.PI / 2;
+                        } else
+                        {
+                            a2 = -(Math.PI / 2);
+                        }
+                    }
+                    r2 = Math.sqrt(((newx - x1) * (newx - x1)) + ((newy - y1) * (newy - y1)));
+                    stick2.setLayoutParams(new FrameLayout.LayoutParams(5, (int) r2));
+                }
+                calcPositions();
+                a1_v = 0;
+                a2_v = 0;
+
+                break;
+            case MotionEvent.ACTION_UP:
+                onHold = false;
+                break;
+        }
+        return false;
+    }
+    public void calcPositions()
+    {
         x1 = widthMiddleBall + (r1 * Math.sin(a1));
         y1 = heightMiddleBall + (r1 * Math.cos(a1));
         x2 = x1 + (r2 * Math.sin(a2));
         y2 = y1 + (r2 * Math.cos(a2));
+        stick.setLayoutParams(new FrameLayout.LayoutParams(4, (int) r1));
+        stick2.setLayoutParams(new FrameLayout.LayoutParams(4, (int) r2));
 
-       path.setVariables(x2, y2, trace);
+        path.setVariables(x1, y1, trace1, color1);
+        path2.setVariables(x2, y2, trace2, color2);
     }
 }
