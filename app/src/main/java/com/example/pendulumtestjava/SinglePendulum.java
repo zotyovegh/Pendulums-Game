@@ -25,6 +25,7 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
     private Timer timer = new Timer();
     private DrawingPath path;
 
+
     private Button reset, pause, settings;
     private double widthMiddleBall, heightMiddleBall;
     private double widthMiddle, heightPoint;
@@ -53,7 +54,6 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
         pause = (Button) findViewById(R.id.pause);
         settings = (Button) findViewById(R.id.settings);
 
-        stick.setLayoutParams(new FrameLayout.LayoutParams(4, (int) r));
 
         widthMiddle = getWindowManager().getDefaultDisplay().getWidth() / 2;
         heightPoint = getWindowManager().getDefaultDisplay().getHeight() / 2;
@@ -99,8 +99,16 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
         angularVel += angularAcc;
         angularVel *= damping;
         a += angularVel;
+
+
+        calcPositions();
+    }
+    public void calcPositions()
+    {
         x = widthMiddleBall + (r * Math.sin(a));
         y = heightMiddleBall + (r * Math.cos(a));
+
+        stick.setLayoutParams(new FrameLayout.LayoutParams(4, (int) r));
 
         path.setVariables(x, y, trace, color);
     }
@@ -148,17 +156,36 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.reset:
-
+                resetVariables();
                 break;
             case R.id.pause:
-                if (stop) {
-                    stop = false;
-                } else {
-                    stop = true;
-                }
+                stopCheck();
                 break;
             case R.id.settings:
                 break;
         }
+    }
+    public void stopCheck()
+    {
+        if (stop) {
+            stop = false;
+        } else {
+            stop = true;
+        }
+    }
+    public void resetVariables()
+    {
+        a = Math.PI / 2;
+        r = 300;
+        angularVel = 0;
+        angularAcc = 0;
+
+
+        calcPositions();
+        draw();
+
+        path.reset();
+
+
     }
 }

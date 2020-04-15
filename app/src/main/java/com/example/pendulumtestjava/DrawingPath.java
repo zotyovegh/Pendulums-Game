@@ -6,6 +6,8 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Point;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
 import android.nfc.Tag;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -19,6 +21,9 @@ public class DrawingPath extends View {
     private float[] p = new float[100];
     private int flag = 0;
     private int counter = 0;
+    private boolean reset = false;
+    private Path path;
+    private int traceing;
 
     public DrawingPath(Context context) {
         super(context);
@@ -40,14 +45,28 @@ public class DrawingPath extends View {
     public void draw(Canvas canvas) {
         super.draw(canvas);
 
-        canvas.drawLines(p, paint);
+        if(reset)
+        {
+            Log.i("Tag", "hali");
+            for(int i = 0; i < 100; i++) {
+                canvas.drawColor(Color.WHITE);
+                p = new float[4];
+                p = new float[traceing];
+            }
+            reset = false;
+        }else{
+            canvas.drawLines(p, paint);
+        }
+
+
         invalidate();
     }
     public void setVariables(double x, double y, int trace, int color) {
         this.paint.setColor(color);
+        traceing = trace;
         if(counter == 0)
         {
-            p = new float[trace];
+            p = new float[traceing];
         }
         this.x = (float) x + 30;
         this.y = (float) y + 30;
@@ -75,5 +94,10 @@ public class DrawingPath extends View {
         }
         counter++;
         invalidate();
+    }
+    public void reset()
+    {
+
+        reset = true;
     }
 }

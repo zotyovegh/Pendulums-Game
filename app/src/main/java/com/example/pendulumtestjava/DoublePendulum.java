@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -127,6 +126,19 @@ public class DoublePendulum extends AppCompatActivity implements View.OnClickLis
         calcPositions();
     }
 
+    public void calcPositions()
+    {
+        x1 = widthMiddleBall + (r1 * Math.sin(a1));
+        y1 = heightMiddleBall + (r1 * Math.cos(a1));
+        x2 = x1 + (r2 * Math.sin(a2));
+        y2 = y1 + (r2 * Math.cos(a2));
+        stick.setLayoutParams(new FrameLayout.LayoutParams(4, (int) r1));
+        stick2.setLayoutParams(new FrameLayout.LayoutParams(4, (int) r2));
+
+        path.setVariables(x1, y1, trace1, color1);
+        path2.setVariables(x2, y2, trace2, color2);
+    }
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         int newx = (int) event.getX() - 28;
@@ -183,8 +195,8 @@ public class DoublePendulum extends AppCompatActivity implements View.OnClickLis
                     stick2.setLayoutParams(new FrameLayout.LayoutParams(5, (int) r2));
                 }
                 calcPositions();
-                a1_v = 0;
-                a2_v = 0;
+
+
 
                 break;
             case MotionEvent.ACTION_UP:
@@ -193,33 +205,40 @@ public class DoublePendulum extends AppCompatActivity implements View.OnClickLis
         }
         return false;
     }
-    public void calcPositions()
-    {
-        x1 = widthMiddleBall + (r1 * Math.sin(a1));
-        y1 = heightMiddleBall + (r1 * Math.cos(a1));
-        x2 = x1 + (r2 * Math.sin(a2));
-        y2 = y1 + (r2 * Math.cos(a2));
-        stick.setLayoutParams(new FrameLayout.LayoutParams(4, (int) r1));
-        stick2.setLayoutParams(new FrameLayout.LayoutParams(4, (int) r2));
 
-        path.setVariables(x1, y1, trace1, color1);
-        path2.setVariables(x2, y2, trace2, color2);
-    }
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.reset:
-
+                resetVariables();
                 break;
             case R.id.pause:
-                if (stop) {
-                    stop = false;
-                } else {
-                    stop = true;
-                }
+                stopCheck();
                 break;
             case R.id.settings:
+
                 break;
         }
+    }
+    public void stopCheck()
+    {
+        if (stop) {
+            stop = false;
+        } else {
+            stop = true;
+        }
+    }
+    public void resetVariables()
+    {
+        a1 = Math.PI / 2;
+        a2 = Math.PI / 2;
+        r1 = 250;
+        r2 = 250;
+        a1_v = 0;
+        a2_v = 0;
+        calcPositions();
+        draw();
+        path.reset();
+        path2.reset();
     }
 }
