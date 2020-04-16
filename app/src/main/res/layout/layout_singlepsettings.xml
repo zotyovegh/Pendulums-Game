@@ -192,7 +192,7 @@
                 app:layout_constraintVertical_bias="0.0" />
 
             <Button
-                android:id="@+id/button14"
+                android:id="@+id/colorButton"
                 android:layout_width="80dp"
                 android:layout_height="25dp"
                 app:layout_constraintBottom_toBottomOf="parent"
