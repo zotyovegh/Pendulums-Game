@@ -34,8 +34,8 @@ public class DoublePendulum extends AppCompatActivity implements View.OnClickLis
     private double g = 1;
     private double m1 = 10;
     private double m2 = 10;
-    private int trace1 = 100;
-    private int trace2 = 200;
+    private int trace1 = 20000;
+    private int trace2 = 20000;
     private boolean onHold = false;
     private int color1 = 0xFFFF0000;
     private int color2 = 0xFF0000FF;

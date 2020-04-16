@@ -24,6 +24,7 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
     private Handler handler = new Handler();
     private Timer timer = new Timer();
     private DrawingPath path;
+    SinglePSettings singlePSettings = new SinglePSettings();
 
 
     private Button reset, pause, settings;
@@ -103,8 +104,8 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
 
         calcPositions();
     }
-    public void calcPositions()
-    {
+
+    public void calcPositions() {
         x = widthMiddleBall + (r * Math.sin(a));
         y = heightMiddleBall + (r * Math.cos(a));
 
@@ -162,6 +163,7 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
                 stopCheck();
                 break;
             case R.id.settings:
+                openSettings();
                 break;
         }
     }
@@ -187,5 +189,9 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
         path.reset();
 
 
+    }
+    public void openSettings()
+    {
+        singlePSettings.show(getSupportFragmentManager(), "Settings");
     }
 }
