@@ -63,7 +63,9 @@ public class DrawingPath extends View {
     }
     public void setVariables(double x, double y, int trace, int color) {
         this.paint.setColor(color);
-        traceing = trace;
+        int temp = trace % 4;
+        traceing = trace - temp;
+
         if(counter == 0)
         {
             p = new float[traceing];

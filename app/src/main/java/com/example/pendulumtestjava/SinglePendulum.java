@@ -25,20 +25,20 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
     private Timer timer = new Timer();
     private DrawingPath path;
     SinglePSettings singlePSettings = new SinglePSettings();
-
+    SinglePData data = SinglePData.getInstance();
 
     private Button reset, pause, settings;
     private double widthMiddleBall, heightMiddleBall;
     private double widthMiddle, heightPoint;
     private double angularAcc, angularVel;
 
-    private double a = Math.PI / 2;
-    private float gravity = (float) 1;
-    private float damping = (float) 0.999;
+    private double a = data.getA();
+    private float gravity = data.getGravity();
+    private float damping = data.getDamping();
     private boolean stop = false;
-    private int color = 0xF0000000;
-    private int trace = 100;
-    private double r = 300;
+    private int drawColor = data.getDrawColor();
+    private int trace = data.getTrace();
+    private double r = data.getR();
     private double x, y;
     private boolean onHold;
 
@@ -111,7 +111,7 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
 
         stick.setLayoutParams(new FrameLayout.LayoutParams(4, (int) r));
 
-        path.setVariables(x, y, trace, color);
+        path.setVariables(x, y, trace, drawColor);
     }
 
     @Override
@@ -140,7 +140,7 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
                 r = Math.sqrt(((newx - widthMiddleBall) * (newx - widthMiddleBall)) + ((newy - heightMiddleBall) * (newy - heightMiddleBall)));
                 stick.setLayoutParams(new FrameLayout.LayoutParams(5, (int) r));
 
-                path.setVariables(x, y, trace, color);
+                path.setVariables(x, y, trace, drawColor);
 
                 angularVel = 0;
                 angularAcc = 0;
@@ -177,8 +177,13 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
     }
     public void resetVariables()
     {
-        a = Math.PI / 2;
-        r = 300;
+        a = data.getA();
+        r = data.getR();
+        gravity = data.getGravity();
+        damping = data.getDamping();
+        trace = data.getTrace();
+        drawColor = data.getDrawColor();
+
         angularVel = 0;
         angularAcc = 0;
 
