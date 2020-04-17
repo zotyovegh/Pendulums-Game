@@ -1,51 +1,34 @@
 package com.example.pendulumtestjava;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 
-
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 
-import com.example.pendulumtestjava.doublePendulum.DoublePendulum;
-import com.example.pendulumtestjava.singlePendulum.SinglePendulum;
+import com.example.pendulumtestjava.main.FragmentList;
+import com.example.pendulumtestjava.main.FragmentMain;
+import com.example.pendulumtestjava.main.ViewPagerAdapter;
+import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity{
 
-    private Button doublePendulum, singlePendulum;
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
+    private ViewPagerAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        singlePendulum = (Button) findViewById(R.id.singlePendulum);
-        singlePendulum.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openSinglePendulumActivity();
-            }
-        });
-        doublePendulum = (Button) findViewById(R.id.doublePendulum);
-        doublePendulum.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openDoublePendulumActivity();
-            }
-        });
+        tabLayout = (TabLayout) findViewById(R.id.tablayout_id);
+        viewPager = (ViewPager) findViewById(R.id.viewpager_id);
+        adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
-    }
-
-    public void openDoublePendulumActivity()
-    {
-        Intent intent = new Intent(this, DoublePendulum.class);
-        startActivity(intent);
-    }
-
-    public void openSinglePendulumActivity()
-    {
-        Intent intent = new Intent(this, SinglePendulum.class);
-        startActivity(intent);
+        //Add Fragment Here
+        adapter.AddFragment(new FragmentMain(), "Main");
+        adapter.AddFragment(new FragmentList(), "List");
+        viewPager.setAdapter(adapter);
+        tabLayout.setupWithViewPager(viewPager);
     }
 }
