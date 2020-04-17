@@ -2,7 +2,6 @@ package com.example.pendulumtestjava;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.os.Handler;
@@ -14,8 +13,6 @@ import android.widget.TextView;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import static android.content.ContentValues.TAG;
-
 public class DoublePendulum extends AppCompatActivity implements View.OnClickListener {
     private TextView stick, stick2, ball, ball2, middle;
 
@@ -26,26 +23,26 @@ public class DoublePendulum extends AppCompatActivity implements View.OnClickLis
     private DoublePSettings doublePSettings = new DoublePSettings();
     private DoublePData data = DoublePData.getInstance();
 
+    private double widthMiddleBall, heightMiddleBall;
+    private double widthMiddle, heightPoint;
+    private double x1, y1, x2, y2;
     private double r1 = data.getR1();
     private double r2 = data.getR2();
     private double a1 = data.getA1();
     private double a2 = data.getA2();
-    private double x1, y1, x2, y2;
-    private double widthMiddleBall, heightMiddleBall;
-    private double widthMiddle, heightPoint;
-    private double a1_v = 0;
-    private double a2_v = 0;
     private double g = data.getG();
     private double m1 = data.getM1();
     private double m2 = data.getM2();
     private int trace1 = data.getTrace1();
     private int trace2 = data.getTrace2();
-    private boolean onHold = false;
     private int trace1Color = data.getTrace1Color();
     private int trace2Color = data.getTrace2Color();
     private int ball1Color = data.getBall1Color();
     private int ball2Color = data.getBall2Color();
+    private boolean onHold = false;
     private boolean stop = false;
+    private double a1_v = 0;
+    private double a2_v = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,8 +76,7 @@ public class DoublePendulum extends AppCompatActivity implements View.OnClickLis
         update();
     }
 
-    public void update()
-    {
+    public void update() {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
@@ -94,7 +90,7 @@ public class DoublePendulum extends AppCompatActivity implements View.OnClickLis
         },0, 15);
     }
 
-    public void draw(){
+    public void draw() {
         stick.setRotation((float)Math.toDegrees(-a1));
         stick.setX((float)(widthMiddle-2));
         stick.setY((float)(heightPoint));
@@ -109,7 +105,7 @@ public class DoublePendulum extends AppCompatActivity implements View.OnClickLis
         ball2.setY((float)y2);
     }
 
-    public void calc(){
+    public void calc() {
         double num1 = -g * (2 * m1 + m2) * (Math.sin((a1)));
         double num2 = -m2 * g * (Math.sin(a1 - (2 * a2)));
         double num3 = -2 * (Math.sin(a1 - a2)) * m2;
@@ -132,8 +128,7 @@ public class DoublePendulum extends AppCompatActivity implements View.OnClickLis
         calcPositions();
     }
 
-    public void calcPositions()
-    {
+    public void calcPositions() {
         x1 = widthMiddleBall + (r1 * Math.sin(a1));
         y1 = heightMiddleBall + (r1 * Math.cos(a1));
         x2 = x1 + (r2 * Math.sin(a2));
@@ -205,8 +200,6 @@ public class DoublePendulum extends AppCompatActivity implements View.OnClickLis
                 }
                 calcPositions();
 
-
-
                 break;
             case MotionEvent.ACTION_UP:
                 onHold = false;
@@ -229,16 +222,16 @@ public class DoublePendulum extends AppCompatActivity implements View.OnClickLis
                 break;
         }
     }
-    public void stopCheck()
-    {
+
+    public void stopCheck() {
         if (stop) {
             stop = false;
         } else {
             stop = true;
         }
     }
-    public void resetVariables()
-    {
+
+    public void resetVariables() {
         r1 = data.getR1();
         r2 = data.getR2();
         a1 = data.getA1();
@@ -260,6 +253,7 @@ public class DoublePendulum extends AppCompatActivity implements View.OnClickLis
         path.reset();
         path2.reset();
     }
+
     public void openSettings()
     {
         doublePSettings.show(getSupportFragmentManager(), "Settings");

@@ -3,18 +3,14 @@ package com.example.pendulumtestjava;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
-
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
-
 import yuku.ambilwarna.AmbilWarnaDialog;
 
 public class DoublePSettings extends AppCompatDialogFragment {
@@ -23,8 +19,6 @@ public class DoublePSettings extends AppCompatDialogFragment {
     private Switch trace1Switch, trace2Switch;
     private EditText a1, a2, r1, r2, g, m1, m2, trace1, trace2;
     DoublePData data = DoublePData.getInstance();
-
-
 
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
@@ -36,10 +30,10 @@ public class DoublePSettings extends AppCompatDialogFragment {
         a1 = (EditText) view.findViewById(R.id.a1);
         double temp1a = Math.toDegrees(data.getA1());
         a1.setText(String.format("%.0f", temp1a));
-
         a2 = (EditText) view.findViewById(R.id.a2);
         double temp2a = Math.toDegrees(data.getA2());
         a2.setText(String.format("%.0f", temp2a));
+
         r1 = (EditText) view.findViewById(R.id.r1);
         r1.setText(String.format("%.0f", data.getR1()));
         r2 = (EditText) view.findViewById(R.id.r2);
@@ -111,7 +105,6 @@ public class DoublePSettings extends AppCompatDialogFragment {
             }
         });
 
-
         builder.setView(view)
                 .setTitle("Settings")
                 .setPositiveButton("OK",
@@ -143,7 +136,6 @@ public class DoublePSettings extends AppCompatDialogFragment {
                             }
                         }
                 )
-
                 .setNegativeButton("Cancel",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
@@ -155,13 +147,10 @@ public class DoublePSettings extends AppCompatDialogFragment {
         return builder.create();
     }
 
-    public void ball1ColorPicker()
-    {
+    public void ball1ColorPicker() {
         AmbilWarnaDialog colorPicker = new AmbilWarnaDialog(getActivity(), ball1DefaultColor, new AmbilWarnaDialog.OnAmbilWarnaListener() {
             @Override
-            public void onCancel(AmbilWarnaDialog dialog) {
-
-            }
+            public void onCancel(AmbilWarnaDialog dialog) {}
 
             @Override
             public void onOk(AmbilWarnaDialog dialog, int color) {
@@ -171,13 +160,11 @@ public class DoublePSettings extends AppCompatDialogFragment {
         });
         colorPicker.show();
     }
-    public void ball2ColorPicker()
-    {
+
+    public void ball2ColorPicker() {
         AmbilWarnaDialog colorPicker = new AmbilWarnaDialog(getActivity(), ball2DefaultColor, new AmbilWarnaDialog.OnAmbilWarnaListener() {
             @Override
-            public void onCancel(AmbilWarnaDialog dialog) {
-
-            }
+            public void onCancel(AmbilWarnaDialog dialog) {}
 
             @Override
             public void onOk(AmbilWarnaDialog dialog, int color) {
@@ -187,13 +174,11 @@ public class DoublePSettings extends AppCompatDialogFragment {
         });
         colorPicker.show();
     }
-    public void trace1ColorPicker()
-    {
+
+    public void trace1ColorPicker() {
         AmbilWarnaDialog colorPicker = new AmbilWarnaDialog(getActivity(), trace1DefaultColor, new AmbilWarnaDialog.OnAmbilWarnaListener() {
             @Override
-            public void onCancel(AmbilWarnaDialog dialog) {
-
-            }
+            public void onCancel(AmbilWarnaDialog dialog) {}
 
             @Override
             public void onOk(AmbilWarnaDialog dialog, int color) {
@@ -203,13 +188,11 @@ public class DoublePSettings extends AppCompatDialogFragment {
         });
         colorPicker.show();
     }
-    public void trace2ColorPicker()
-    {
+
+    public void trace2ColorPicker() {
         AmbilWarnaDialog colorPicker = new AmbilWarnaDialog(getActivity(), trace2DefaultColor, new AmbilWarnaDialog.OnAmbilWarnaListener() {
             @Override
-            public void onCancel(AmbilWarnaDialog dialog) {
-
-            }
+            public void onCancel(AmbilWarnaDialog dialog) {}
 
             @Override
             public void onOk(AmbilWarnaDialog dialog, int color) {

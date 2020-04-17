@@ -121,8 +121,7 @@ public class DoublePData {
         this.trace2Color = color2;
     }
 
-    public static synchronized DoublePData getInstance()
-    {
+    public static synchronized DoublePData getInstance() {
         if(instance==null)
         {
             instance = new DoublePData();

@@ -103,7 +103,6 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
         angularVel *= damping;
         a += angularVel;
 
-
         calcPositions();
     }
 
@@ -170,16 +169,16 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
                 break;
         }
     }
-    public void stopCheck()
-    {
+
+    public void stopCheck() {
         if (stop) {
             stop = false;
         } else {
             stop = true;
         }
     }
-    public void resetVariables()
-    {
+
+    public void resetVariables() {
         a = data.getA();
         r = data.getR();
         gravity = data.getGravity();
@@ -191,14 +190,12 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
         angularVel = 0;
         angularAcc = 0;
 
-
         calcPositions();
         draw();
 
         path.reset();
-
-
     }
+
     public void openSettings()
     {
         singlePSettings.show(getSupportFragmentManager(), "Settings");

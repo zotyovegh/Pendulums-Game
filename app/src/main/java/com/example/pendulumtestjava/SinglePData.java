@@ -58,8 +58,6 @@ public class SinglePData {
         this.damping = damping;
     }
 
-
-
     public double getR() {
         return this.r;
     }
@@ -68,8 +66,7 @@ public class SinglePData {
         this.r = r;
     }
 
-    public static synchronized SinglePData getInstance()
-    {
+    public static synchronized SinglePData getInstance() {
         if(instance==null)
         {
             instance = new SinglePData();

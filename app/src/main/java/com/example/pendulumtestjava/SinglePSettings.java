@@ -3,7 +3,6 @@ package com.example.pendulumtestjava;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -13,7 +12,6 @@ import android.widget.Switch;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
-import androidx.core.content.ContextCompat;
 import yuku.ambilwarna.AmbilWarnaDialog;
 
 public class SinglePSettings extends AppCompatDialogFragment {
@@ -49,10 +47,6 @@ public class SinglePSettings extends AppCompatDialogFragment {
         } else {
             switch1.setChecked(true);
         }
-
-
-
-
 
         traceDefaultColor = data.getTraceDrawColor();
         ballDefaultColor = data.getBallDrawColor();
@@ -94,24 +88,20 @@ public class SinglePSettings extends AppCompatDialogFragment {
                             }
                         }
                 )
-
                 .setNegativeButton("Cancel",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
                                 dialog.dismiss();
                             }
                         }
-                )
-        ;
-
+                );
         return builder.create();
     }
+
     public void openColorPicker() {
         AmbilWarnaDialog colorPicker = new AmbilWarnaDialog(getActivity(), traceDefaultColor, new AmbilWarnaDialog.OnAmbilWarnaListener() {
             @Override
-            public void onCancel(AmbilWarnaDialog dialog) {
-
-            }
+            public void onCancel(AmbilWarnaDialog dialog) {}
 
             @Override
             public void onOk(AmbilWarnaDialog dialog, int color) {
@@ -121,12 +111,11 @@ public class SinglePSettings extends AppCompatDialogFragment {
         });
         colorPicker.show();
     }
+
     public void openColorPicker2() {
         AmbilWarnaDialog colorPicker2 = new AmbilWarnaDialog(getActivity(), ballDefaultColor, new AmbilWarnaDialog.OnAmbilWarnaListener() {
             @Override
-            public void onCancel(AmbilWarnaDialog dialog) {
-
-            }
+            public void onCancel(AmbilWarnaDialog dialog) {}
 
             @Override
             public void onOk(AmbilWarnaDialog dialog, int color) {

@@ -22,7 +22,6 @@ public class DrawingPath extends View {
     private int flag = 0;
     private int counter = 0;
     private boolean reset = false;
-    private Path path;
     private int traceing;
 
     public DrawingPath(Context context) {
@@ -34,7 +33,6 @@ public class DrawingPath extends View {
 
         paint = new Paint();
         paint.setStrokeWidth(5);
-
     }
 
     public DrawingPath(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
@@ -57,10 +55,9 @@ public class DrawingPath extends View {
         }else{
             canvas.drawLines(p, paint);
         }
-
-
         invalidate();
     }
+
     public void setVariables(double x, double y, int trace, int color) {
         this.paint.setColor(color);
         int temp = trace % 4;
@@ -97,9 +94,9 @@ public class DrawingPath extends View {
         counter++;
         invalidate();
     }
+
     public void reset()
     {
-
         reset = true;
     }
 }
