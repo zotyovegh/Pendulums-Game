@@ -2,6 +2,7 @@ package com.example.pendulumtestjava;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -36,7 +37,8 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
     private float gravity = data.getGravity();
     private float damping = data.getDamping();
     private boolean stop = false;
-    private int drawColor = data.getDrawColor();
+    private int traceDrawColor = data.getTraceDrawColor();
+    private int ballDrawColor = data.getBallDrawColor();
     private int trace = data.getTrace();
     private double r = data.getR();
     private double x, y;
@@ -111,7 +113,8 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
 
         stick.setLayoutParams(new FrameLayout.LayoutParams(4, (int) r));
 
-        path.setVariables(x, y, trace, drawColor);
+        path.setVariables(x, y, trace, traceDrawColor);
+        ball.getBackground().setColorFilter(ballDrawColor, PorterDuff.Mode.SRC_ATOP);
     }
 
     @Override
@@ -140,7 +143,7 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
                 r = Math.sqrt(((newx - widthMiddleBall) * (newx - widthMiddleBall)) + ((newy - heightMiddleBall) * (newy - heightMiddleBall)));
                 stick.setLayoutParams(new FrameLayout.LayoutParams(5, (int) r));
 
-                path.setVariables(x, y, trace, drawColor);
+                path.setVariables(x, y, trace, traceDrawColor);
 
                 angularVel = 0;
                 angularAcc = 0;
@@ -182,7 +185,8 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
         gravity = data.getGravity();
         damping = data.getDamping();
         trace = data.getTrace();
-        drawColor = data.getDrawColor();
+        traceDrawColor = data.getTraceDrawColor();
+        ballDrawColor = data.getBallDrawColor();
 
         angularVel = 0;
         angularAcc = 0;

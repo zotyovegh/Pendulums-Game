@@ -7,14 +7,23 @@ public class SinglePData {
     private float damping = (float) 0.999;
     private double r = 300;
     private double a = Math.PI / 2;
-    private int drawColor = 0xF0000000;
+    private int traceDrawColor = 0xF0000000;
+    private int ballDrawColor = 0xFFFF0000;
 
-    public int getDrawColor() {
-        return drawColor;
+    public int getTraceDrawColor() {
+        return traceDrawColor;
     }
 
-    public void setDrawColor(int color) {
-        this.drawColor = color;
+    public void setTraceDrawColor(int traceDrawColor) {
+        this.traceDrawColor = traceDrawColor;
+    }
+
+    public int getBallDrawColor() {
+        return ballDrawColor;
+    }
+
+    public void setBallDrawColor(int ballDrawColor) {
+        this.ballDrawColor = ballDrawColor;
     }
 
     public double getA() {

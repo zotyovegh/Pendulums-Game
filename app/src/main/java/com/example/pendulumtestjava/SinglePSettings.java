@@ -17,8 +17,8 @@ import androidx.core.content.ContextCompat;
 import yuku.ambilwarna.AmbilWarnaDialog;
 
 public class SinglePSettings extends AppCompatDialogFragment {
-    private Button colorButton;
-    private int defaultColor;
+    private Button traceColorButton, ballColorButton;
+    private int traceDefaultColor, ballDefaultColor;
     SinglePData data = SinglePData.getInstance();
     private EditText a, r, g, damp, trace;
     private Switch switch1;
@@ -53,15 +53,26 @@ public class SinglePSettings extends AppCompatDialogFragment {
 
 
 
-        defaultColor = data.getDrawColor();
+        traceDefaultColor = data.getTraceDrawColor();
+        ballDefaultColor = data.getBallDrawColor();
 
-        colorButton = (Button) view.findViewById(R.id.colorButton);
-        colorButton.setBackgroundColor(data.getDrawColor());
-        colorButton.setOnClickListener(new View.OnClickListener() {
+        traceColorButton = (Button) view.findViewById(R.id.traceColorButton);
+        traceColorButton.setBackgroundColor(data.getTraceDrawColor());
+        traceColorButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.i("TAG", "hali");
                 openColorPicker();
+            }
+        });
+
+        ballColorButton = (Button) view.findViewById(R.id.ballColorButton);
+        ballColorButton.setBackgroundColor(data.getBallDrawColor());
+        ballColorButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i("TAG", "hali");
+                openColorPicker2();
             }
         });
 
@@ -79,7 +90,8 @@ public class SinglePSettings extends AppCompatDialogFragment {
                                 }else {
                                     data.setTrace(0);
                                 }
-                                data.setDrawColor(defaultColor);
+                                data.setTraceDrawColor(traceDefaultColor);
+                                data.setBallDrawColor(ballDefaultColor);
                             }
                         }
                 )
@@ -96,7 +108,7 @@ public class SinglePSettings extends AppCompatDialogFragment {
         return builder.create();
     }
     public void openColorPicker() {
-        AmbilWarnaDialog colorPicker = new AmbilWarnaDialog(getActivity(), defaultColor, new AmbilWarnaDialog.OnAmbilWarnaListener() {
+        AmbilWarnaDialog colorPicker = new AmbilWarnaDialog(getActivity(), traceDefaultColor, new AmbilWarnaDialog.OnAmbilWarnaListener() {
             @Override
             public void onCancel(AmbilWarnaDialog dialog) {
 
@@ -104,10 +116,25 @@ public class SinglePSettings extends AppCompatDialogFragment {
 
             @Override
             public void onOk(AmbilWarnaDialog dialog, int color) {
-                defaultColor = color;
-                colorButton.setBackgroundColor(defaultColor);
+                traceDefaultColor = color;
+                traceColorButton.setBackgroundColor(traceDefaultColor);
             }
         });
         colorPicker.show();
+    }
+    public void openColorPicker2() {
+        AmbilWarnaDialog colorPicker2 = new AmbilWarnaDialog(getActivity(), ballDefaultColor, new AmbilWarnaDialog.OnAmbilWarnaListener() {
+            @Override
+            public void onCancel(AmbilWarnaDialog dialog) {
+
+            }
+
+            @Override
+            public void onOk(AmbilWarnaDialog dialog, int color) {
+                ballDefaultColor = color;
+                ballColorButton.setBackgroundColor(ballDefaultColor);
+            }
+        });
+        colorPicker2.show();
     }
 }
