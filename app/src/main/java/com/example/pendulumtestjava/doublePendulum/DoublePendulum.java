@@ -47,6 +47,10 @@ public class DoublePendulum extends AppCompatActivity implements View.OnClickLis
     private boolean stop = false;
     private double a1_v = 0;
     private double a2_v = 0;
+    private boolean endlessTrace1 = data.isEndlessTrace1();
+    private boolean endlessTrace2 = data.isEndlessTrace2();
+    private boolean isTrace1On = data.isTrace1On();
+    private boolean isTrace2On = data.isTrace2On();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -140,9 +144,12 @@ public class DoublePendulum extends AppCompatActivity implements View.OnClickLis
         stick.setLayoutParams(new FrameLayout.LayoutParams(4, (int) r1));
         stick2.setLayoutParams(new FrameLayout.LayoutParams(4, (int) r2));
 
-        path.setVariables(x1, y1, trace1, trace1Color);
-        path2.setVariables(x2, y2, trace2, trace2Color);
-
+        if(isTrace1On) {
+            path.setVariables(x1, y1, trace1, trace1Color, endlessTrace1);
+        }
+        if(isTrace2On) {
+            path2.setVariables(x2, y2, trace2, trace2Color, endlessTrace2);
+        }
         ball.getBackground().setColorFilter(ball1Color, PorterDuff.Mode.SRC_ATOP);
         ball2.getBackground().setColorFilter(ball2Color, PorterDuff.Mode.SRC_ATOP);
     }
@@ -250,10 +257,15 @@ public class DoublePendulum extends AppCompatActivity implements View.OnClickLis
         ball1Color = data.getBall1Color();
         ball2Color = data.getBall2Color();
 
+
         a1_v = 0;
         a2_v = 0;
         calcPositions();
         draw();
+        endlessTrace1 = data.isEndlessTrace1();
+        endlessTrace2 = data.isEndlessTrace2();
+        isTrace1On = data.isTrace1On();
+        isTrace2On = data.isTrace2On();
         path.reset();
         path2.reset();
     }

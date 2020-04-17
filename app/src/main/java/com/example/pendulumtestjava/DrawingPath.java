@@ -4,25 +4,23 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.Point;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.nfc.Tag;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
-import static android.content.ContentValues.TAG;
+
 import androidx.annotation.Nullable;
+
+import java.util.ArrayList;
+
+import static android.content.ContentValues.TAG;
 
 public class DrawingPath extends View {
     private Paint paint;
     private float x, y, tempX, tempY;
-    private float[] p = new float[100];
-    private int flag = 0;
+    private ArrayList<Float> array = new ArrayList<>();
     private int counter = 0;
     private boolean reset = false;
-    private int traceing;
+
 
     public DrawingPath(Context context) {
         super(context);
@@ -43,60 +41,56 @@ public class DrawingPath extends View {
     public void draw(Canvas canvas) {
         super.draw(canvas);
 
-        if(reset)
-        {
-            Log.i("Tag", "hali");
-            for(int i = 0; i < 100; i++) {
-                canvas.drawColor(Color.WHITE);
-                p = new float[4];
-                p = new float[traceing];
-            }
+        if (reset) {
+            array = new ArrayList<>();
             reset = false;
-        }else{
-            canvas.drawLines(p, paint);
+        } else {
+
+            canvas.drawLines(convert(array), paint);
         }
         invalidate();
     }
 
-    public void setVariables(double x, double y, int trace, int color) {
+    public void setVariables(double x, double y, int trace, int color, boolean endless) {
         this.paint.setColor(color);
-        int temp = trace % 4;
-        traceing = trace - temp;
-
-        if(counter == 0)
-        {
-            p = new float[traceing];
-        }
         this.x = (float) x + 30;
         this.y = (float) y + 30;
+        if (endless == false) {
+            if (array.size() > trace) {
+                for (int i = 0; i < 4; i++) {
+                    array.remove(0);
+                }
+            }
+        }
 
-        if (flag > p.length - 1)
-        {
-            flag = 0;
-        } else if(counter == 0)
-        {
-            tempX = this.x;
-            tempY = this.y;
-        } else if(counter != 0)
-        {
-            p[flag] = tempX;
-            flag++;
-            p[flag] =tempY;
-            flag++;
-            p[flag] = this.x;
-            flag++;
-            p[flag] = this.y;
-            flag++;
-
+        if (counter == 0) {
             tempX = this.x;
             tempY = this.y;
         }
+        array.add(tempX);
+        array.add(tempY);
+        array.add(this.x);
+        array.add(this.y);
+
+        tempX = this.x;
+        tempY = this.y;
+
+        Log.i(TAG, "Array size: " + array.size());
         counter++;
         invalidate();
     }
 
-    public void reset()
-    {
+    public float[] convert(ArrayList<Float> f) {
+        float[] result = new float[f.size()];
+
+        for (int i = 0; i < f.size(); i++) {
+            result[i] = f.get(i);
+        }
+        return result;
+    }
+
+    public void reset() {
         reset = true;
+
     }
 }

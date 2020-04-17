@@ -11,11 +11,47 @@ public class DoublePData {
     private double m1 = 10;
     private double m2 = 10;
     private int trace1 = 100;
-    private int trace2 = 20000;
+    private int trace2 = 100;
     private int trace1Color = 0xFFFF0000;
     private int trace2Color = 0xFF0000FF;
     private int ball1Color = 0xFFFF0000;
     private int ball2Color = 0xFF0000FF;
+    private boolean endlessTrace1 = false;
+    private boolean endlessTrace2 = false;
+    private boolean isTrace1On = true;
+    private boolean isTrace2On = true;
+
+    public boolean isTrace1On() {
+        return isTrace1On;
+    }
+
+    public void setTrace1On(boolean trace1On) {
+        isTrace1On = trace1On;
+    }
+
+    public boolean isTrace2On() {
+        return isTrace2On;
+    }
+
+    public void setTrace2On(boolean trace2On) {
+        isTrace2On = trace2On;
+    }
+
+    public boolean isEndlessTrace1() {
+        return endlessTrace1;
+    }
+
+    public void setEndlessTrace1(boolean endlessTrace1) {
+        this.endlessTrace1 = endlessTrace1;
+    }
+
+    public boolean isEndlessTrace2() {
+        return endlessTrace2;
+    }
+
+    public void setEndlessTrace2(boolean endlessTrace2) {
+        this.endlessTrace2 = endlessTrace2;
+    }
 
     public int getBall1Color() {
         return ball1Color;

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Switch;
 
@@ -23,6 +24,7 @@ public class SinglePSettings extends AppCompatDialogFragment {
     SinglePData data = SinglePData.getInstance();
     private EditText a, r, g, damp, trace;
     private Switch switch1;
+    private CheckBox checkBox;
 
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
@@ -43,8 +45,11 @@ public class SinglePSettings extends AppCompatDialogFragment {
         trace = (EditText) view.findViewById(R.id.trace);
         trace.setText(String.valueOf(data.getTrace()));
         switch1 = (Switch) view.findViewById(R.id.switch1);
+        switch1.setChecked(data.isTraceOn());
+        checkBox = (CheckBox) view.findViewById(R.id.checkBox);
+        checkBox.setChecked(data.isEndlessTrace());
 
-        if(data.getTrace() == 0)
+        if(data.isTraceOn() == false)
         {
             switch1.setChecked(false);
         } else {
@@ -83,11 +88,15 @@ public class SinglePSettings extends AppCompatDialogFragment {
                                 data.setDamping((float)Double.parseDouble(damp.getText().toString()));
                                 if(switch1.isChecked()) {
                                     data.setTrace((int) Double.parseDouble(trace.getText().toString()));
+                                    data.setTraceOn(true);
+                                    data.setEndlessTrace(checkBox.isChecked());
                                 }else {
-                                    data.setTrace(0);
+                                    data.setTraceOn(false);
+                                    data.setEndlessTrace(checkBox.isChecked());
                                 }
                                 data.setTraceDrawColor(traceDefaultColor);
                                 data.setBallDrawColor(ballDefaultColor);
+
                             }
                         }
                 )

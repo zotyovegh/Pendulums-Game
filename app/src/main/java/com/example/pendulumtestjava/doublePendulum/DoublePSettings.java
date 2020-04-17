@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Switch;
 import androidx.annotation.Nullable;
@@ -20,8 +21,9 @@ public class DoublePSettings extends AppCompatDialogFragment {
     private Button ballColor1, ballColor2, traceColor1, traceColor2;
     private int trace1DefaultColor, trace2DefaultColor, ball1DefaultColor, ball2DefaultColor;
     private Switch trace1Switch, trace2Switch;
+    private CheckBox checkBoxTrace1, checkBoxTrace2;
     private EditText a1, a2, r1, r2, g, m1, m2, trace1, trace2;
-    DoublePData data = DoublePData.getInstance();
+    private DoublePData data = DoublePData.getInstance();
 
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
@@ -54,15 +56,21 @@ public class DoublePSettings extends AppCompatDialogFragment {
         trace2 = (EditText) view.findViewById(R.id.trace2);
         trace2.setText(String.valueOf(data.getTrace2()));
         trace1Switch = (Switch) view.findViewById(R.id.trace1Switch);
+        trace1Switch.setChecked(data.isTrace1On());
         trace2Switch = (Switch) view.findViewById(R.id.trace2Switch);
+        trace2Switch.setChecked(data.isTrace2On());
+        checkBoxTrace1 = (CheckBox) view.findViewById(R.id.checkBoxTrace1);
+        checkBoxTrace1.setChecked(data.isEndlessTrace1());
+        checkBoxTrace2 = (CheckBox) view.findViewById(R.id.checkBoxTrace2);
+        checkBoxTrace2.setChecked(data.isEndlessTrace2());
 
-        if(data.getTrace1() == 0)
+        if(data.isTrace1On() == false)
         {
             trace1Switch.setChecked(false);
         } else {
             trace1Switch.setChecked(true);
         }
-        if(data.getTrace2() == 0)
+        if(data.isTrace2On() == false)
         {
             trace2Switch.setChecked(false);
         } else {
@@ -127,13 +135,19 @@ public class DoublePSettings extends AppCompatDialogFragment {
 
                                 if(trace1Switch.isChecked()) {
                                     data.setTrace1((int) Double.parseDouble(trace1.getText().toString()));
+                                    data.setTrace1On(true);
+                                    data.setEndlessTrace1(checkBoxTrace1.isChecked());
                                 }else {
-                                    data.setTrace1(0);
+                                    data.setTrace1On(false);
+                                    data.setEndlessTrace1(checkBoxTrace1.isChecked());
                                 }
                                 if(trace2Switch.isChecked()) {
                                     data.setTrace2((int) Double.parseDouble(trace2.getText().toString()));
+                                    data.setTrace2On(true);
+                                    data.setEndlessTrace2(checkBoxTrace2.isChecked());
                                 }else {
-                                    data.setTrace2(0);
+                                    data.setTrace2On(false);
+                                    data.setEndlessTrace2(checkBoxTrace2.isChecked());
                                 }
 
                             }

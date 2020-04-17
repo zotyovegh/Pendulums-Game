@@ -1,5 +1,7 @@
 package com.example.pendulumtestjava.singlePendulum;
 
+import java.util.ArrayList;
+
 public class SinglePData {
     private static SinglePData instance;
     private int trace = 100;
@@ -9,6 +11,25 @@ public class SinglePData {
     private double a = Math.PI / 2;
     private int traceDrawColor = 0xF0000000;
     private int ballDrawColor = 0xFFFF0000;
+    private boolean endlessTrace = false;
+    private boolean isTraceOn = true;
+
+
+    public boolean isTraceOn() {
+        return isTraceOn;
+    }
+
+    public void setTraceOn(boolean traceOn) {
+        isTraceOn = traceOn;
+    }
+
+    public boolean isEndlessTrace() {
+        return endlessTrace;
+    }
+
+    public void setEndlessTrace(boolean endless) {
+        this.endlessTrace = endless;
+    }
 
     public int getTraceDrawColor() {
         return traceDrawColor;

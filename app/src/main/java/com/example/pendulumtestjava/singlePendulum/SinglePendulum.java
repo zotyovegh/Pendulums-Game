@@ -41,6 +41,8 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
     private double r = data.getR();
     private double x, y;
     private boolean onHold;
+    private boolean endlessTrace = data.isEndlessTrace();
+    private boolean isTraceOn = data.isTraceOn();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,8 +111,9 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
         y = heightMiddleBall + (r * Math.cos(a));
 
         stick.setLayoutParams(new FrameLayout.LayoutParams(4, (int) r));
-
-        path.setVariables(x, y, trace, traceDrawColor);
+        if(isTraceOn) {
+            path.setVariables(x, y, trace, traceDrawColor, endlessTrace);
+        }
         ball.getBackground().setColorFilter(ballDrawColor, PorterDuff.Mode.SRC_ATOP);
     }
 
@@ -140,7 +143,10 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
                 r = Math.sqrt(((newx - widthMiddleBall) * (newx - widthMiddleBall)) + ((newy - heightMiddleBall) * (newy - heightMiddleBall)));
                 stick.setLayoutParams(new FrameLayout.LayoutParams(5, (int) r));
 
-                path.setVariables(x, y, trace, traceDrawColor);
+                if(isTraceOn) {
+                    path.setVariables(x, y, trace, traceDrawColor, endlessTrace);
+                }
+
 
                 angularVel = 0;
                 angularAcc = 0;
@@ -190,7 +196,8 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
 
         calcPositions();
         draw();
-
+        endlessTrace = data.isEndlessTrace();
+        isTraceOn = data.isTraceOn();
         path.reset();
     }
 
