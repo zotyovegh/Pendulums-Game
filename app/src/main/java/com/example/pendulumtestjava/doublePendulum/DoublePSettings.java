@@ -1,4 +1,4 @@
-package com.example.pendulumtestjava;
+package com.example.pendulumtestjava.doublePendulum;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -11,6 +11,9 @@ import android.widget.Switch;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
+
+import com.example.pendulumtestjava.R;
+
 import yuku.ambilwarna.AmbilWarnaDialog;
 
 public class DoublePSettings extends AppCompatDialogFragment {

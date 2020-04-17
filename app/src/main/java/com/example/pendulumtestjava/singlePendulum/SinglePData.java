@@ -1,4 +1,4 @@
-package com.example.pendulumtestjava;
+package com.example.pendulumtestjava.singlePendulum;
 
 public class SinglePData {
     private static SinglePData instance;

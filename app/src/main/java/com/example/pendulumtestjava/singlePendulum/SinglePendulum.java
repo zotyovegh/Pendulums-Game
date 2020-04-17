@@ -1,23 +1,21 @@
-package com.example.pendulumtestjava;
+package com.example.pendulumtestjava.singlePendulum;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.example.pendulumtestjava.DrawingPath;
+import com.example.pendulumtestjava.R;
 
 import java.util.Timer;
 import java.util.TimerTask;
-
-import static android.content.ContentValues.TAG;
 
 
 public class SinglePendulum extends AppCompatActivity implements View.OnClickListener {

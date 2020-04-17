@@ -1,4 +1,4 @@
-package com.example.pendulumtestjava;
+package com.example.pendulumtestjava.doublePendulum;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +10,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+
+import com.example.pendulumtestjava.DrawingPath;
+import com.example.pendulumtestjava.R;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
