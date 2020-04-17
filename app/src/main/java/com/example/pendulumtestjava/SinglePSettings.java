@@ -22,6 +22,7 @@ public class SinglePSettings extends AppCompatDialogFragment {
     SinglePData data = SinglePData.getInstance();
     private EditText a, r, g, damp, trace;
     private Switch switch1;
+
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -37,7 +38,7 @@ public class SinglePSettings extends AppCompatDialogFragment {
         g = (EditText) view.findViewById(R.id.g);
         g.setText(String.format("%.1f", data.getGravity()));
         damp = (EditText) view.findViewById(R.id.damp);
-        damp.setText(String.format("%.3f", data.getDamping()));
+        damp.setText(String.format("%.4f", data.getDamping()));
         trace = (EditText) view.findViewById(R.id.trace);
         trace.setText(String.valueOf(data.getTrace()));
         switch1 = (Switch) view.findViewById(R.id.switch1);
@@ -61,7 +62,6 @@ public class SinglePSettings extends AppCompatDialogFragment {
         traceColorButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("TAG", "hali");
                 openColorPicker();
             }
         });
@@ -71,7 +71,6 @@ public class SinglePSettings extends AppCompatDialogFragment {
         ballColorButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("TAG", "hali");
                 openColorPicker2();
             }
         });

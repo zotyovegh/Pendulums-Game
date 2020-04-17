@@ -25,8 +25,8 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
     private Handler handler = new Handler();
     private Timer timer = new Timer();
     private DrawingPath path;
-    SinglePSettings singlePSettings = new SinglePSettings();
-    SinglePData data = SinglePData.getInstance();
+    private SinglePSettings singlePSettings = new SinglePSettings();
+    private SinglePData data = SinglePData.getInstance();
 
     private Button reset, pause, settings;
     private double widthMiddleBall, heightMiddleBall;

@@ -2,6 +2,8 @@ package com.example.pendulumtestjava;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
@@ -21,24 +23,28 @@ public class DoublePendulum extends AppCompatActivity implements View.OnClickLis
     private Timer timer = new Timer();
     private DrawingPath path, path2;
     private Button reset, pause, settings;
+    private DoublePSettings doublePSettings = new DoublePSettings();
+    private DoublePData data = DoublePData.getInstance();
 
-    private double r1 = 250;
-    private double r2 = 250;
-    private double a1 = Math.PI / 2;
-    private double a2 = Math.PI / 2;
+    private double r1 = data.getR1();
+    private double r2 = data.getR2();
+    private double a1 = data.getA1();
+    private double a2 = data.getA2();
     private double x1, y1, x2, y2;
     private double widthMiddleBall, heightMiddleBall;
     private double widthMiddle, heightPoint;
     private double a1_v = 0;
     private double a2_v = 0;
-    private double g = 1;
-    private double m1 = 10;
-    private double m2 = 10;
-    private int trace1 = 20000;
-    private int trace2 = 20000;
+    private double g = data.getG();
+    private double m1 = data.getM1();
+    private double m2 = data.getM2();
+    private int trace1 = data.getTrace1();
+    private int trace2 = data.getTrace2();
     private boolean onHold = false;
-    private int color1 = 0xFFFF0000;
-    private int color2 = 0xFF0000FF;
+    private int trace1Color = data.getTrace1Color();
+    private int trace2Color = data.getTrace2Color();
+    private int ball1Color = data.getBall1Color();
+    private int ball2Color = data.getBall2Color();
     private boolean stop = false;
 
     @Override
@@ -135,8 +141,11 @@ public class DoublePendulum extends AppCompatActivity implements View.OnClickLis
         stick.setLayoutParams(new FrameLayout.LayoutParams(4, (int) r1));
         stick2.setLayoutParams(new FrameLayout.LayoutParams(4, (int) r2));
 
-        path.setVariables(x1, y1, trace1, color1);
-        path2.setVariables(x2, y2, trace2, color2);
+        path.setVariables(x1, y1, trace1, trace1Color);
+        path2.setVariables(x2, y2, trace2, trace2Color);
+
+        ball.getBackground().setColorFilter(ball1Color, PorterDuff.Mode.SRC_ATOP);
+        ball2.getBackground().setColorFilter(ball2Color, PorterDuff.Mode.SRC_ATOP);
     }
 
     @Override
@@ -216,7 +225,7 @@ public class DoublePendulum extends AppCompatActivity implements View.OnClickLis
                 stopCheck();
                 break;
             case R.id.settings:
-
+                openSettings();
                 break;
         }
     }
@@ -230,15 +239,29 @@ public class DoublePendulum extends AppCompatActivity implements View.OnClickLis
     }
     public void resetVariables()
     {
-        a1 = Math.PI / 2;
-        a2 = Math.PI / 2;
-        r1 = 250;
-        r2 = 250;
+        r1 = data.getR1();
+        r2 = data.getR2();
+        a1 = data.getA1();
+        a2 = data.getA2();
+        g = data.getG();
+        m1 = data.getM1();
+        m2 = data.getM2();
+        trace1 = data.getTrace1();
+        trace2 = data.getTrace2();
+        trace1Color = data.getTrace1Color();
+        trace2Color = data.getTrace2Color();
+        ball1Color = data.getBall1Color();
+        ball2Color = data.getBall2Color();
+
         a1_v = 0;
         a2_v = 0;
         calcPositions();
         draw();
         path.reset();
         path2.reset();
+    }
+    public void openSettings()
+    {
+        doublePSettings.show(getSupportFragmentManager(), "Settings");
     }
 }
