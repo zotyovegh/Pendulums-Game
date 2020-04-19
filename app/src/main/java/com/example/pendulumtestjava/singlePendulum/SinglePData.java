@@ -4,16 +4,15 @@ import java.util.ArrayList;
 
 public class SinglePData {
     private static SinglePData instance;
-    private int trace = 100;
-    private float gravity = (float) 1;
-    private float damping = (float) 0.999;
-    private double r = 300;
-    private double a = Math.PI / 2;
-    private int traceDrawColor = 0xF0000000;
-    private int ballDrawColor = 0xFFFF0000;
-    private boolean endlessTrace = false;
-    private boolean isTraceOn = true;
-
+    private int trace;
+    private float gravity;
+    private float damping;
+    private double r;
+    private double a;
+    private int traceDrawColor;
+    private int ballDrawColor;
+    private boolean endlessTrace;
+    private boolean isTraceOn;
     private ArrayList<Float> points = new ArrayList<>();
     private boolean stop;
 

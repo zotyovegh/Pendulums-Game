@@ -16,19 +16,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pendulumtestjava.R;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class FragmentList extends Fragment {
     View v;
-
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.list_fragment, container, false);
 
-      
         return v;
     }
 }

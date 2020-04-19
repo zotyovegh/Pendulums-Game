@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.pendulumtestjava.R;
+import com.example.pendulumtestjava.doublePendulum.DoublePData;
 import com.example.pendulumtestjava.doublePendulum.DoublePendulum;
 import com.example.pendulumtestjava.singlePendulum.SinglePData;
 import com.example.pendulumtestjava.singlePendulum.SinglePendulum;
@@ -21,6 +22,7 @@ public class FragmentMain extends Fragment {
     View v;
     private Button doublePendulum, singlePendulum;
     private SinglePData data = SinglePData.getInstance();
+    private DoublePData dataD = DoublePData.getInstance();
     public FragmentMain(){}
 
     @Nullable
@@ -47,16 +49,12 @@ public class FragmentMain extends Fragment {
         return v;
     }
 
-
-
-
-
-
-
     public void openDoublePendulumActivity()
     {
         Intent intent = new Intent(getActivity(), DoublePendulum.class);
         startActivity(intent);
+
+        dataD.resetValues();
     }
 
     public void openSinglePendulumActivity()
