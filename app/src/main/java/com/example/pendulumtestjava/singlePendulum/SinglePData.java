@@ -13,7 +13,15 @@ public class SinglePData {
     private int ballDrawColor = 0xFFFF0000;
     private boolean endlessTrace = false;
     private boolean isTraceOn = true;
+    private ArrayList<Float> points = new ArrayList<>();
 
+    public ArrayList<Float> getPoints() {
+        return points;
+    }
+
+    public void setPoints(ArrayList<Float> points) {
+        this.points = points;
+    }
 
     public boolean isTraceOn() {
         return isTraceOn;

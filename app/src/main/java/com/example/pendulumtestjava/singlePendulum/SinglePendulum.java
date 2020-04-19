@@ -1,19 +1,29 @@
 package com.example.pendulumtestjava.singlePendulum;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.graphics.PorterDuff;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.pendulumtestjava.DrawingPath;
 import com.example.pendulumtestjava.R;
+import com.example.pendulumtestjava.main.listFragment.FragmentList;
+import com.example.pendulumtestjava.main.listFragment.SinglePViewModel;
+import com.example.pendulumtestjava.main.listFragment.SinglePendulumObject;
+import com.google.gson.Gson;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -26,7 +36,7 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
     private SinglePSettings singlePSettings = new SinglePSettings();
     private SinglePData data = SinglePData.getInstance();
 
-    private Button reset, pause, settings;
+    private Button reset, pause, settings, save;
     private double widthMiddleBall, heightMiddleBall;
     private double widthMiddle, heightPoint;
     private double angularAcc, angularVel;
@@ -43,11 +53,17 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
     private boolean onHold;
     private boolean endlessTrace = data.isEndlessTrace();
     private boolean isTraceOn = data.isTraceOn();
+    private SinglePViewModel singlePViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_pendulum);
+
+
+        singlePViewModel = ViewModelProviders.of(this).get(SinglePViewModel.class);
+
+
 
         stick = (TextView) findViewById(R.id.stickBox);
         ball = (TextView) findViewById(R.id.ballPaint);
@@ -56,6 +72,7 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
         reset = (Button) findViewById(R.id.reset);
         pause = (Button) findViewById(R.id.pause);
         settings = (Button) findViewById(R.id.settings);
+        save = (Button) findViewById(R.id.save);
 
 
         widthMiddle = getWindowManager().getDefaultDisplay().getWidth() / 2;
@@ -66,6 +83,7 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
         reset.setOnClickListener(this);
         pause.setOnClickListener(this);
         settings.setOnClickListener(this);
+        save.setOnClickListener(this);
 
         update();
     }
@@ -171,6 +189,17 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
             case R.id.settings:
                 openSettings();
                 break;
+            case R.id.save:
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                String millisInString  = dateFormat.format(new Date());
+
+
+                String json = new Gson().toJson(path.getArray());
+
+                SinglePendulumObject pendulum = new SinglePendulumObject(a, r, gravity, damping, trace, ballDrawColor, traceDrawColor, json, millisInString);
+                singlePViewModel.insert(pendulum);
+
+
         }
     }
 
@@ -204,5 +233,13 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
     public void openSettings()
     {
         singlePSettings.show(getSupportFragmentManager(), "Settings");
+    }
+
+    public void saveToDatabase()
+    {
+
+
+
+        //        Toast.makeText(this, "Saved", Toast.LENGTH_SHORT).show();
     }
 }

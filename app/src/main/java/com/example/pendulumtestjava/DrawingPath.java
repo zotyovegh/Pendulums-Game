@@ -10,14 +10,18 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
+import com.example.pendulumtestjava.singlePendulum.SinglePData;
+
 import java.util.ArrayList;
 
 import static android.content.ContentValues.TAG;
 
 public class DrawingPath extends View {
+
+    SinglePData data = SinglePData.getInstance();
     private Paint paint;
     private float x, y, tempX, tempY;
-    private ArrayList<Float> array = new ArrayList<>();
+    private ArrayList<Float> array = data.getPoints();
     private int counter = 0;
     private boolean reset = false;
 
