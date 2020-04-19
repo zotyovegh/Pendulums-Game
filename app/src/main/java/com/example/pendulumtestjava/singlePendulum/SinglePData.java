@@ -14,6 +14,15 @@ public class SinglePData {
     private boolean endlessTrace = false;
     private boolean isTraceOn = true;
     private ArrayList<Float> points = new ArrayList<>();
+    private boolean stop;
+
+    public boolean isStop() {
+        return stop;
+    }
+
+    public void setStop(boolean stop) {
+        this.stop = stop;
+    }
 
     public ArrayList<Float> getPoints() {
         return points;

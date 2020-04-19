@@ -74,7 +74,7 @@ public class FragmentList extends Fragment {
                 Intent intent = new Intent(getActivity(), SinglePendulum.class);
                 Gson gson = new Gson();
                 Type listType = new TypeToken<List<Float>>(){}.getType();
-                data.setA(pendulum.getA());
+                data.setA(Math.toDegrees(pendulum.getA()));
                 data.setR(pendulum.getR());
                 data.setGravity(pendulum.getG());
                 data.setDamping(pendulum.getDamping());
@@ -84,6 +84,8 @@ public class FragmentList extends Fragment {
 
                 ArrayList<Float> temp = gson.fromJson(pendulum.getPointsJson(), listType);
                 data.setPoints(temp);
+                data.setStop(true);
+
 
                 startActivity(intent);
             }

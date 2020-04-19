@@ -44,7 +44,7 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
     private double a = data.getA();
     private float gravity = data.getGravity();
     private float damping = data.getDamping();
-    private boolean stop = false;
+    public boolean stop;
     private int traceDrawColor = data.getTraceDrawColor();
     private int ballDrawColor = data.getBallDrawColor();
     private int trace = data.getTrace();
@@ -97,6 +97,7 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
                         calc();
                     }
                     draw();
+
                 });
             }
         }, 0, 10);
@@ -113,15 +114,26 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
         middle.setX((float) (widthMiddle - 5));
         middle.setY((float) (heightPoint - 5));
         middle.setBackgroundResource(R.color.colorPrimaryDark);
+        if(data.isStop())
+        {
+            Log.i("TAG", "Most");
+            stop = true;
+
+
+        }
+
+
     }
 
     public void calc() {
-        angularAcc = (-1 * gravity / r) * Math.sin(a);
-        angularVel += angularAcc;
-        angularVel *= damping;
-        a += angularVel;
 
-        calcPositions();
+            angularAcc = (-1 * gravity / r) * Math.sin(a);
+            angularVel += angularAcc;
+            angularVel *= damping;
+            a += angularVel;
+
+            calcPositions();
+
     }
 
     public void calcPositions() {
@@ -204,6 +216,7 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
     }
 
     public void stopCheck() {
+        data.setStop(false);
         if (stop) {
             stop = false;
         } else {
