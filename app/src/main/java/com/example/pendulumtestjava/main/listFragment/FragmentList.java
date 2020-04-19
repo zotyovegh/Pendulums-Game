@@ -86,7 +86,6 @@ public class FragmentList extends Fragment {
                 data.setPoints(temp);
                 data.setStop(true);
                 data.setEndlessTrace(pendulum.isInfinity());
-                data.setTraceOn(pendulum.isTraceOn());
 
 
                 startActivity(intent);

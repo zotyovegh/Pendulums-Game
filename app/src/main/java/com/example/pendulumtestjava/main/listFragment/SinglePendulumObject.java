@@ -20,10 +20,9 @@ public class SinglePendulumObject {
     private String pointsJson;
     private String timeStamp;
     private boolean infinity;
-    private boolean isTraceOn;
 
 
-    public SinglePendulumObject(double a, double r, float g, float damping, int trace, int ballColor, int traceColor, String pointsJson, String timeStamp, boolean infinity, boolean isTraceOn) {
+    public SinglePendulumObject(double a, double r, float g, float damping, int trace, int ballColor, int traceColor, String pointsJson, String timeStamp, boolean infinity) {
         this.a = a;
         this.r = r;
         this.g = g;
@@ -34,15 +33,10 @@ public class SinglePendulumObject {
         this.pointsJson = pointsJson;
         this.timeStamp = timeStamp;
         this.infinity = infinity;
-        this.isTraceOn = isTraceOn;
     }
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public boolean isTraceOn() {
-        return isTraceOn;
     }
 
     public boolean isInfinity() {
