@@ -98,7 +98,7 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
         middle.setBackgroundResource(R.color.colorPrimaryDark);
         if(data.isStop())
         {
-            Log.i("TAG", "Most");
+
             stop = true;
 
 
@@ -183,20 +183,7 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
             case R.id.settings:
                 openSettings();
                 break;
-<<<<<<< HEAD
-            case R.id.save:
-                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                String millisInString  = dateFormat.format(new Date());
 
-
-                String json = new Gson().toJson(path.getArray());
-
-                SinglePendulumObject pendulum = new SinglePendulumObject(a, r, gravity, damping, trace, ballDrawColor, traceDrawColor, json, millisInString, endlessTrace, isTraceOn);
-                singlePViewModel.insert(pendulum);
-
-
-=======
->>>>>>> parent of fca2114... Saving, deleting, opening  single pendulum added
         }
     }
 
