@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="8dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="8dp"
+    >
+
+
+        <TextView
+            android:id="@+id/time_stamp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:paddingTop="14dp"
+            android:paddingBottom="14dp"
+            android:paddingLeft="8dp"
+            android:maxLines="1"
+            android:text="TimeStamp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+
+
+</androidx.cardview.widget.CardView>
