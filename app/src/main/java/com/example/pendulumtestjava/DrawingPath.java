@@ -21,6 +21,9 @@ public class DrawingPath extends View {
     private int counter = 0;
     private boolean reset = false;
 
+    public ArrayList<Float> getArray() {
+        return array;
+    }
 
     public DrawingPath(Context context) {
         super(context);
@@ -75,7 +78,6 @@ public class DrawingPath extends View {
         tempX = this.x;
         tempY = this.y;
 
-        Log.i(TAG, "Array size: " + array.size());
         counter++;
         invalidate();
     }
@@ -91,6 +93,5 @@ public class DrawingPath extends View {
 
     public void reset() {
         reset = true;
-
     }
 }

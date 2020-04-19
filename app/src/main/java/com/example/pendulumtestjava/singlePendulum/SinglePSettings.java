@@ -9,12 +9,16 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
 import com.example.pendulumtestjava.R;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import yuku.ambilwarna.AmbilWarnaDialog;
 
@@ -96,6 +100,7 @@ public class SinglePSettings extends AppCompatDialogFragment {
                                 }
                                 data.setTraceDrawColor(traceDefaultColor);
                                 data.setBallDrawColor(ballDefaultColor);
+
 
                             }
                         }
