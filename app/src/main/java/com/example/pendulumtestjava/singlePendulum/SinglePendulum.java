@@ -183,6 +183,19 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
             case R.id.settings:
                 openSettings();
                 break;
+<<<<<<< HEAD
+=======
+            case R.id.save:
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                String millisInString  = dateFormat.format(new Date());
+
+
+                String json = new Gson().toJson(path.getArray());
+
+                SinglePendulumObject pendulum = new SinglePendulumObject(a, r, gravity, damping, trace, ballDrawColor, traceDrawColor, json, millisInString, endlessTrace);
+                singlePViewModel.insert(pendulum);
+
+>>>>>>> parent of f6cfc3b... Drawing issue solved
 
         }
     }
