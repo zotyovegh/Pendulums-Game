@@ -11,7 +11,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import java.util.ArrayList;
 
-@Database(entities = {SinglePendulumObject.class}, version = 1)
+@Database(entities = {SinglePendulumObject.class}, version = 2)
 public abstract class SinglePendulumDatabase extends RoomDatabase {
 
     private static SinglePendulumDatabase instance;

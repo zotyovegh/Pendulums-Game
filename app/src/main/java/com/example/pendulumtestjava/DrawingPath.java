@@ -10,6 +10,8 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
+import com.example.pendulumtestjava.singlePendulum.SinglePData;
+
 import java.util.ArrayList;
 
 import static android.content.ContentValues.TAG;
@@ -17,6 +19,7 @@ import static android.content.ContentValues.TAG;
 public class DrawingPath extends View {
     private Paint paint;
     private float x, y, tempX, tempY;
+    private SinglePData data = SinglePData.getInstance();
     private ArrayList<Float> array = new ArrayList<>();
     private int counter = 0;
     private boolean reset = false;
@@ -54,7 +57,8 @@ public class DrawingPath extends View {
         invalidate();
     }
 
-    public void setVariables(double x, double y, int trace, int color, boolean endless) {
+    public void setVariables(double x, double y, int trace, int color, boolean endless, ArrayList<Float> array) {
+        this.array = array;
         this.paint.setColor(color);
         this.x = (float) x + 30;
         this.y = (float) y + 30;

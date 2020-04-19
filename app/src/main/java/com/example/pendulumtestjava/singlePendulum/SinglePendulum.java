@@ -44,7 +44,7 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
     private double a = data.getA();
     private float gravity = data.getGravity();
     private float damping = data.getDamping();
-    public boolean stop;
+
     private int traceDrawColor = data.getTraceDrawColor();
     private int ballDrawColor = data.getBallDrawColor();
     private int trace = data.getTrace();
@@ -54,7 +54,8 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
     private boolean endlessTrace = data.isEndlessTrace();
     private boolean isTraceOn = data.isTraceOn();
     private SinglePViewModel singlePViewModel;
-
+    public boolean stop;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -118,11 +119,7 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
         {
             Log.i("TAG", "Most");
             stop = true;
-
-
         }
-
-
     }
 
     public void calc() {
@@ -142,7 +139,7 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
 
         stick.setLayoutParams(new FrameLayout.LayoutParams(4, (int) r));
         if(isTraceOn) {
-            path.setVariables(x, y, trace, traceDrawColor, endlessTrace);
+            path.setVariables(x, y, trace, traceDrawColor, endlessTrace, data.getPoints());
         }
         ball.getBackground().setColorFilter(ballDrawColor, PorterDuff.Mode.SRC_ATOP);
     }
@@ -174,9 +171,8 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
                 stick.setLayoutParams(new FrameLayout.LayoutParams(5, (int) r));
 
                 if(isTraceOn) {
-                    path.setVariables(x, y, trace, traceDrawColor, endlessTrace);
+                    path.setVariables(x, y, trace, traceDrawColor, endlessTrace, data.getPoints());
                 }
-
 
                 angularVel = 0;
                 angularAcc = 0;
@@ -204,7 +200,6 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
             case R.id.save:
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 String millisInString  = dateFormat.format(new Date());
-
 
                 String json = new Gson().toJson(path.getArray());
 
@@ -248,11 +243,4 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
         singlePSettings.show(getSupportFragmentManager(), "Settings");
     }
 
-    public void saveToDatabase()
-    {
-
-
-
-        //        Toast.makeText(this, "Saved", Toast.LENGTH_SHORT).show();
-    }
 }

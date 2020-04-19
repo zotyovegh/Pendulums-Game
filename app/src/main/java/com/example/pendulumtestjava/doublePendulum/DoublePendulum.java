@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.example.pendulumtestjava.DrawingPath;
 import com.example.pendulumtestjava.R;
 
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -145,10 +146,10 @@ public class DoublePendulum extends AppCompatActivity implements View.OnClickLis
         stick2.setLayoutParams(new FrameLayout.LayoutParams(4, (int) r2));
 
         if(isTrace1On) {
-            path.setVariables(x1, y1, trace1, trace1Color, endlessTrace1);
+            path.setVariables(x1, y1, trace1, trace1Color, endlessTrace1, new ArrayList<>()); //++++++++++++++++++
         }
         if(isTrace2On) {
-            path2.setVariables(x2, y2, trace2, trace2Color, endlessTrace2);
+            path2.setVariables(x2, y2, trace2, trace2Color, endlessTrace2, new ArrayList<>()); //+++++++++++++++++++++++
         }
         ball.getBackground().setColorFilter(ball1Color, PorterDuff.Mode.SRC_ATOP);
         ball2.getBackground().setColorFilter(ball2Color, PorterDuff.Mode.SRC_ATOP);
