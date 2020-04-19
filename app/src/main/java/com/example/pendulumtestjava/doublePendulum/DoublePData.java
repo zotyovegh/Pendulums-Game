@@ -1,25 +1,54 @@
 package com.example.pendulumtestjava.doublePendulum;
 
+import java.util.ArrayList;
+
 public class DoublePData {
     private static DoublePData instance;
 
-    private double r1 = 250;
-    private double r2 = 250;
-    private double a1 = Math.PI / 2;
-    private double a2 = Math.PI / 2;
-    private double g = 1;
-    private double m1 = 10;
-    private double m2 = 10;
-    private int trace1 = 10;
-    private int trace2 = 500;
-    private int trace1Color = 0xFFFF0000;
-    private int trace2Color = 0xFF0000FF;
-    private int ball1Color = 0xFFFF0000;
-    private int ball2Color = 0xFF0000FF;
-    private boolean endlessTrace1 = false;
-    private boolean endlessTrace2 = false;
-    private boolean isTrace1On = true;
-    private boolean isTrace2On = true;
+    private double r1;
+    private double r2;
+    private double a1;
+    private double a2;
+    private double g;
+    private double m1;
+    private double m2;
+    private int trace1;
+    private int trace2;
+    private int trace1Color;
+    private int trace2Color;
+    private int ball1Color;
+    private int ball2Color;
+    private boolean endlessTrace1;
+    private boolean endlessTrace2;
+    private boolean isTrace1On;
+    private boolean isTrace2On;
+    private boolean stop;
+    private ArrayList<Float> points1;
+    private ArrayList<Float> points2;
+
+    public boolean isStop() {
+        return stop;
+    }
+
+    public void setStop(boolean stop) {
+        this.stop = stop;
+    }
+
+    public ArrayList<Float> getPoints1() {
+        return points1;
+    }
+
+    public void setPoints1(ArrayList<Float> points1) {
+        this.points1 = points1;
+    }
+
+    public ArrayList<Float> getPoints2() {
+        return points2;
+    }
+
+    public void setPoints2(ArrayList<Float> points2) {
+        this.points2 = points2;
+    }
 
     public boolean isTrace1On() {
         return isTrace1On;
@@ -158,10 +187,33 @@ public class DoublePData {
     }
 
     public static synchronized DoublePData getInstance() {
-        if(instance==null)
-        {
+        if (instance == null) {
             instance = new DoublePData();
         }
         return instance;
+    }
+
+    public void resetValues() {
+        r1 = 250;
+        r2 = 250;
+        a1 = Math.PI / 2;
+        a2 = Math.PI / 2;
+        g = 1;
+        m1 = 10;
+        m2 = 10;
+        trace1 = 250;
+        trace2 = 250;
+        trace1Color = 0xFFFF0000;
+        trace2Color = 0xFF0000FF;
+        ball1Color = 0xFFFF0000;
+        ball2Color = 0xFF0000FF;
+        endlessTrace1 = false;
+        endlessTrace2 = false;
+        isTrace1On = true;
+        isTrace2On = true;
+        stop = false;
+        points1 = new ArrayList<>();
+        points2 = new ArrayList<>();
+
     }
 }
