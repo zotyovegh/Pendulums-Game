@@ -208,7 +208,7 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
 
                 String json = new Gson().toJson(path.getArray());
 
-                SinglePendulumObject pendulum = new SinglePendulumObject(a, r, gravity, damping, trace, ballDrawColor, traceDrawColor, json, millisInString);
+                SinglePendulumObject pendulum = new SinglePendulumObject(a, r, gravity, damping, trace, ballDrawColor, traceDrawColor, json, millisInString, endlessTrace);
                 singlePViewModel.insert(pendulum);
 
 

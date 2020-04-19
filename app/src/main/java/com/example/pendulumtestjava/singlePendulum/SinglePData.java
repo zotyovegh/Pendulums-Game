@@ -111,4 +111,18 @@ public class SinglePData {
         }
         return instance;
     }
+
+
+    public void resetValues() {
+        trace = 100;
+        gravity = (float)1;
+        damping = (float)0.999;
+        r = 300;
+        a = Math.PI / 2;
+        traceDrawColor = 0xF0000000;
+        ballDrawColor = 0xFFFF0000;
+        endlessTrace = false;
+        isTraceOn = true;
+        points = new ArrayList<>();
+    }
 }

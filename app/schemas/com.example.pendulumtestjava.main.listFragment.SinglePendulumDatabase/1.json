@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "cc6dbf751eb8ce944b30f42ae629debb",
+    "identityHash": "2475213257e90415eaf8cf3fc00afbab",
     "entities": [
       {
         "tableName": "single_pendulum_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `a` REAL NOT NULL, `r` REAL NOT NULL, `g` REAL NOT NULL, `damping` REAL NOT NULL, `trace` INTEGER NOT NULL, `ballColor` INTEGER NOT NULL, `traceColor` INTEGER NOT NULL, `pointsJson` TEXT, `timeStamp` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `a` REAL NOT NULL, `r` REAL NOT NULL, `g` REAL NOT NULL, `damping` REAL NOT NULL, `trace` INTEGER NOT NULL, `ballColor` INTEGER NOT NULL, `traceColor` INTEGER NOT NULL, `pointsJson` TEXT, `timeStamp` TEXT, `infinity` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -67,6 +67,12 @@
             "columnName": "timeStamp",
             "affinity": "TEXT",
             "notNull": false
+          },
+          {
+            "fieldPath": "infinity",
+            "columnName": "infinity",
+            "affinity": "INTEGER",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -82,7 +88,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'cc6dbf751eb8ce944b30f42ae629debb')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '2475213257e90415eaf8cf3fc00afbab')"
     ]
   }
 }

@@ -85,6 +85,7 @@ public class FragmentList extends Fragment {
                 ArrayList<Float> temp = gson.fromJson(pendulum.getPointsJson(), listType);
                 data.setPoints(temp);
                 data.setStop(true);
+                data.setEndlessTrace(pendulum.isInfinity());
 
 
                 startActivity(intent);
