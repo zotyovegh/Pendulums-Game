@@ -1,8 +1,6 @@
 package com.example.pendulumtestjava.main.listFragment;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,24 +11,17 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pendulumtestjava.R;
-import com.example.pendulumtestjava.singlePendulum.SinglePData;
-import com.example.pendulumtestjava.singlePendulum.SinglePendulum;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
 public class FragmentList extends Fragment {
     View v;
     private SinglePViewModel singlePViewModel;
-    SinglePData data = SinglePData.getInstance();
 
     @Nullable
     @Override
@@ -54,6 +45,7 @@ public class FragmentList extends Fragment {
             }
         });
 
+<<<<<<< HEAD
        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
                ItemTouchHelper.LEFT) {
            @Override
@@ -93,13 +85,8 @@ public class FragmentList extends Fragment {
             }
         });
 
+=======
+>>>>>>> parent of fca2114... Saving, deleting, opening  single pendulum added
         return v;
     }
-
-    public void openSinglePendulumActivity()
-    {
-        Intent intent = new Intent(getActivity(), SinglePendulum.class);
-        startActivity(intent);
-    }
-
 }

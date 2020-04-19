@@ -13,6 +13,7 @@ public class SinglePData {
     private int ballDrawColor = 0xFFFF0000;
     private boolean endlessTrace = false;
     private boolean isTraceOn = true;
+<<<<<<< HEAD
     private ArrayList<Float> points = new ArrayList<>();
     private boolean stop;
 
@@ -23,14 +24,9 @@ public class SinglePData {
     public void setStop(boolean stop) {
         this.stop = stop;
     }
+=======
+>>>>>>> parent of fca2114... Saving, deleting, opening  single pendulum added
 
-    public ArrayList<Float> getPoints() {
-        return points;
-    }
-
-    public void setPoints(ArrayList<Float> points) {
-        this.points = points;
-    }
 
     public boolean isTraceOn() {
         return isTraceOn;

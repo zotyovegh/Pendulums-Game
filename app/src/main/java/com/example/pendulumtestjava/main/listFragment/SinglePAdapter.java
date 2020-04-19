@@ -16,7 +16,6 @@ import java.util.List;
 public class SinglePAdapter extends RecyclerView.Adapter<SinglePAdapter.SinglePHolder> {
 
     private List<SinglePendulumObject> pendulums = new ArrayList<>();
-    private OnItemClickListener listener;
 
     @NonNull
     @Override
@@ -37,40 +36,20 @@ public class SinglePAdapter extends RecyclerView.Adapter<SinglePAdapter.SinglePH
         return pendulums.size();
     }
 
-    public void setSinglePendulums(List<SinglePendulumObject> pendulums) {
+    public void setSinglePendulums(List<SinglePendulumObject> pendulums)
+    {
         this.pendulums = pendulums;
         notifyDataSetChanged();
     }
 
-    public SinglePendulumObject getSinglePendulumAt(int position) {
-        return pendulums.get(position);
-    }
-
-    class SinglePHolder extends RecyclerView.ViewHolder {
+    class SinglePHolder extends RecyclerView.ViewHolder{
         private TextView timeStamp;
+
 
         public SinglePHolder(@NonNull View itemView) {
             super(itemView);
 
             timeStamp = itemView.findViewById(R.id.time_stamp);
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int position = getAdapterPosition();
-                    if (listener != null && position != RecyclerView.NO_POSITION) {
-                        listener.onItemClick(pendulums.get(position));
-                    }
-                }
-            });
         }
-    }
-
-    public interface OnItemClickListener {
-        void onItemClick(SinglePendulumObject pendulum);
-    }
-
-    public void setOnItemClickListener(OnItemClickListener listener) {
-        this.listener = listener;
     }
 }
