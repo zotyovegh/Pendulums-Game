@@ -50,9 +50,9 @@ public abstract class SinglePendulumDatabase extends RoomDatabase {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            singlePDao.insert(new SinglePendulumObject(1, 1, 1,  1, 1, 1, 1, "json 1","TimeStamp 1",true));
-            singlePDao.insert(new SinglePendulumObject(2, 2, 2,  2, 2, 2, 2, "json 2","TimeStamp 2", true));
-            singlePDao.insert(new SinglePendulumObject(3, 3, 3,  3, 3, 3, 3, "json 3","TimeStamp 3", true));
+            singlePDao.insert(new SinglePendulumObject(1, 1, 1,  1, 1, 1, 1, "json 1","TimeStamp 1",true, true));
+            singlePDao.insert(new SinglePendulumObject(2, 2, 2,  2, 2, 2, 2, "json 2","TimeStamp 2", true, true));
+            singlePDao.insert(new SinglePendulumObject(3, 3, 3,  3, 3, 3, 3, "json 3","TimeStamp 3", true, true));
 
             return null;
         }

@@ -14,7 +14,6 @@ import android.widget.TextView;
 import com.example.pendulumtestjava.DrawingPath;
 import com.example.pendulumtestjava.R;
 
-import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -45,15 +44,13 @@ public class DoublePendulum extends AppCompatActivity implements View.OnClickLis
     private int ball1Color = data.getBall1Color();
     private int ball2Color = data.getBall2Color();
     private boolean onHold = false;
-    private boolean stop = data.isStop();
+    private boolean stop = false;
     private double a1_v = 0;
     private double a2_v = 0;
     private boolean endlessTrace1 = data.isEndlessTrace1();
     private boolean endlessTrace2 = data.isEndlessTrace2();
     private boolean isTrace1On = data.isTrace1On();
     private boolean isTrace2On = data.isTrace2On();
-    private ArrayList<Float> points1 = data.getPoints1();
-    private ArrayList<Float> points2 = data.getPoints2();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
