@@ -49,12 +49,6 @@ public class FragmentMain extends Fragment {
         return v;
     }
 
-
-
-
-
-
-
     public void openDoublePendulumActivity()
     {
         Intent intent = new Intent(getActivity(), DoublePendulum.class);

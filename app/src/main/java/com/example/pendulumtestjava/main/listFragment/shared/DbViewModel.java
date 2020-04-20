@@ -1,4 +1,4 @@
-package com.example.pendulumtestjava.main.listFragment;
+package com.example.pendulumtestjava.main.listFragment.shared;
 
 
 import android.app.Application;
@@ -6,6 +6,9 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+
+import com.example.pendulumtestjava.main.listFragment.singleP.SinglePendulumObject;
+import com.example.pendulumtestjava.main.listFragment.singleP.SinglePendulumRepository;
 
 import java.util.List;
 
@@ -25,16 +28,8 @@ public class DbViewModel extends AndroidViewModel {
         singlePendulumRepository.insertSinglePendulum(pendulum);
     }
 
-    public void updateSinglePendulum(SinglePendulumObject pendulum) {
-        singlePendulumRepository.updateSinglePendulum(pendulum);
-    }
-
     public void deleteSinglePendulum(SinglePendulumObject pendulum) {
         singlePendulumRepository.deleteSinglePendulum(pendulum);
-    }
-
-    public void deleteAllSinglePendulums() {
-        singlePendulumRepository.deleteAllSinglePendulums();
     }
 
     public LiveData<List<SinglePendulumObject>> getAllSinglePendulums() {

@@ -15,8 +15,8 @@ import android.widget.TextView;
 
 import com.example.pendulumtestjava.DrawingPath;
 import com.example.pendulumtestjava.R;
-import com.example.pendulumtestjava.main.listFragment.DbViewModel;
-import com.example.pendulumtestjava.main.listFragment.SinglePendulumObject;
+import com.example.pendulumtestjava.main.listFragment.shared.DbViewModel;
+import com.example.pendulumtestjava.main.listFragment.singleP.SinglePendulumObject;
 import com.google.gson.Gson;
 
 import java.text.SimpleDateFormat;

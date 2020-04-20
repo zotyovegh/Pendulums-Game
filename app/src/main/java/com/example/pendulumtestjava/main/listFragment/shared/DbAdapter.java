@@ -1,4 +1,4 @@
-package com.example.pendulumtestjava.main.listFragment;
+package com.example.pendulumtestjava.main.listFragment.shared;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pendulumtestjava.R;
-import com.example.pendulumtestjava.singlePendulum.SinglePendulum;
+import com.example.pendulumtestjava.main.listFragment.singleP.SinglePendulumObject;
 
 import java.util.ArrayList;
 import java.util.List;

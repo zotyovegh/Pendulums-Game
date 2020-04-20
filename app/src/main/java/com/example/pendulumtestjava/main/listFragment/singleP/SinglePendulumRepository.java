@@ -1,9 +1,12 @@
-package com.example.pendulumtestjava.main.listFragment;
+package com.example.pendulumtestjava.main.listFragment.singleP;
 
 import android.app.Application;
 import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
+
+import com.example.pendulumtestjava.main.listFragment.shared.Db;
+import com.example.pendulumtestjava.main.listFragment.shared.DbDao;
 
 import java.util.List;
 
@@ -24,19 +27,9 @@ public class SinglePendulumRepository {
         new InsertSinglePendulumAsyncTask(dbDao).execute(pendulum);
     }
 
-    public void updateSinglePendulum(SinglePendulumObject pendulum)
-    {
-        new UpdateSinglePendulumAsyncTask(dbDao).execute(pendulum);
-    }
-
     public void deleteSinglePendulum(SinglePendulumObject pendulum)
     {
         new DeleteSinglePendulumAsyncTask(dbDao).execute(pendulum);
-    }
-
-    public void deleteAllSinglePendulums()
-    {
-        new DeleteAllSinglePendulumAsyncTask(dbDao).execute();
     }
 
     public LiveData<List<SinglePendulumObject>> getAllSinglePendulums()
@@ -60,21 +53,6 @@ public class SinglePendulumRepository {
         }
     }
 
-    private static class UpdateSinglePendulumAsyncTask extends AsyncTask<SinglePendulumObject, Void, Void>
-    {
-        private DbDao dbDao;
-
-        private UpdateSinglePendulumAsyncTask(DbDao dbDao)
-        {
-            this.dbDao = dbDao;
-        }
-        @Override
-        protected Void doInBackground(SinglePendulumObject... singlePendulumObjects) {
-            dbDao.updateSinglePendulum(singlePendulumObjects[0]);
-            return null;
-        }
-    }
-
     private static class DeleteSinglePendulumAsyncTask extends AsyncTask<SinglePendulumObject, Void, Void>
     {
         private DbDao dbDao;
@@ -90,19 +68,5 @@ public class SinglePendulumRepository {
         }
     }
 
-    private static class DeleteAllSinglePendulumAsyncTask extends AsyncTask<Void, Void, Void>
-    {
-        private DbDao dbDao;
-
-        private DeleteAllSinglePendulumAsyncTask(DbDao dbDao)
-        {
-            this.dbDao = dbDao;
-        }
-        @Override
-        protected Void doInBackground(Void... voids) {
-            dbDao.deleteAllSinglePendulums();
-            return null;
-        }
-    }
 
 }

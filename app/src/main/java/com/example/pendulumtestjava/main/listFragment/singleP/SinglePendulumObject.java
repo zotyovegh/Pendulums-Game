@@ -1,4 +1,4 @@
-package com.example.pendulumtestjava.main.listFragment;
+package com.example.pendulumtestjava.main.listFragment.singleP;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;

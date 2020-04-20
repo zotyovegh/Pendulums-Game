@@ -17,6 +17,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pendulumtestjava.R;
+import com.example.pendulumtestjava.main.listFragment.shared.DbAdapter;
+import com.example.pendulumtestjava.main.listFragment.shared.DbViewModel;
+import com.example.pendulumtestjava.main.listFragment.singleP.SinglePendulumObject;
 import com.example.pendulumtestjava.singlePendulum.SinglePData;
 import com.example.pendulumtestjava.singlePendulum.SinglePendulum;
 import com.google.gson.Gson;
