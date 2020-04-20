@@ -9,34 +9,34 @@ import java.util.List;
 
 public class SinglePendulumRepository {
 
-    private SinglePDao singlePDao;
+    private DbDao dbDao;
     private LiveData<List<SinglePendulumObject>> allSinglePendulums;
 
     public SinglePendulumRepository(Application application)
     {
-        SinglePendulumDatabase database = SinglePendulumDatabase.getInstance(application);
-        singlePDao = database.singlePDao();
-        allSinglePendulums = singlePDao.getAllSinglePendulums();
+        Db database = Db.getInstance(application);
+        dbDao = database.singlePDao();
+        allSinglePendulums = dbDao.getAllSinglePendulums();
     }
 
-    public void insert(SinglePendulumObject pendulum)
+    public void insertSinglePendulum(SinglePendulumObject pendulum)
     {
-        new InsertSinglePendulumAsyncTask(singlePDao).execute(pendulum);
+        new InsertSinglePendulumAsyncTask(dbDao).execute(pendulum);
     }
 
-    public void update(SinglePendulumObject pendulum)
+    public void updateSinglePendulum(SinglePendulumObject pendulum)
     {
-        new UpdateSinglePendulumAsyncTask(singlePDao).execute(pendulum);
+        new UpdateSinglePendulumAsyncTask(dbDao).execute(pendulum);
     }
 
-    public void delete(SinglePendulumObject pendulum)
+    public void deleteSinglePendulum(SinglePendulumObject pendulum)
     {
-        new DeleteSinglePendulumAsyncTask(singlePDao).execute(pendulum);
+        new DeleteSinglePendulumAsyncTask(dbDao).execute(pendulum);
     }
 
     public void deleteAllSinglePendulums()
     {
-        new DeleteAllSinglePendulumAsyncTask(singlePDao).execute();
+        new DeleteAllSinglePendulumAsyncTask(dbDao).execute();
     }
 
     public LiveData<List<SinglePendulumObject>> getAllSinglePendulums()
@@ -47,60 +47,60 @@ public class SinglePendulumRepository {
 
     private static class InsertSinglePendulumAsyncTask extends AsyncTask<SinglePendulumObject, Void, Void>
     {
-        private SinglePDao singlePDao;
+        private DbDao dbDao;
 
-        private InsertSinglePendulumAsyncTask(SinglePDao singlePDao)
+        private InsertSinglePendulumAsyncTask(DbDao dbDao)
         {
-            this.singlePDao = singlePDao;
+            this.dbDao = dbDao;
         }
         @Override
         protected Void doInBackground(SinglePendulumObject... singlePendulumObjects) {
-            singlePDao.insert(singlePendulumObjects[0]);
+            dbDao.insertSinglePendulum(singlePendulumObjects[0]);
             return null;
         }
     }
 
     private static class UpdateSinglePendulumAsyncTask extends AsyncTask<SinglePendulumObject, Void, Void>
     {
-        private SinglePDao singlePDao;
+        private DbDao dbDao;
 
-        private UpdateSinglePendulumAsyncTask(SinglePDao singlePDao)
+        private UpdateSinglePendulumAsyncTask(DbDao dbDao)
         {
-            this.singlePDao = singlePDao;
+            this.dbDao = dbDao;
         }
         @Override
         protected Void doInBackground(SinglePendulumObject... singlePendulumObjects) {
-            singlePDao.update(singlePendulumObjects[0]);
+            dbDao.updateSinglePendulum(singlePendulumObjects[0]);
             return null;
         }
     }
 
     private static class DeleteSinglePendulumAsyncTask extends AsyncTask<SinglePendulumObject, Void, Void>
     {
-        private SinglePDao singlePDao;
+        private DbDao dbDao;
 
-        private DeleteSinglePendulumAsyncTask(SinglePDao singlePDao)
+        private DeleteSinglePendulumAsyncTask(DbDao dbDao)
         {
-            this.singlePDao = singlePDao;
+            this.dbDao = dbDao;
         }
         @Override
         protected Void doInBackground(SinglePendulumObject... singlePendulumObjects) {
-            singlePDao.delete(singlePendulumObjects[0]);
+            dbDao.deleteSinglePendulum(singlePendulumObjects[0]);
             return null;
         }
     }
 
     private static class DeleteAllSinglePendulumAsyncTask extends AsyncTask<Void, Void, Void>
     {
-        private SinglePDao singlePDao;
+        private DbDao dbDao;
 
-        private DeleteAllSinglePendulumAsyncTask(SinglePDao singlePDao)
+        private DeleteAllSinglePendulumAsyncTask(DbDao dbDao)
         {
-            this.singlePDao = singlePDao;
+            this.dbDao = dbDao;
         }
         @Override
         protected Void doInBackground(Void... voids) {
-            singlePDao.deleteAllSinglePendulums();
+            dbDao.deleteAllSinglePendulums();
             return null;
         }
     }

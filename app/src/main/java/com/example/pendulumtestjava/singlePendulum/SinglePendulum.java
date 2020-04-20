@@ -5,20 +5,17 @@ import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Intent;
 import android.graphics.PorterDuff;
-import android.nfc.Tag;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.pendulumtestjava.DrawingPath;
 import com.example.pendulumtestjava.R;
-import com.example.pendulumtestjava.main.listFragment.SinglePViewModel;
+import com.example.pendulumtestjava.main.listFragment.DbViewModel;
 import com.example.pendulumtestjava.main.listFragment.SinglePendulumObject;
 import com.google.gson.Gson;
 
@@ -53,7 +50,7 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
     private boolean onHold;
     private boolean endlessTrace = data.isEndlessTrace();
     private boolean isTraceOn = data.isTraceOn();
-    private SinglePViewModel singlePViewModel;
+    private DbViewModel dbViewModel;
     public boolean stop;
 
     
@@ -62,7 +59,7 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_pendulum);
 
-        singlePViewModel = ViewModelProviders.of(this).get(SinglePViewModel.class);
+        dbViewModel = ViewModelProviders.of(this).get(DbViewModel.class);
 
         stick = (TextView) findViewById(R.id.stickBox);
         ball = (TextView) findViewById(R.id.ballPaint);
@@ -206,7 +203,7 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
                 String json = new Gson().toJson(path.getArray());
 
                 SinglePendulumObject pendulum = new SinglePendulumObject(a, r, gravity, damping, trace, ballDrawColor, traceDrawColor, json, millisInString, endlessTrace, isTraceOn);
-                singlePViewModel.insert(pendulum);
+                dbViewModel.insertSinglePendulum(pendulum);
         }
     }
 

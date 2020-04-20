@@ -2,7 +2,6 @@ package com.example.pendulumtestjava.main.listFragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +28,7 @@ import java.util.List;
 
 public class FragmentList extends Fragment {
     View v;
-    private SinglePViewModel singlePViewModel;
+    private DbViewModel dbViewModel;
     SinglePData data = SinglePData.getInstance();
 
     @Nullable
@@ -41,15 +40,13 @@ public class FragmentList extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setHasFixedSize(true);
 
-        SinglePAdapter adapter = new SinglePAdapter();
+        DbAdapter adapter = new DbAdapter();
         recyclerView.setAdapter(adapter);
 
-        singlePViewModel = ViewModelProviders.of(getActivity()).get(SinglePViewModel.class);
-        singlePViewModel.getAllPendulums().observe(getActivity(), new Observer<List<SinglePendulumObject>>() {
+        dbViewModel = ViewModelProviders.of(getActivity()).get(DbViewModel.class);
+        dbViewModel.getAllSinglePendulums().observe(getActivity(), new Observer<List<SinglePendulumObject>>() {
             @Override
             public void onChanged(List<SinglePendulumObject> singlePendulumObjects) {
-                //update recyclerView below
-//                Toast.makeText(getActivity(), "onChanged", Toast.LENGTH_SHORT).show();
                 adapter.setSinglePendulums(singlePendulumObjects);
             }
         });
@@ -63,12 +60,12 @@ public class FragmentList extends Fragment {
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                singlePViewModel.delete(adapter.getSinglePendulumAt(viewHolder.getAdapterPosition()));
+                dbViewModel.deleteSinglePendulum(adapter.getSinglePendulumAt(viewHolder.getAdapterPosition()));
                 Toast.makeText(getActivity(), "Note deleted", Toast.LENGTH_SHORT).show();
             }
         }).attachToRecyclerView(recyclerView);
 
-        adapter.setOnItemClickListener(new SinglePAdapter.OnItemClickListener() {
+        adapter.setOnItemClickListener(new DbAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(SinglePendulumObject pendulum) {
                 Intent intent = new Intent(getActivity(), SinglePendulum.class);

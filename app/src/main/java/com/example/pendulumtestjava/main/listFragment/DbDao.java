@@ -10,16 +10,16 @@ import androidx.room.Update;
 import java.util.List;
 
 @Dao
-public interface SinglePDao {
+public interface DbDao {
 
     @Insert
-    void insert(SinglePendulumObject pendulum);
+    void insertSinglePendulum(SinglePendulumObject pendulum);
 
     @Update
-    void update(SinglePendulumObject pendulum);
+    void updateSinglePendulum(SinglePendulumObject pendulum);
 
     @Delete
-    void delete(SinglePendulumObject pendulum);
+    void deleteSinglePendulum(SinglePendulumObject pendulum);
 
     @Query("DELETE FROM single_pendulum_table")
     void deleteAllSinglePendulums();

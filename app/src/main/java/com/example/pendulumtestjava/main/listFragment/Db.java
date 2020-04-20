@@ -9,23 +9,19 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-import com.example.pendulumtestjava.doublePendulum.DoublePendulum;
-
-import java.util.ArrayList;
-
 @Database(entities = {SinglePendulumObject.class}, version = 2)
-public abstract class SinglePendulumDatabase extends RoomDatabase {
+public abstract class Db extends RoomDatabase {
 
-    private static SinglePendulumDatabase instance;
+    private static Db instance;
 
-    public abstract SinglePDao singlePDao();
+    public abstract DbDao singlePDao();
 
-    public static synchronized SinglePendulumDatabase getInstance(Context context)
+    public static synchronized Db getInstance(Context context)
     {
         if(instance == null)
         {
             instance = Room.databaseBuilder(context.getApplicationContext(),
-                    SinglePendulumDatabase.class, "single_pendulum_database")
+                    Db.class, "single_pendulum_database")
                     .fallbackToDestructiveMigration()
                     .addCallback(roomCallback)
                     .build();
@@ -44,17 +40,17 @@ public abstract class SinglePendulumDatabase extends RoomDatabase {
 
     private static class PopulateDbAsyncTask extends AsyncTask<Void, Void, Void> {
 
-        private SinglePDao singlePDao;
+        private DbDao dbDao;
 
-        private PopulateDbAsyncTask(SinglePendulumDatabase db){
-            singlePDao = db.singlePDao();
+        private PopulateDbAsyncTask(Db db){
+            dbDao = db.singlePDao();
         }
 
         @Override
         protected Void doInBackground(Void... voids) {
-            singlePDao.insert(new SinglePendulumObject(1, 1, 1,  1, 1, 1, 1, "json 1","TimeStamp 1",true, true));
-            singlePDao.insert(new SinglePendulumObject(2, 2, 2,  2, 2, 2, 2, "json 2","TimeStamp 2", true, true));
-            singlePDao.insert(new SinglePendulumObject(3, 3, 3,  3, 3, 3, 3, "json 3","TimeStamp 3", true, true));
+            dbDao.insertSinglePendulum(new SinglePendulumObject(1, 1, 1,  1, 1, 1, 1, "json 1","TimeStamp 1",true, true));
+            dbDao.insertSinglePendulum(new SinglePendulumObject(2, 2, 2,  2, 2, 2, 2, "json 2","TimeStamp 2", true, true));
+            dbDao.insertSinglePendulum(new SinglePendulumObject(3, 3, 3,  3, 3, 3, 3, "json 3","TimeStamp 3", true, true));
 
             return null;
         }
