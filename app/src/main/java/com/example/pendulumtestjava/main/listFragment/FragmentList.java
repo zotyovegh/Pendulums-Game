@@ -87,8 +87,9 @@ public class FragmentList extends Fragment {
                 data.setStop(true);
                 data.setEndlessTrace(pendulum.isInfinity());
                 data.setTraceOn(pendulum.isTraceOn());
-
-
+//+++++++++++++++++++++++++++++++++
+                String type = "single";
+                intent.putExtra("TYPE", type);
                 startActivity(intent);
             }
         });

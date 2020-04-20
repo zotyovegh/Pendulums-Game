@@ -3,6 +3,7 @@ package com.example.pendulumtestjava.singlePendulum;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.nfc.Tag;
 import android.os.Bundle;
@@ -17,7 +18,6 @@ import android.widget.Toast;
 
 import com.example.pendulumtestjava.DrawingPath;
 import com.example.pendulumtestjava.R;
-import com.example.pendulumtestjava.main.listFragment.FragmentList;
 import com.example.pendulumtestjava.main.listFragment.SinglePViewModel;
 import com.example.pendulumtestjava.main.listFragment.SinglePendulumObject;
 import com.google.gson.Gson;
@@ -55,6 +55,7 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
     private boolean isTraceOn = data.isTraceOn();
     private SinglePViewModel singlePViewModel;
     public boolean stop;
+
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +76,12 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
         settings = (Button) findViewById(R.id.settings);
         save = (Button) findViewById(R.id.save);
 
+
+        Intent intent = getIntent();
+        if(intent.hasExtra("TYPE"))
+        {
+            path.setPath(data.getPoints());
+        }
 
         widthMiddle = getWindowManager().getDefaultDisplay().getWidth() / 2;
         heightPoint = getWindowManager().getDefaultDisplay().getHeight() / 2;
@@ -114,10 +121,10 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
 
         middle.setX((float) (widthMiddle - 5));
         middle.setY((float) (heightPoint - 5));
+
         middle.setBackgroundResource(R.color.colorPrimaryDark);
         if(data.isStop())
         {
-            Log.i("TAG", "Most");
             stop = true;
         }
     }
@@ -139,7 +146,7 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
 
         stick.setLayoutParams(new FrameLayout.LayoutParams(4, (int) r));
         if(isTraceOn) {
-            path.setVariables(x, y, trace, traceDrawColor, endlessTrace, data.getPoints());
+            path.setVariables(x, y, trace, traceDrawColor, endlessTrace);
         }
         ball.getBackground().setColorFilter(ballDrawColor, PorterDuff.Mode.SRC_ATOP);
     }
@@ -171,7 +178,7 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
                 stick.setLayoutParams(new FrameLayout.LayoutParams(5, (int) r));
 
                 if(isTraceOn) {
-                    path.setVariables(x, y, trace, traceDrawColor, endlessTrace, data.getPoints());
+                    path.setVariables(x, y, trace, traceDrawColor, endlessTrace);
                 }
 
                 angularVel = 0;

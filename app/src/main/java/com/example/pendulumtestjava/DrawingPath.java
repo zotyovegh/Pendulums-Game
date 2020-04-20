@@ -57,8 +57,7 @@ public class DrawingPath extends View {
         invalidate();
     }
 
-    public void setVariables(double x, double y, int trace, int color, boolean endless, ArrayList<Float> array) {
-        this.array = array;
+    public void setVariables(double x, double y, int trace, int color, boolean endless) {
         this.paint.setColor(color);
         this.x = (float) x + 30;
         this.y = (float) y + 30;
@@ -84,6 +83,11 @@ public class DrawingPath extends View {
 
         counter++;
         invalidate();
+    }
+
+    public void setPath(ArrayList<Float> points)
+    {
+        array = points;
     }
 
     public float[] convert(ArrayList<Float> f) {

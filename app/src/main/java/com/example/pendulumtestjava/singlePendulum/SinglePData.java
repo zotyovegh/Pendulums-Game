@@ -121,7 +121,7 @@ public class SinglePData {
         a = Math.PI / 2;
         traceDrawColor = 0xF0000000;
         ballDrawColor = 0xFFFF0000;
-        endlessTrace = true;
+        endlessTrace = false;
         isTraceOn = true;
         points = new ArrayList<>();
         stop = false;
