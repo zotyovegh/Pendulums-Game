@@ -62,10 +62,7 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_pendulum);
 
-
         singlePViewModel = ViewModelProviders.of(this).get(SinglePViewModel.class);
-
-
 
         stick = (TextView) findViewById(R.id.stickBox);
         ball = (TextView) findViewById(R.id.ballPaint);
@@ -75,7 +72,6 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
         pause = (Button) findViewById(R.id.pause);
         settings = (Button) findViewById(R.id.settings);
         save = (Button) findViewById(R.id.save);
-
 
         Intent intent = getIntent();
         if(intent.hasExtra("TYPE"))
@@ -137,7 +133,6 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
         a += angularVel;
 
         calcPositions();
-
     }
 
     public void calcPositions() {
@@ -212,8 +207,6 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
 
                 SinglePendulumObject pendulum = new SinglePendulumObject(a, r, gravity, damping, trace, ballDrawColor, traceDrawColor, json, millisInString, endlessTrace, isTraceOn);
                 singlePViewModel.insert(pendulum);
-
-
         }
     }
 

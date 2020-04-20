@@ -2,10 +2,8 @@ package com.example.pendulumtestjava;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.Nullable;
@@ -19,7 +17,6 @@ import static android.content.ContentValues.TAG;
 public class DrawingPath extends View {
     private Paint paint;
     private float x, y, tempX, tempY;
-    private SinglePData data = SinglePData.getInstance();
     private ArrayList<Float> array = new ArrayList<>();
     private int counter = 0;
     private boolean reset = false;
@@ -34,7 +31,6 @@ public class DrawingPath extends View {
 
     public DrawingPath(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-
         paint = new Paint();
         paint.setStrokeWidth(5);
     }

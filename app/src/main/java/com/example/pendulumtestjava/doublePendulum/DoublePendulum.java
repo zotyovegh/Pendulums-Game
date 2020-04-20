@@ -13,8 +13,6 @@ import android.widget.TextView;
 
 import com.example.pendulumtestjava.DrawingPath;
 import com.example.pendulumtestjava.R;
-
-import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -31,6 +29,10 @@ public class DoublePendulum extends AppCompatActivity implements View.OnClickLis
     private double widthMiddleBall, heightMiddleBall;
     private double widthMiddle, heightPoint;
     private double x1, y1, x2, y2;
+    private boolean onHold = false;
+    private boolean stop = false;
+    private double a1_v = 0;
+    private double a2_v = 0;
     private double r1 = data.getR1();
     private double r2 = data.getR2();
     private double a1 = data.getA1();
@@ -44,10 +46,6 @@ public class DoublePendulum extends AppCompatActivity implements View.OnClickLis
     private int trace2Color = data.getTrace2Color();
     private int ball1Color = data.getBall1Color();
     private int ball2Color = data.getBall2Color();
-    private boolean onHold = false;
-    private boolean stop = false;
-    private double a1_v = 0;
-    private double a2_v = 0;
     private boolean endlessTrace1 = data.isEndlessTrace1();
     private boolean endlessTrace2 = data.isEndlessTrace2();
     private boolean isTrace1On = data.isTrace1On();
@@ -146,10 +144,10 @@ public class DoublePendulum extends AppCompatActivity implements View.OnClickLis
         stick2.setLayoutParams(new FrameLayout.LayoutParams(4, (int) r2));
 
         if(isTrace1On) {
-            path.setVariables(x1, y1, trace1, trace1Color, endlessTrace1); //++++++++++++++++++
+            path.setVariables(x1, y1, trace1, trace1Color, endlessTrace1);
         }
         if(isTrace2On) {
-            path2.setVariables(x2, y2, trace2, trace2Color, endlessTrace2); //+++++++++++++++++++++++
+            path2.setVariables(x2, y2, trace2, trace2Color, endlessTrace2);
         }
         ball.getBackground().setColorFilter(ball1Color, PorterDuff.Mode.SRC_ATOP);
         ball2.getBackground().setColorFilter(ball2Color, PorterDuff.Mode.SRC_ATOP);
@@ -211,7 +209,6 @@ public class DoublePendulum extends AppCompatActivity implements View.OnClickLis
                     stick2.setLayoutParams(new FrameLayout.LayoutParams(5, (int) r2));
                 }
                 calcPositions();
-
                 break;
             case MotionEvent.ACTION_UP:
                 onHold = false;
@@ -257,7 +254,6 @@ public class DoublePendulum extends AppCompatActivity implements View.OnClickLis
         trace2Color = data.getTrace2Color();
         ball1Color = data.getBall1Color();
         ball2Color = data.getBall2Color();
-
 
         a1_v = 0;
         a2_v = 0;

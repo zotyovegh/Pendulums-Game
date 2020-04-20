@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity{
         viewPager = (ViewPager) findViewById(R.id.viewpager_id);
         adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
-        //Add Fragment Here
         adapter.AddFragment(new FragmentMain(), "Main");
         adapter.AddFragment(new FragmentList(), "List");
         viewPager.setAdapter(adapter);

@@ -9,6 +9,8 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import com.example.pendulumtestjava.doublePendulum.DoublePendulum;
+
 import java.util.ArrayList;
 
 @Database(entities = {SinglePendulumObject.class}, version = 2)

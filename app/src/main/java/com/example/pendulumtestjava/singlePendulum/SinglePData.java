@@ -112,7 +112,6 @@ public class SinglePData {
         return instance;
     }
 
-
     public void resetValues() {
         trace = 100;
         gravity = (float)1;
