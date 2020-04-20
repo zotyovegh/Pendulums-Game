@@ -1,6 +1,7 @@
 package com.example.pendulumtestjava.doublePendulum;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.graphics.PorterDuff;
 import android.os.Bundle;
@@ -13,6 +14,11 @@ import android.widget.TextView;
 
 import com.example.pendulumtestjava.DrawingPath;
 import com.example.pendulumtestjava.R;
+import com.example.pendulumtestjava.main.listFragment.doubleP.DoublePendulumObject;
+import com.example.pendulumtestjava.main.listFragment.shared.DbViewModel;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -22,7 +28,7 @@ public class DoublePendulum extends AppCompatActivity implements View.OnClickLis
     private Handler handler = new Handler();
     private Timer timer = new Timer();
     private DrawingPath path, path2;
-    private Button reset, pause, settings;
+    private Button reset, pause, settings, save;
     private DoublePSettings doublePSettings = new DoublePSettings();
     private DoublePData data = DoublePData.getInstance();
 
@@ -50,11 +56,14 @@ public class DoublePendulum extends AppCompatActivity implements View.OnClickLis
     private boolean endlessTrace2 = data.isEndlessTrace2();
     private boolean isTrace1On = data.isTrace1On();
     private boolean isTrace2On = data.isTrace2On();
+    private DbViewModel dbViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_double_pendulum);
+
+        dbViewModel = ViewModelProviders.of(this).get(DbViewModel.class);
 
         stick = (TextView) findViewById(R.id.stickBox);
         stick2 = (TextView) findViewById(R.id.stickBox2);
@@ -66,6 +75,7 @@ public class DoublePendulum extends AppCompatActivity implements View.OnClickLis
         reset = (Button) findViewById(R.id.reset);
         pause = (Button) findViewById(R.id.pause);
         settings = (Button) findViewById(R.id.settings);
+        save = (Button) findViewById(R.id.save);
 
         widthMiddle = getWindowManager().getDefaultDisplay().getWidth() / 2;
         heightPoint = getWindowManager().getDefaultDisplay().getHeight() / 8;
@@ -75,6 +85,7 @@ public class DoublePendulum extends AppCompatActivity implements View.OnClickLis
         reset.setOnClickListener(this);
         pause.setOnClickListener(this);
         settings.setOnClickListener(this);
+        save.setOnClickListener(this);
 
         middle.setX((float)(widthMiddle -5));
         middle.setY((float)(heightPoint - 5));
@@ -229,6 +240,12 @@ public class DoublePendulum extends AppCompatActivity implements View.OnClickLis
             case R.id.settings:
                 openSettings();
                 break;
+            case R.id.save:
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                String millisInString  = dateFormat.format(new Date());
+
+                DoublePendulumObject pendulum = new DoublePendulumObject(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, "points", "points2", millisInString, true, true, true, true);
+                dbViewModel.insertDoublePendulum(pendulum);
         }
     }
 

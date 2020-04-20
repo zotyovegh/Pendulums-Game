@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pendulumtestjava.R;
+import com.example.pendulumtestjava.main.listFragment.doubleP.DoublePendulumObject;
 import com.example.pendulumtestjava.main.listFragment.shared.DbAdapter;
 import com.example.pendulumtestjava.main.listFragment.shared.DbViewModel;
 import com.example.pendulumtestjava.main.listFragment.singleP.SinglePendulumObject;
@@ -53,6 +54,16 @@ public class FragmentList extends Fragment {
                 adapter.setSinglePendulums(singlePendulumObjects);
             }
         });
+        dbViewModel.getAllDoublePendulums().observe(getActivity(), new Observer<List<DoublePendulumObject>>() {
+            @Override
+            public void onChanged(List<DoublePendulumObject> doublePendulumObjects) {
+                Toast.makeText(getActivity(), "Triggered", Toast.LENGTH_SHORT).show();
+                adapter.setDoublePendulums(doublePendulumObjects);
+            }
+        });
+
+
+
 
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
                 ItemTouchHelper.LEFT) {
