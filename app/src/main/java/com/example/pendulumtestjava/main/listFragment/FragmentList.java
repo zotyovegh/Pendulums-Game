@@ -17,10 +17,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pendulumtestjava.R;
-import com.example.pendulumtestjava.main.listFragment.doubleP.DoublePendulumObject;
-import com.example.pendulumtestjava.main.listFragment.shared.DbAdapter;
-import com.example.pendulumtestjava.main.listFragment.shared.DbViewModel;
-import com.example.pendulumtestjava.main.listFragment.singleP.SinglePendulumObject;
 import com.example.pendulumtestjava.singlePendulum.SinglePData;
 import com.example.pendulumtestjava.singlePendulum.SinglePendulum;
 import com.google.gson.Gson;
@@ -32,7 +28,6 @@ import java.util.List;
 
 public class FragmentList extends Fragment {
     View v;
-    private DbViewModel dbViewModel;
     SinglePData data = SinglePData.getInstance();
 
     @Nullable
@@ -44,66 +39,6 @@ public class FragmentList extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setHasFixedSize(true);
 
-        DbAdapter adapter = new DbAdapter();
-        recyclerView.setAdapter(adapter);
-
-        dbViewModel = ViewModelProviders.of(getActivity()).get(DbViewModel.class);
-        dbViewModel.getAllSinglePendulums().observe(getActivity(), new Observer<List<SinglePendulumObject>>() {
-            @Override
-            public void onChanged(List<SinglePendulumObject> singlePendulumObjects) {
-                adapter.setSinglePendulums(singlePendulumObjects);
-            }
-        });
-        dbViewModel.getAllDoublePendulums().observe(getActivity(), new Observer<List<DoublePendulumObject>>() {
-            @Override
-            public void onChanged(List<DoublePendulumObject> doublePendulumObjects) {
-                Toast.makeText(getActivity(), "Triggered", Toast.LENGTH_SHORT).show();
-                adapter.setDoublePendulums(doublePendulumObjects);
-            }
-        });
-
-
-
-
-        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
-                ItemTouchHelper.LEFT) {
-            @Override
-            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
-                return false;
-            }
-
-            @Override
-            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                dbViewModel.deleteSinglePendulum(adapter.getSinglePendulumAt(viewHolder.getAdapterPosition()));
-                Toast.makeText(getActivity(), "Note deleted", Toast.LENGTH_SHORT).show();
-            }
-        }).attachToRecyclerView(recyclerView);
-
-        adapter.setOnItemClickListener(new DbAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(SinglePendulumObject pendulum) {
-                Intent intent = new Intent(getActivity(), SinglePendulum.class);
-                Gson gson = new Gson();
-                Type listType = new TypeToken<List<Float>>(){}.getType();
-                data.setA(Math.toDegrees(pendulum.getA()));
-                data.setR(pendulum.getR());
-                data.setGravity(pendulum.getG());
-                data.setDamping(pendulum.getDamping());
-                data.setTrace(pendulum.getTrace());
-                data.setBallDrawColor(pendulum.getBallColor());
-                data.setTraceDrawColor(pendulum.getTraceColor());
-
-                ArrayList<Float> temp = gson.fromJson(pendulum.getPointsJson(), listType);
-                data.setPoints(temp);
-                data.setStop(true);
-                data.setEndlessTrace(pendulum.isInfinity());
-                data.setTraceOn(pendulum.isTraceOn());
-
-                String type = "single";
-                intent.putExtra("TYPE", type);
-                startActivity(intent);
-            }
-        });
 
         return v;
     }

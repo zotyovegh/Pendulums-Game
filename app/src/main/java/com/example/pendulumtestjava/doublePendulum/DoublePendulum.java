@@ -14,8 +14,6 @@ import android.widget.TextView;
 
 import com.example.pendulumtestjava.DrawingPath;
 import com.example.pendulumtestjava.R;
-import com.example.pendulumtestjava.main.listFragment.doubleP.DoublePendulumObject;
-import com.example.pendulumtestjava.main.listFragment.shared.DbViewModel;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -56,14 +54,12 @@ public class DoublePendulum extends AppCompatActivity implements View.OnClickLis
     private boolean endlessTrace2 = data.isEndlessTrace2();
     private boolean isTrace1On = data.isTrace1On();
     private boolean isTrace2On = data.isTrace2On();
-    private DbViewModel dbViewModel;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_double_pendulum);
-
-        dbViewModel = ViewModelProviders.of(this).get(DbViewModel.class);
 
         stick = (TextView) findViewById(R.id.stickBox);
         stick2 = (TextView) findViewById(R.id.stickBox2);
@@ -244,8 +240,7 @@ public class DoublePendulum extends AppCompatActivity implements View.OnClickLis
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 String millisInString  = dateFormat.format(new Date());
 
-                DoublePendulumObject pendulum = new DoublePendulumObject(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, "points", "points2", millisInString, true, true, true, true);
-                dbViewModel.insertDoublePendulum(pendulum);
+
         }
     }
 
