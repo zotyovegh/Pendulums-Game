@@ -18,7 +18,7 @@ public class SinglePendulumRepository {
     public SinglePendulumRepository(Application application)
     {
         Db database = Db.getInstance(application);
-        dbDao = database.singlePDao();
+        dbDao = database.dbDao();
         allSinglePendulums = dbDao.getAllSinglePendulums();
     }
 
