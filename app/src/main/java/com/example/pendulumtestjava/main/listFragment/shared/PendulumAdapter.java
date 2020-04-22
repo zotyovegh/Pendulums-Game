@@ -28,6 +28,8 @@ public class PendulumAdapter extends RecyclerView.Adapter<PendulumAdapter.Pendul
     public void onBindViewHolder(@NonNull PendulumHolder holder, int position) {
         SaveObjectModel currentPendulum = pendulums.get(position);
         holder.timeStamp.setText(currentPendulum.getTimeStamp());
+        holder.type.setText(currentPendulum.getType());
+
     }
 
     @Override
@@ -41,13 +43,20 @@ public class PendulumAdapter extends RecyclerView.Adapter<PendulumAdapter.Pendul
         notifyDataSetChanged();
     }
 
+    public SaveObjectModel getPendulumAt(int position)
+    {
+        return pendulums.get(position);
+    }
+
     class PendulumHolder extends RecyclerView.ViewHolder {
         private TextView timeStamp;
+        private TextView type;
 
         public PendulumHolder(View itemView)
         {
             super(itemView);
             timeStamp = itemView.findViewById(R.id.time_stamp);
+            type = itemView.findViewById(R.id.type);
         }
     }
 }

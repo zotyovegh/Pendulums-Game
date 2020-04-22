@@ -11,9 +11,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.pendulumtestjava.DrawingPath;
 import com.example.pendulumtestjava.R;
+import com.example.pendulumtestjava.main.listFragment.doubleP.DoublePObject;
+import com.example.pendulumtestjava.main.listFragment.shared.DbViewModel;
+import com.google.gson.Gson;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -54,12 +58,15 @@ public class DoublePendulum extends AppCompatActivity implements View.OnClickLis
     private boolean endlessTrace2 = data.isEndlessTrace2();
     private boolean isTrace1On = data.isTrace1On();
     private boolean isTrace2On = data.isTrace2On();
+    private DbViewModel dbViewModel;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_double_pendulum);
+
+        dbViewModel = ViewModelProviders.of(this).get(DbViewModel.class);
 
         stick = (TextView) findViewById(R.id.stickBox);
         stick2 = (TextView) findViewById(R.id.stickBox2);
@@ -240,7 +247,12 @@ public class DoublePendulum extends AppCompatActivity implements View.OnClickLis
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 String millisInString  = dateFormat.format(new Date());
 
+                String json = new Gson().toJson(path.getArray());
+                String json2 = new Gson().toJson(path2.getArray());
 
+                DoublePObject pendulum = new DoublePObject(a1, a2, r1, r2, g, m1, m2, trace1, trace2, trace1Color, trace2Color,
+                        ball1Color, ball2Color, json, json2, millisInString, endlessTrace1, endlessTrace2, isTrace1On, isTrace2On);
+                dbViewModel.insertDoubleP(pendulum);
         }
     }
 

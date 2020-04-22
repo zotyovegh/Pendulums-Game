@@ -24,6 +24,11 @@ public class SinglePRepository {
         new DeleteSinglePendulumAsyncTask(singlePDao).execute(pendulum);
     }
 
+    public void getSinglePendulum(int id)
+    {
+
+    }
+
     private static class InsertSinglePendulumAsyncTask extends AsyncTask<SinglePObject, Void, Void>
     {
         private SinglePDao dbDao;

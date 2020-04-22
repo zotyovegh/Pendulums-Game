@@ -1,6 +1,7 @@
 package com.example.pendulumtestjava.singlePendulum;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Intent;
@@ -15,6 +16,8 @@ import android.widget.TextView;
 
 import com.example.pendulumtestjava.DrawingPath;
 import com.example.pendulumtestjava.R;
+import com.example.pendulumtestjava.main.listFragment.shared.DbViewModel;
+import com.example.pendulumtestjava.main.listFragment.singleP.SinglePObject;
 import com.google.gson.Gson;
 
 import java.text.SimpleDateFormat;
@@ -49,6 +52,7 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
     private boolean endlessTrace = data.isEndlessTrace();
     private boolean isTraceOn = data.isTraceOn();
     public boolean stop;
+    private DbViewModel dbViewModel;
 
     
     @Override
@@ -56,6 +60,7 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_pendulum);
 
+        dbViewModel = ViewModelProviders.of(this).get(DbViewModel.class);
 
         stick = (TextView) findViewById(R.id.stickBox);
         ball = (TextView) findViewById(R.id.ballPaint);
@@ -198,7 +203,8 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
 
                 String json = new Gson().toJson(path.getArray());
 
-
+                SinglePObject pendulum = new SinglePObject(a, r, gravity, damping, trace, ballDrawColor, traceDrawColor, json, millisInString, endlessTrace, isTraceOn);
+                dbViewModel.insertSingleP(pendulum);
         }
     }
 

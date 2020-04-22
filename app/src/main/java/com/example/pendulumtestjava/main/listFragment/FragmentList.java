@@ -2,6 +2,7 @@ package com.example.pendulumtestjava.main.listFragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,10 +51,33 @@ public class FragmentList extends Fragment {
         viewModel.getAllPendulums().observe(getActivity(), new Observer<List<SaveObjectModel>>() {
             @Override
             public void onChanged(List<SaveObjectModel> pendulums) {
-//                Toast.makeText(getActivity(), "HUA", Toast.LENGTH_SHORT).show();
                 adapter.setPendulums(pendulums);
             }
         });
+
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                if(adapter.getPendulumAt(viewHolder.getAdapterPosition()).getType().equals("Single"))
+                {
+                    Toast.makeText(getActivity(), "s", Toast.LENGTH_SHORT).show();
+
+                }
+                else if(adapter.getPendulumAt(viewHolder.getAdapterPosition()).getType().equals("Double"))
+                {
+                    Toast.makeText(getActivity(), "d", Toast.LENGTH_SHORT).show();
+
+                }
+                else {
+                    Toast.makeText(getActivity(), "ERROR", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }).attachToRecyclerView(recyclerView);
 
 
         return v;
