@@ -17,6 +17,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pendulumtestjava.R;
+import com.example.pendulumtestjava.main.listFragment.shared.DbViewModel;
+import com.example.pendulumtestjava.main.listFragment.shared.PendulumAdapter;
+import com.example.pendulumtestjava.main.listFragment.shared.SaveObjectModel;
 import com.example.pendulumtestjava.singlePendulum.SinglePData;
 import com.example.pendulumtestjava.singlePendulum.SinglePendulum;
 import com.google.gson.Gson;
@@ -29,6 +32,7 @@ import java.util.List;
 public class FragmentList extends Fragment {
     View v;
     SinglePData data = SinglePData.getInstance();
+    private DbViewModel viewModel;
 
     @Nullable
     @Override
@@ -38,6 +42,18 @@ public class FragmentList extends Fragment {
         RecyclerView recyclerView = v.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setHasFixedSize(true);
+
+        PendulumAdapter adapter = new PendulumAdapter();
+        recyclerView.setAdapter(adapter);
+
+        viewModel = ViewModelProviders.of(getActivity()).get(DbViewModel.class);
+        viewModel.getAllPendulums().observe(getActivity(), new Observer<List<SaveObjectModel>>() {
+            @Override
+            public void onChanged(List<SaveObjectModel> pendulums) {
+//                Toast.makeText(getActivity(), "HUA", Toast.LENGTH_SHORT).show();
+                adapter.setPendulums(pendulums);
+            }
+        });
 
 
         return v;

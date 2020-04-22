@@ -62,7 +62,6 @@ public abstract class PendulumDatabase extends RoomDatabase {
             doublePDao.insertDoubleP(new DoublePObject(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, "asd", "asd", "time1Double", true, true, true, true ));
             doublePDao.insertDoubleP(new DoublePObject(2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, "asd2", "asd2", "time2Double", true, true, true, true ));
 
-
             return null;
         }
     }

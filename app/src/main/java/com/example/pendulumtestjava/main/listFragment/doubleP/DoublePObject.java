@@ -31,6 +31,7 @@ public class DoublePObject {
     private boolean isTrace2On;
 
 
+
     public DoublePObject(double a1, double a2, double r1, double r2, double g,
                          double m1, double m2, int trace1, int trace2,
                          int traceColor1, int traceColor2, int ballColor1,

@@ -19,7 +19,7 @@ public interface DoublePDao {
     @Delete
     void deleteDoubleP(DoublePObject pendulum);
 
-    @Query("SELECT * FROM double_table WHERE id = :id ")
-    LiveData<List<SinglePObject>> getDoublePObject(int id);
+//    @Query("SELECT * FROM double_table WHERE id = :id ")
+//    LiveData<List<SinglePObject>> getDoublePObject(int id);
 
 }

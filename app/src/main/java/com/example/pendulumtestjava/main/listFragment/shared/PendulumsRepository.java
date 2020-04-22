@@ -8,7 +8,7 @@ import java.util.List;
 
 public class PendulumsRepository {
     private PendulumsDao pendulumsDao;
-    private LiveData<List<Object>> allPendulums;
+    private LiveData<List<SaveObjectModel>> allPendulums;
 
     public PendulumsRepository(Application application)
     {
@@ -17,7 +17,7 @@ public class PendulumsRepository {
         allPendulums = pendulumsDao.getAllPendulums();
     }
 
-    public LiveData<List<Object>> getAllPendulums()
+    public LiveData<List<SaveObjectModel>> getAllPendulums()
     {
         return allPendulums;
     }
