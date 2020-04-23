@@ -271,6 +271,7 @@ public class DoublePendulum extends AppCompatActivity implements View.OnClickLis
     }
 
     public void stopCheck() {
+        data.setStop(false);
         if (stop) {
             stop = false;
         } else {
