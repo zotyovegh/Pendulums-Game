@@ -1,11 +1,14 @@
 package com.example.pendulumtestjava.main.listFragment.shared;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pendulumtestjava.R;
@@ -13,9 +16,27 @@ import com.example.pendulumtestjava.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PendulumAdapter extends RecyclerView.Adapter<PendulumAdapter.PendulumHolder> {
-    private List<SaveObjectModel> pendulums = new ArrayList<>();
+public class PendulumAdapter extends ListAdapter<SaveObjectModel, PendulumAdapter.PendulumHolder> {
+//    private List<SaveObjectModel> pendulums = new ArrayList<>();
     private OnItemClickListener listener;
+
+    public PendulumAdapter() {
+        super(DIFF_CALLBACK);
+    }
+
+    private static final DiffUtil.ItemCallback<SaveObjectModel> DIFF_CALLBACK = new DiffUtil.ItemCallback<SaveObjectModel>() {
+        @Override
+        public boolean areItemsTheSame(SaveObjectModel oldItem, SaveObjectModel newItem) {
+            return oldItem.getId() == newItem.getId();
+        }
+
+        @Override
+        public boolean areContentsTheSame(SaveObjectModel oldItem, SaveObjectModel newItem) {
+            return oldItem.getTimeStamp().equals(newItem.getTimeStamp()) &&
+                   oldItem.getType().equals(newItem.getType()) &&
+                    oldItem.getId() == newItem.getId();
+        }
+    };
 
     @NonNull
     @Override
@@ -27,26 +48,15 @@ public class PendulumAdapter extends RecyclerView.Adapter<PendulumAdapter.Pendul
 
     @Override
     public void onBindViewHolder(@NonNull PendulumHolder holder, int position) {
-        SaveObjectModel currentPendulum = pendulums.get(position);
+        SaveObjectModel currentPendulum = getItem(position);
         holder.timeStamp.setText(currentPendulum.getTimeStamp());
         holder.type.setText(currentPendulum.getType());
 
     }
 
-    @Override
-    public int getItemCount() {
-        return pendulums.size();
-    }
-
-    public void setPendulums(List<SaveObjectModel> pendulums)
-    {
-        this.pendulums = pendulums;
-        notifyDataSetChanged();
-    }
-
     public SaveObjectModel getPendulumAt(int position)
     {
-        return pendulums.get(position);
+        return getItem(position);
     }
 
     class PendulumHolder extends RecyclerView.ViewHolder {
@@ -64,7 +74,7 @@ public class PendulumAdapter extends RecyclerView.Adapter<PendulumAdapter.Pendul
                 public void onClick(View v) {
                     int position = getAdapterPosition();
                     if (listener != null && position != RecyclerView.NO_POSITION) {
-                        listener.onItemClick(pendulums.get(position));
+                        listener.onItemClick(getItem(position));
                     }
                 }
             });

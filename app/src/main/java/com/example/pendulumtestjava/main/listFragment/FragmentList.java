@@ -58,7 +58,7 @@ public class FragmentList extends Fragment {
         viewModel.getAllPendulums().observe(getActivity(), new Observer<List<SaveObjectModel>>() {
             @Override
             public void onChanged(List<SaveObjectModel> pendulums) {
-                adapter.setPendulums(pendulums);
+                adapter.submitList(pendulums);
             }
         });
 
