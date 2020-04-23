@@ -15,6 +15,7 @@ import java.util.List;
 
 public class PendulumAdapter extends RecyclerView.Adapter<PendulumAdapter.PendulumHolder> {
     private List<SaveObjectModel> pendulums = new ArrayList<>();
+    private OnItemClickListener listener;
 
     @NonNull
     @Override
@@ -57,6 +58,25 @@ public class PendulumAdapter extends RecyclerView.Adapter<PendulumAdapter.Pendul
             super(itemView);
             timeStamp = itemView.findViewById(R.id.time_stamp);
             type = itemView.findViewById(R.id.type);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (listener != null && position != RecyclerView.NO_POSITION) {
+                        listener.onItemClick(pendulums.get(position));
+                    }
+                }
+            });
         }
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(SaveObjectModel pendulum);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener)
+    {
+        this.listener = listener;
     }
 }

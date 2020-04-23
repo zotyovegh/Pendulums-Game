@@ -30,6 +30,7 @@ public abstract class PendulumDatabase extends RoomDatabase {
                     PendulumDatabase.class, "PendulumDatabase")
                     .fallbackToDestructiveMigration()
                     .addCallback(roomCallback)
+                    .allowMainThreadQueries()
                     .build();
         }
         return instance;

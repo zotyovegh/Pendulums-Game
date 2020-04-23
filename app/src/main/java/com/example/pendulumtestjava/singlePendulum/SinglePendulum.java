@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -72,7 +73,7 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
         save = (Button) findViewById(R.id.save);
 
         Intent intent = getIntent();
-        if(intent.hasExtra("TYPE"))
+        if(intent.hasExtra("path"))
         {
             path.setPath(data.getPoints());
         }
@@ -202,7 +203,7 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
                 String millisInString  = dateFormat.format(new Date());
 
                 String json = new Gson().toJson(path.getArray());
-
+                Log.i("TAG", "Json: " + json);
                 SinglePObject pendulum = new SinglePObject(a, r, gravity, damping, trace, ballDrawColor, traceDrawColor, json, millisInString, endlessTrace, isTraceOn);
                 dbViewModel.insertSingleP(pendulum);
         }

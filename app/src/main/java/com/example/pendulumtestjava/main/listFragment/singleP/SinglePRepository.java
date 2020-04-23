@@ -2,6 +2,9 @@ package com.example.pendulumtestjava.main.listFragment.singleP;
 
 import android.app.Application;
 import android.os.AsyncTask;
+import android.util.Log;
+
+import androidx.lifecycle.LiveData;
 
 import com.example.pendulumtestjava.main.listFragment.shared.PendulumDatabase;
 
@@ -24,9 +27,10 @@ public class SinglePRepository {
         new DeleteSinglePendulumAsyncTask(singlePDao).execute(pendulum);
     }
 
-    public void getSinglePendulum(int id)
-    {
-
+    public SinglePObject getSinglePendulum(int id)
+        {
+        SinglePObject currentPendulum = singlePDao.getSinglePObject(id);
+        return currentPendulum;
     }
 
     private static class InsertSinglePendulumAsyncTask extends AsyncTask<SinglePObject, Void, Void>

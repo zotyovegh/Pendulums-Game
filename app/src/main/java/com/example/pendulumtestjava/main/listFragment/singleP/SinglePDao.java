@@ -17,5 +17,5 @@ public interface SinglePDao {
     void deleteSingleP(SinglePObject pendulum);
 
     @Query("SELECT * FROM single_table WHERE id = :id ")
-    LiveData<List<SinglePObject>> getSinglePObject(int id);
+    SinglePObject getSinglePObject(int id);
 }

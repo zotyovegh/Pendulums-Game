@@ -50,6 +50,16 @@ public class DbViewModel extends AndroidViewModel {
         doublePRepository.deleteDoublePendulum(pendulum);
     }
 
+    public SinglePObject getSinglePendulum(int id)
+    {
+        return singlePRepository.getSinglePendulum(id);
+    }
+
+    public  DoublePObject getDoublePendulum(int id)
+    {
+        return  doublePRepository.getDoublePendulum(id);
+    }
+
     public LiveData<List<SaveObjectModel>> getAllPendulums()
     {
         return allPendulums;

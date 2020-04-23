@@ -24,6 +24,12 @@ public class DoublePRepository {
         new DeleteDoublePendulumAsyncTask(doublePDao).execute(pendulum);
     }
 
+    public DoublePObject getDoublePendulum(int id)
+    {
+        DoublePObject currentPendulum = doublePDao.getDoublePObject(id);
+        return  currentPendulum;
+    }
+
     private static class InsertDoublePendulumAsyncTask extends AsyncTask<DoublePObject, Void, Void>
     {
         private DoublePDao dbDao;

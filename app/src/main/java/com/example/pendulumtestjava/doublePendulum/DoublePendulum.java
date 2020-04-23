@@ -3,6 +3,7 @@ package com.example.pendulumtestjava.doublePendulum;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.os.Handler;
@@ -80,6 +81,14 @@ public class DoublePendulum extends AppCompatActivity implements View.OnClickLis
         settings = (Button) findViewById(R.id.settings);
         save = (Button) findViewById(R.id.save);
 
+        Intent intent = getIntent();
+        if(intent.hasExtra("path"))
+        {
+            path.setPath(data.getPoints1());
+            path2.setPath(data.getPoints2());
+        }
+
+
         widthMiddle = getWindowManager().getDefaultDisplay().getWidth() / 2;
         heightPoint = getWindowManager().getDefaultDisplay().getHeight() / 8;
         widthMiddleBall = widthMiddle - 30;
@@ -124,6 +133,11 @@ public class DoublePendulum extends AppCompatActivity implements View.OnClickLis
         ball.setY((float)y1);
         ball2.setX((float)x2);
         ball2.setY((float)y2);
+
+        if(data.isStop())
+        {
+            stop = true;
+        }
     }
 
     public void calc() {
