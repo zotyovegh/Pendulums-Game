@@ -1,4 +1,4 @@
-package com.example.pendulumtestjava.main;
+package com.example.pendulumtestjava.main.mainFragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,54 +19,33 @@ import com.example.pendulumtestjava.singlePendulum.SinglePendulum;
 
 public class FragmentMain extends Fragment {
 
-    View v;
-    private Button doublePendulum, singlePendulum;
     private SinglePData dataS = SinglePData.getInstance();
     private DoublePData dataD = DoublePData.getInstance();
-    public FragmentMain(){}
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        v = inflater.inflate(R.layout.main_fragment, container,false);
+        View v = inflater.inflate(R.layout.main_fragment, container, false);
 
-        singlePendulum = (Button) v.findViewById(R.id.singlePendulum);
-        singlePendulum.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openSinglePendulumActivity();
-            }
-        });
-        doublePendulum = (Button) v.findViewById(R.id.doublePendulum);
-        doublePendulum.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openDoublePendulumActivity();
-            }
-        });
-
+        Button singlePendulum = v.findViewById(R.id.singlePendulum);
+        singlePendulum.setOnClickListener(v1 -> openSinglePendulumActivity());
+        Button doublePendulum = v.findViewById(R.id.doublePendulum);
+        doublePendulum.setOnClickListener(v12 -> openDoublePendulumActivity());
 
         return v;
     }
 
-    public void openDoublePendulumActivity()
+    private void openDoublePendulumActivity()
     {
         Intent intent = new Intent(getActivity(), DoublePendulum.class);
-
         dataD.resetValues();
-
         startActivity(intent);
     }
 
-    public void openSinglePendulumActivity()
+    private void openSinglePendulumActivity()
     {
         Intent intent = new Intent(getActivity(), SinglePendulum.class);
-
         dataS.resetValues();
-
         startActivity(intent);
-
-
-
     }
 }

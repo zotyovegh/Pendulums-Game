@@ -5,9 +5,9 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 
-import com.example.pendulumtestjava.main.listFragment.FragmentList;
-import com.example.pendulumtestjava.main.FragmentMain;
-import com.example.pendulumtestjava.main.ViewPagerAdapter;
+import com.example.pendulumtestjava.main.mainFragments.FragmentList;
+import com.example.pendulumtestjava.main.mainFragments.FragmentMain;
+import com.example.pendulumtestjava.main.mainFragments.ViewPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity{

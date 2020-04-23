@@ -49,13 +49,12 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
     private int trace = data.getTrace();
     private double r = data.getR();
     private double x, y;
-    private boolean onHold;
+    private boolean onHold, stop;
     private boolean endlessTrace = data.isEndlessTrace();
     private boolean isTraceOn = data.isTraceOn();
-    public boolean stop;
+
     private DbViewModel dbViewModel;
 
-    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,14 +62,14 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
 
         dbViewModel = ViewModelProviders.of(this).get(DbViewModel.class);
 
-        stick = (TextView) findViewById(R.id.stickBox);
-        ball = (TextView) findViewById(R.id.ballPaint);
-        middle = (TextView) findViewById(R.id.middlePaint);
-        path = (DrawingPath) findViewById(R.id.path);
-        reset = (Button) findViewById(R.id.reset);
-        pause = (Button) findViewById(R.id.pause);
-        settings = (Button) findViewById(R.id.settings);
-        save = (Button) findViewById(R.id.save);
+        stick = findViewById(R.id.stickBox);
+        ball = findViewById(R.id.ballPaint);
+        middle = findViewById(R.id.middlePaint);
+        path = findViewById(R.id.path);
+        reset = findViewById(R.id.reset);
+        pause = findViewById(R.id.pause);
+        settings = findViewById(R.id.settings);
+        save = findViewById(R.id.save);
 
         Intent intent = getIntent();
         if(intent.hasExtra("path"))
@@ -211,11 +210,7 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
 
     public void stopCheck() {
         data.setStop(false);
-        if (stop) {
-            stop = false;
-        } else {
-            stop = true;
-        }
+        stop = !stop;
     }
 
     public void resetVariables() {

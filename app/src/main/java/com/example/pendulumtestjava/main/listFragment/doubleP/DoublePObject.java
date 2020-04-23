@@ -5,7 +5,6 @@ import androidx.room.PrimaryKey;
 
 @Entity(tableName = "double_table")
 public class DoublePObject {
-
     @PrimaryKey(autoGenerate = true)
     private int id;
 
@@ -29,8 +28,6 @@ public class DoublePObject {
     private boolean endlessTrace2;
     private boolean isTrace1On;
     private boolean isTrace2On;
-
-
 
     public DoublePObject(double a1, double a2, double r1, double r2, double g,
                          double m1, double m2, int trace1, int trace2,

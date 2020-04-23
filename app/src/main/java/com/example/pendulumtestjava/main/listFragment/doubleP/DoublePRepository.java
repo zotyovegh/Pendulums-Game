@@ -2,9 +2,7 @@ package com.example.pendulumtestjava.main.listFragment.doubleP;
 
 import android.app.Application;
 import android.os.AsyncTask;
-
 import com.example.pendulumtestjava.main.listFragment.shared.PendulumDatabase;
-
 
 public class DoublePRepository {
     private DoublePDao doublePDao;
@@ -26,8 +24,7 @@ public class DoublePRepository {
 
     public DoublePObject getDoublePendulum(int id)
     {
-        DoublePObject currentPendulum = doublePDao.getDoublePObject(id);
-        return  currentPendulum;
+        return doublePDao.getDoublePObject(id);
     }
 
     private static class InsertDoublePendulumAsyncTask extends AsyncTask<DoublePObject, Void, Void>

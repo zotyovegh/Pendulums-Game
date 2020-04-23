@@ -1,6 +1,5 @@
 package com.example.pendulumtestjava.main.listFragment.shared;
 
-import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,11 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pendulumtestjava.R;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class PendulumAdapter extends ListAdapter<SaveObjectModel, PendulumAdapter.PendulumHolder> {
-//    private List<SaveObjectModel> pendulums = new ArrayList<>();
     private OnItemClickListener listener;
 
     public PendulumAdapter() {
@@ -51,7 +46,6 @@ public class PendulumAdapter extends ListAdapter<SaveObjectModel, PendulumAdapte
         SaveObjectModel currentPendulum = getItem(position);
         holder.timeStamp.setText(currentPendulum.getTimeStamp());
         holder.type.setText(currentPendulum.getType());
-
     }
 
     public SaveObjectModel getPendulumAt(int position)
@@ -69,13 +63,10 @@ public class PendulumAdapter extends ListAdapter<SaveObjectModel, PendulumAdapte
             timeStamp = itemView.findViewById(R.id.time_stamp);
             type = itemView.findViewById(R.id.type);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int position = getAdapterPosition();
-                    if (listener != null && position != RecyclerView.NO_POSITION) {
-                        listener.onItemClick(getItem(position));
-                    }
+            itemView.setOnClickListener(v -> {
+                int position = getAdapterPosition();
+                if (listener != null && position != RecyclerView.NO_POSITION) {
+                    listener.onItemClick(getItem(position));
                 }
             });
         }

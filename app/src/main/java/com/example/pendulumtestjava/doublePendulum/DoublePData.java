@@ -5,26 +5,10 @@ import java.util.ArrayList;
 public class DoublePData {
     private static DoublePData instance;
 
-    private double r1;
-    private double r2;
-    private double a1;
-    private double a2;
-    private double g;
-    private double m1;
-    private double m2;
-    private int trace1;
-    private int trace2;
-    private int trace1Color;
-    private int trace2Color;
-    private int ball1Color;
-    private int ball2Color;
-    private boolean endlessTrace1;
-    private boolean endlessTrace2;
-    private boolean isTrace1On;
-    private boolean isTrace2On;
-    private boolean stop;
-    private ArrayList<Float> points1;
-    private ArrayList<Float> points2;
+    private double r1, r2, a1, a2, g, m1, m2;
+    private int trace1, trace2, trace1Color, trace2Color, ball1Color, ball2Color;
+    private boolean endlessTrace1, endlessTrace2, isTrace1On, isTrace2On, stop;
+    private ArrayList<Float> points1, points2;
 
     public boolean isStop() {
         return stop;
@@ -199,21 +183,20 @@ public class DoublePData {
         a1 = Math.PI / 2;
         a2 = Math.PI / 2;
         g = 1;
-        m1 = 10;
+        m1 = 100;
         m2 = 10;
         trace1 = 250;
         trace2 = 250;
-        trace1Color = 0xFFFF0000;
-        trace2Color = 0xFF0000FF;
-        ball1Color = 0xFFFF0000;
-        ball2Color = 0xFF0000FF;
+        trace1Color = 0xFF0000FF;
+        trace2Color = 0xFF000000;
+        ball1Color = 0xFF0000FF;
+        ball2Color = 0xFFFF0000;
         endlessTrace1 = false;
-        endlessTrace2 = false;
-        isTrace1On = true;
+        endlessTrace2 = true;
+        isTrace1On = false;
         isTrace2On = true;
         stop = false;
         points1 = new ArrayList<>();
         points2 = new ArrayList<>();
-
     }
 }

@@ -31,7 +31,6 @@ public class DoublePendulum extends AppCompatActivity implements View.OnClickLis
     private Handler handler = new Handler();
     private Timer timer = new Timer();
     private DrawingPath path, path2;
-    private Button reset, pause, settings, save;
     private DoublePSettings doublePSettings = new DoublePSettings();
     private DoublePData data = DoublePData.getInstance();
 
@@ -69,17 +68,17 @@ public class DoublePendulum extends AppCompatActivity implements View.OnClickLis
 
         dbViewModel = ViewModelProviders.of(this).get(DbViewModel.class);
 
-        stick = (TextView) findViewById(R.id.stickBox);
-        stick2 = (TextView) findViewById(R.id.stickBox2);
-        ball = (TextView) findViewById(R.id.ballPaint);
-        ball2 = (TextView) findViewById(R.id.ballPaint2);
-        middle = (TextView) findViewById(R.id.middlePaint);
-        path = (DrawingPath) findViewById(R.id.path);
-        path2 = (DrawingPath) findViewById(R.id.path2);
-        reset = (Button) findViewById(R.id.reset);
-        pause = (Button) findViewById(R.id.pause);
-        settings = (Button) findViewById(R.id.settings);
-        save = (Button) findViewById(R.id.save);
+        stick = findViewById(R.id.stickBox);
+        stick2 = findViewById(R.id.stickBox2);
+        ball = findViewById(R.id.ballPaint);
+        ball2 = findViewById(R.id.ballPaint2);
+        middle = findViewById(R.id.middlePaint);
+        path = findViewById(R.id.path);
+        path2 = findViewById(R.id.path2);
+        Button reset = findViewById(R.id.reset);
+        Button pause = findViewById(R.id.pause);
+        Button settings = findViewById(R.id.settings);
+        Button save = findViewById(R.id.save);
 
         Intent intent = getIntent();
         if(intent.hasExtra("path"))
@@ -272,11 +271,7 @@ public class DoublePendulum extends AppCompatActivity implements View.OnClickLis
 
     public void stopCheck() {
         data.setStop(false);
-        if (stop) {
-            stop = false;
-        } else {
-            stop = true;
-        }
+        stop = !stop;
     }
 
     public void resetVariables() {
