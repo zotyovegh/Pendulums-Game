@@ -2,8 +2,8 @@ package com.example.pendulumtestjava.singlePendulum;
 
 import java.util.ArrayList;
 
-public class SinglePData {
-    private static SinglePData instance;
+public class SinglePModel {
+    private static SinglePModel instance;
 
     private float gravity, damping;
     private double r, a;
@@ -99,10 +99,10 @@ public class SinglePData {
         this.r = r;
     }
 
-    public static synchronized SinglePData getInstance() {
+    public static synchronized SinglePModel getInstance() {
         if(instance==null)
         {
-            instance = new SinglePData();
+            instance = new SinglePModel();
         }
         return instance;
     }

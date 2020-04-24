@@ -2,7 +2,6 @@ package com.example.pendulumtestjava.singlePendulum;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Intent;
 import android.graphics.PorterDuff;
@@ -33,12 +32,13 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
     private Timer timer = new Timer();
     private DrawingPath path;
     private SinglePSettings singlePSettings = new SinglePSettings();
-    private SinglePData data = SinglePData.getInstance();
+    private SinglePModel data = SinglePModel.getInstance();
 
     private Button reset, pause, settings, save;
     private double widthMiddleBall, heightMiddleBall;
     private double widthMiddle, heightPoint;
     private double angularAcc, angularVel;
+    private DbViewModel dbViewModel;
 
     private double a = data.getA();
     private float gravity = data.getGravity();
@@ -53,8 +53,7 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
     private boolean endlessTrace = data.isEndlessTrace();
     private boolean isTraceOn = data.isTraceOn();
 
-    private DbViewModel dbViewModel;
-    private SinglePViewModel viewModel;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +61,6 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_single_pendulum);
 
         dbViewModel = new ViewModelProvider(this).get(DbViewModel.class);
-        viewModel = new ViewModelProvider(this).get(SinglePViewModel.class);
 
         stick = findViewById(R.id.stickBox);
         ball = findViewById(R.id.ballPaint);

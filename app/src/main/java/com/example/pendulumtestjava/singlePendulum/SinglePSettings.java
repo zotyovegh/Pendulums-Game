@@ -1,7 +1,6 @@
 package com.example.pendulumtestjava.singlePendulum;
 
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +8,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Switch;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,8 +16,6 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 
 import com.example.pendulumtestjava.R;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Objects;
 
 import yuku.ambilwarna.AmbilWarnaDialog;
@@ -27,7 +23,7 @@ import yuku.ambilwarna.AmbilWarnaDialog;
 public class SinglePSettings extends AppCompatDialogFragment {
     private Button traceColorButton, ballColorButton;
     private int traceDefaultColor, ballDefaultColor;
-    SinglePData data = SinglePData.getInstance();
+    SinglePModel data = SinglePModel.getInstance();
     private EditText a, r, g, damp, trace;
     private Switch switch1;
     private CheckBox checkBox;

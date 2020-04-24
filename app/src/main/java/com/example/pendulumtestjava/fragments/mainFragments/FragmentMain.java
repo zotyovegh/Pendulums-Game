@@ -12,15 +12,15 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.pendulumtestjava.R;
-import com.example.pendulumtestjava.doublePendulum.DoublePData;
+import com.example.pendulumtestjava.doublePendulum.DoublePModel;
 import com.example.pendulumtestjava.doublePendulum.DoublePendulum;
-import com.example.pendulumtestjava.singlePendulum.SinglePData;
+import com.example.pendulumtestjava.singlePendulum.SinglePModel;
 import com.example.pendulumtestjava.singlePendulum.SinglePendulum;
 
 public class FragmentMain extends Fragment {
 
-    private SinglePData dataS = SinglePData.getInstance();
-    private DoublePData dataD = DoublePData.getInstance();
+    private SinglePModel dataS = SinglePModel.getInstance();
+    private DoublePModel dataD = DoublePModel.getInstance();
 
     @Nullable
     @Override

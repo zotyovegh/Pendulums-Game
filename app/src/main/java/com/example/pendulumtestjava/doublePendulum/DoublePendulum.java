@@ -2,7 +2,6 @@ package com.example.pendulumtestjava.doublePendulum;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Intent;
 import android.graphics.PorterDuff;
@@ -32,7 +31,8 @@ public class DoublePendulum extends AppCompatActivity implements View.OnClickLis
     private Timer timer = new Timer();
     private DrawingPath path, path2;
     private DoublePSettings doublePSettings = new DoublePSettings();
-    private DoublePData data = DoublePData.getInstance();
+    private DoublePModel data = DoublePModel.getInstance();
+    private DbViewModel dbViewModel;
 
     private double widthMiddleBall, heightMiddleBall;
     private double widthMiddle, heightPoint;
@@ -58,8 +58,6 @@ public class DoublePendulum extends AppCompatActivity implements View.OnClickLis
     private boolean endlessTrace2 = data.isEndlessTrace2();
     private boolean isTrace1On = data.isTrace1On();
     private boolean isTrace2On = data.isTrace2On();
-    private DbViewModel dbViewModel;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

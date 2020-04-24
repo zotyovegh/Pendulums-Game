@@ -8,11 +8,7 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
-import com.example.pendulumtestjava.singlePendulum.SinglePData;
-
 import java.util.ArrayList;
-
-import static android.content.ContentValues.TAG;
 
 public class DrawingPath extends View {
     private Paint paint;

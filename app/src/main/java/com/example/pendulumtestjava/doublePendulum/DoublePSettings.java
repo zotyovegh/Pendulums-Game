@@ -1,7 +1,6 @@
 package com.example.pendulumtestjava.doublePendulum;
 
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,7 +26,7 @@ public class DoublePSettings extends AppCompatDialogFragment {
     private Switch trace1Switch, trace2Switch;
     private CheckBox checkBoxTrace1, checkBoxTrace2;
     private EditText a1, a2, r1, r2, g, m1, m2, trace1, trace2;
-    private DoublePData data = DoublePData.getInstance();
+    private DoublePModel data = DoublePModel.getInstance();
 
     @NonNull
     @Override
