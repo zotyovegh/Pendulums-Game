@@ -1,4 +1,4 @@
-package com.example.pendulumtestjava.main.listFragment.shared;
+package com.example.pendulumtestjava.fragments.listFragment.shared;
 
 import android.app.Application;
 
@@ -6,10 +6,10 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-import com.example.pendulumtestjava.main.listFragment.doubleP.DoublePObject;
-import com.example.pendulumtestjava.main.listFragment.doubleP.DoublePRepository;
-import com.example.pendulumtestjava.main.listFragment.singleP.SinglePObject;
-import com.example.pendulumtestjava.main.listFragment.singleP.SinglePRepository;
+import com.example.pendulumtestjava.fragments.listFragment.doubleP.DoublePObject;
+import com.example.pendulumtestjava.fragments.listFragment.doubleP.DoublePRepository;
+import com.example.pendulumtestjava.fragments.listFragment.singleP.SinglePObject;
+import com.example.pendulumtestjava.fragments.listFragment.singleP.SinglePRepository;
 
 import java.util.List;
 

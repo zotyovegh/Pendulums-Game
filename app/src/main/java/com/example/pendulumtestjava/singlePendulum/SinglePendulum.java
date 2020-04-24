@@ -17,8 +17,8 @@ import android.widget.TextView;
 
 import com.example.pendulumtestjava.DrawingPath;
 import com.example.pendulumtestjava.R;
-import com.example.pendulumtestjava.main.listFragment.shared.DbViewModel;
-import com.example.pendulumtestjava.main.listFragment.singleP.SinglePObject;
+import com.example.pendulumtestjava.fragments.listFragment.shared.DbViewModel;
+import com.example.pendulumtestjava.fragments.listFragment.singleP.SinglePObject;
 import com.google.gson.Gson;
 
 import java.text.SimpleDateFormat;
@@ -54,13 +54,15 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
     private boolean isTraceOn = data.isTraceOn();
 
     private DbViewModel dbViewModel;
+    private SinglePViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_pendulum);
 
-        dbViewModel = ViewModelProviders.of(this).get(DbViewModel.class);
+        dbViewModel = new ViewModelProvider(this).get(DbViewModel.class);
+        viewModel = new ViewModelProvider(this).get(SinglePViewModel.class);
 
         stick = findViewById(R.id.stickBox);
         ball = findViewById(R.id.ballPaint);
@@ -192,10 +194,11 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
                 resetVariables();
                 break;
             case R.id.pause:
-                stopCheck();
+                data.setStop(false);
+                stop = !stop;
                 break;
             case R.id.settings:
-                openSettings();
+                singlePSettings.show(getSupportFragmentManager(), "Settings");
                 break;
             case R.id.save:
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -208,10 +211,6 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
         }
     }
 
-    public void stopCheck() {
-        data.setStop(false);
-        stop = !stop;
-    }
 
     public void resetVariables() {
         a = data.getA();
@@ -231,10 +230,4 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
         isTraceOn = data.isTraceOn();
         path.reset();
     }
-
-    public void openSettings()
-    {
-        singlePSettings.show(getSupportFragmentManager(), "Settings");
-    }
-
 }

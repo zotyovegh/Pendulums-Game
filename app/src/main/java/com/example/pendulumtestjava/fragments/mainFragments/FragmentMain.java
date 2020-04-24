@@ -1,4 +1,4 @@
-package com.example.pendulumtestjava.main.mainFragments;
+package com.example.pendulumtestjava.fragments.mainFragments;
 
 import android.content.Intent;
 import android.os.Bundle;

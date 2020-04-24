@@ -1,4 +1,4 @@
-package com.example.pendulumtestjava.main.listFragment.shared;
+package com.example.pendulumtestjava.fragments.listFragment.shared;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -9,10 +9,10 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-import com.example.pendulumtestjava.main.listFragment.doubleP.DoublePDao;
-import com.example.pendulumtestjava.main.listFragment.doubleP.DoublePObject;
-import com.example.pendulumtestjava.main.listFragment.singleP.SinglePDao;
-import com.example.pendulumtestjava.main.listFragment.singleP.SinglePObject;
+import com.example.pendulumtestjava.fragments.listFragment.doubleP.DoublePDao;
+import com.example.pendulumtestjava.fragments.listFragment.doubleP.DoublePObject;
+import com.example.pendulumtestjava.fragments.listFragment.singleP.SinglePDao;
+import com.example.pendulumtestjava.fragments.listFragment.singleP.SinglePObject;
 
 @Database(entities = {SinglePObject.class, DoublePObject.class}, version = 1)
 public abstract class PendulumDatabase extends RoomDatabase {

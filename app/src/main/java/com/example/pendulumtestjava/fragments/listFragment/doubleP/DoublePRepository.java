@@ -1,10 +1,10 @@
-package com.example.pendulumtestjava.main.listFragment.doubleP;
+package com.example.pendulumtestjava.fragments.listFragment.doubleP;
 
 import android.app.Application;
 import android.os.AsyncTask;
 
 import com.example.pendulumtestjava.doublePendulum.DoublePData;
-import com.example.pendulumtestjava.main.listFragment.shared.PendulumDatabase;
+import com.example.pendulumtestjava.fragments.listFragment.shared.PendulumDatabase;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 

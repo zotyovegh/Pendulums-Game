@@ -1,9 +1,9 @@
-package com.example.pendulumtestjava.main.listFragment.singleP;
+package com.example.pendulumtestjava.fragments.listFragment.singleP;
 
 import android.app.Application;
 import android.os.AsyncTask;
 
-import com.example.pendulumtestjava.main.listFragment.shared.PendulumDatabase;
+import com.example.pendulumtestjava.fragments.listFragment.shared.PendulumDatabase;
 import com.example.pendulumtestjava.singlePendulum.SinglePData;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;

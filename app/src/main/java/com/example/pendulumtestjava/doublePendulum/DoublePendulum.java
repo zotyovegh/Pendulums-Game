@@ -1,6 +1,7 @@
 package com.example.pendulumtestjava.doublePendulum;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Intent;
@@ -12,12 +13,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.pendulumtestjava.DrawingPath;
 import com.example.pendulumtestjava.R;
-import com.example.pendulumtestjava.main.listFragment.doubleP.DoublePObject;
-import com.example.pendulumtestjava.main.listFragment.shared.DbViewModel;
+import com.example.pendulumtestjava.fragments.listFragment.doubleP.DoublePObject;
+import com.example.pendulumtestjava.fragments.listFragment.shared.DbViewModel;
 import com.google.gson.Gson;
 
 import java.text.SimpleDateFormat;
@@ -66,7 +66,7 @@ public class DoublePendulum extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_double_pendulum);
 
-        dbViewModel = ViewModelProviders.of(this).get(DbViewModel.class);
+        dbViewModel = new ViewModelProvider(this).get(DbViewModel.class);
 
         stick = findViewById(R.id.stickBox);
         stick2 = findViewById(R.id.stickBox2);
@@ -86,7 +86,6 @@ public class DoublePendulum extends AppCompatActivity implements View.OnClickLis
             path.setPath(data.getPoints1());
             path2.setPath(data.getPoints2());
         }
-
 
         widthMiddle = getWindowManager().getDefaultDisplay().getWidth() / 2;
         heightPoint = getWindowManager().getDefaultDisplay().getHeight() / 8;
@@ -251,10 +250,11 @@ public class DoublePendulum extends AppCompatActivity implements View.OnClickLis
                 resetVariables();
                 break;
             case R.id.pause:
-                stopCheck();
+                data.setStop(false);
+                stop = !stop;
                 break;
             case R.id.settings:
-                openSettings();
+                doublePSettings.show(getSupportFragmentManager(), "Settings");
                 break;
             case R.id.save:
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -267,11 +267,6 @@ public class DoublePendulum extends AppCompatActivity implements View.OnClickLis
                         ball1Color, ball2Color, json, json2, millisInString, endlessTrace1, endlessTrace2, isTrace1On, isTrace2On);
                 dbViewModel.insertDoubleP(pendulum);
         }
-    }
-
-    public void stopCheck() {
-        data.setStop(false);
-        stop = !stop;
     }
 
     public void resetVariables() {
@@ -299,10 +294,5 @@ public class DoublePendulum extends AppCompatActivity implements View.OnClickLis
         isTrace2On = data.isTrace2On();
         path.reset();
         path2.reset();
-    }
-
-    public void openSettings()
-    {
-        doublePSettings.show(getSupportFragmentManager(), "Settings");
     }
 }

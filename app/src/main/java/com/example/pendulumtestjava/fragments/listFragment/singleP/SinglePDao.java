@@ -1,4 +1,4 @@
-package com.example.pendulumtestjava.main.listFragment.singleP;
+package com.example.pendulumtestjava.fragments.listFragment.singleP;
 
 import androidx.room.Dao;
 import androidx.room.Delete;

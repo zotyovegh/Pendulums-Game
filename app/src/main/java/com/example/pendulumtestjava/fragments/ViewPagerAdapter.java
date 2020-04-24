@@ -1,4 +1,4 @@
-package com.example.pendulumtestjava.main.mainFragments;
+package com.example.pendulumtestjava.fragments;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

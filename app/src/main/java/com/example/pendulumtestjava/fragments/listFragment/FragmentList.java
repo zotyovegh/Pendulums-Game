@@ -1,4 +1,4 @@
-package com.example.pendulumtestjava.main.mainFragments;
+package com.example.pendulumtestjava.fragments.listFragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,11 +17,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pendulumtestjava.R;
 import com.example.pendulumtestjava.doublePendulum.DoublePendulum;
-import com.example.pendulumtestjava.main.listFragment.doubleP.DoublePObject;
-import com.example.pendulumtestjava.main.listFragment.shared.DbViewModel;
-import com.example.pendulumtestjava.main.listFragment.shared.PendulumAdapter;
-import com.example.pendulumtestjava.main.listFragment.shared.SavePendulumModel;
-import com.example.pendulumtestjava.main.listFragment.singleP.SinglePObject;
+import com.example.pendulumtestjava.fragments.listFragment.doubleP.DoublePObject;
+import com.example.pendulumtestjava.fragments.listFragment.shared.DbViewModel;
+import com.example.pendulumtestjava.fragments.listFragment.shared.PendulumAdapter;
+import com.example.pendulumtestjava.fragments.listFragment.shared.SavePendulumModel;
+import com.example.pendulumtestjava.fragments.listFragment.singleP.SinglePObject;
 import com.example.pendulumtestjava.singlePendulum.SinglePendulum;
 
 import java.util.Objects;

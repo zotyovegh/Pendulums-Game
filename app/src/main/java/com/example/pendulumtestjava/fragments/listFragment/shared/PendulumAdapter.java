@@ -1,4 +1,4 @@
-package com.example.pendulumtestjava.main.listFragment.shared;
+package com.example.pendulumtestjava.fragments.listFragment.shared;
 
 import android.view.LayoutInflater;
 import android.view.View;
