@@ -1,11 +1,11 @@
 package com.example.pendulumtestjava.main.listFragment.shared;
 
-public class SaveObjectModel {
+public class SavePendulumModel {
     private int id;
     private String type;
     private String timeStamp;
 
-    public SaveObjectModel(int id, String type, String timeStamp) {
+    public SavePendulumModel(int id, String type, String timeStamp) {
         this.id = id;
         this.type = type;
         this.timeStamp = timeStamp;

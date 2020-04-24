@@ -2,7 +2,6 @@ package com.example.pendulumtestjava.main.mainFragments;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +20,7 @@ import com.example.pendulumtestjava.doublePendulum.DoublePendulum;
 import com.example.pendulumtestjava.main.listFragment.doubleP.DoublePObject;
 import com.example.pendulumtestjava.main.listFragment.shared.DbViewModel;
 import com.example.pendulumtestjava.main.listFragment.shared.PendulumAdapter;
-import com.example.pendulumtestjava.main.listFragment.shared.SaveObjectModel;
+import com.example.pendulumtestjava.main.listFragment.shared.SavePendulumModel;
 import com.example.pendulumtestjava.main.listFragment.singleP.SinglePObject;
 import com.example.pendulumtestjava.singlePendulum.SinglePendulum;
 
@@ -53,7 +52,7 @@ public class FragmentList extends Fragment {
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                SaveObjectModel pendulum = adapter.getPendulumAt(viewHolder.getAdapterPosition());
+                SavePendulumModel pendulum = adapter.getPendulumAt(viewHolder.getAdapterPosition());
                 if(pendulum.getType().equals("Single"))
                 {
                     SinglePObject p = viewModel.getSinglePendulum(pendulum.getId());

@@ -1,13 +1,10 @@
 package com.example.pendulumtestjava.main.listFragment.singleP;
 
 import android.app.Application;
-import android.content.Intent;
 import android.os.AsyncTask;
 
 import com.example.pendulumtestjava.main.listFragment.shared.PendulumDatabase;
-import com.example.pendulumtestjava.main.listFragment.shared.SaveObjectModel;
 import com.example.pendulumtestjava.singlePendulum.SinglePData;
-import com.example.pendulumtestjava.singlePendulum.SinglePendulum;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 

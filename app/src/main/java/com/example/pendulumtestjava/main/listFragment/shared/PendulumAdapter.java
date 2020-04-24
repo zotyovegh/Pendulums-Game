@@ -12,21 +12,21 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pendulumtestjava.R;
 
-public class PendulumAdapter extends ListAdapter<SaveObjectModel, PendulumAdapter.PendulumHolder> {
+public class PendulumAdapter extends ListAdapter<SavePendulumModel, PendulumAdapter.PendulumHolder> {
     private OnItemClickListener listener;
 
     public PendulumAdapter() {
         super(DIFF_CALLBACK);
     }
 
-    private static final DiffUtil.ItemCallback<SaveObjectModel> DIFF_CALLBACK = new DiffUtil.ItemCallback<SaveObjectModel>() {
+    private static final DiffUtil.ItemCallback<SavePendulumModel> DIFF_CALLBACK = new DiffUtil.ItemCallback<SavePendulumModel>() {
         @Override
-        public boolean areItemsTheSame(SaveObjectModel oldItem, SaveObjectModel newItem) {
+        public boolean areItemsTheSame(SavePendulumModel oldItem, SavePendulumModel newItem) {
             return oldItem.getId() == newItem.getId();
         }
 
         @Override
-        public boolean areContentsTheSame(SaveObjectModel oldItem, SaveObjectModel newItem) {
+        public boolean areContentsTheSame(SavePendulumModel oldItem, SavePendulumModel newItem) {
             return oldItem.getTimeStamp().equals(newItem.getTimeStamp()) &&
                    oldItem.getType().equals(newItem.getType()) &&
                     oldItem.getId() == newItem.getId();
@@ -43,12 +43,12 @@ public class PendulumAdapter extends ListAdapter<SaveObjectModel, PendulumAdapte
 
     @Override
     public void onBindViewHolder(@NonNull PendulumHolder holder, int position) {
-        SaveObjectModel currentPendulum = getItem(position);
+        SavePendulumModel currentPendulum = getItem(position);
         holder.timeStamp.setText(currentPendulum.getTimeStamp());
         holder.type.setText(currentPendulum.getType());
     }
 
-    public SaveObjectModel getPendulumAt(int position)
+    public SavePendulumModel getPendulumAt(int position)
     {
         return getItem(position);
     }
@@ -73,7 +73,7 @@ public class PendulumAdapter extends ListAdapter<SaveObjectModel, PendulumAdapte
     }
 
     public interface OnItemClickListener {
-        void onItemClick(SaveObjectModel pendulum);
+        void onItemClick(SavePendulumModel pendulum);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener)

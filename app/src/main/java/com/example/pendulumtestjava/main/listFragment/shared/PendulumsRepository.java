@@ -7,7 +7,7 @@ import androidx.lifecycle.LiveData;
 import java.util.List;
 
 public class PendulumsRepository {
-    private LiveData<List<SaveObjectModel>> allPendulums;
+    private LiveData<List<SavePendulumModel>> allPendulums;
 
     public PendulumsRepository(Application application)
     {
@@ -16,7 +16,7 @@ public class PendulumsRepository {
         allPendulums = pendulumsDao.getAllPendulums();
     }
 
-    public LiveData<List<SaveObjectModel>> getAllPendulums()
+    public LiveData<List<SavePendulumModel>> getAllPendulums()
     {
         return allPendulums;
     }

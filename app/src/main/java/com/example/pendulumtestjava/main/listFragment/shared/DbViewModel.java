@@ -18,7 +18,7 @@ public class DbViewModel extends AndroidViewModel {
     private SinglePRepository singlePRepository;
     private DoublePRepository doublePRepository;
     private PendulumsRepository pendulumsRepository;
-    private LiveData<List<SaveObjectModel>> allPendulums;
+    private LiveData<List<SavePendulumModel>> allPendulums;
 
     public DbViewModel(@NonNull Application application) {
         super(application);
@@ -70,7 +70,7 @@ public class DbViewModel extends AndroidViewModel {
         doublePRepository.installDoublePendulum(pendulum);
     }
 
-    public LiveData<List<SaveObjectModel>> getAllPendulums()
+    public LiveData<List<SavePendulumModel>> getAllPendulums()
     {
         return allPendulums;
     }
