@@ -60,8 +60,20 @@ public class DbViewModel extends AndroidViewModel {
         return  doublePRepository.getDoublePendulum(id);
     }
 
+    public void installSinglePendulum(SinglePObject pendulum)
+    {
+        singlePRepository.installSinglePendulum(pendulum);
+    }
+
+    public void installDoublePendulum(DoublePObject pendulum)
+    {
+        doublePRepository.installDoublePendulum(pendulum);
+    }
+
     public LiveData<List<SaveObjectModel>> getAllPendulums()
     {
         return allPendulums;
     }
+
+
 }
