@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "6693412487",
+    "firebase_url": "https://pendulums-zolly.firebaseio.com",
+    "project_id": "pendulums-zolly",
+    "storage_bucket": "pendulums-zolly.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:6693412487:android:0347450e72a8b356326222",
+        "android_client_info": {
+          "package_name": "com.example.pendulumtestjava"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "6693412487-likr05ubjovc1rdampgg42lrap7k0ult.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.pendulumtestjava",
+            "certificate_hash": "50b8aa8d6dbb173e0a332d0149af7cac2cc24714"
+          }
+        },
+        {
+          "client_id": "6693412487-jedfa2j4d7so5qev5d16f3a1lk75oiio.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKdDL25RtFPSHo2jq8lKeclda0NevkAr0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "6693412487-jedfa2j4d7so5qev5d16f3a1lk75oiio.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
