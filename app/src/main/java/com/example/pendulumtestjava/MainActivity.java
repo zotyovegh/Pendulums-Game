@@ -4,11 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import com.example.pendulumtestjava.fragments.listFragment.FragmentList;
 import com.example.pendulumtestjava.fragments.mainFragments.FragmentMain;
 import com.example.pendulumtestjava.fragments.ViewPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity{
 
@@ -29,5 +32,7 @@ public class MainActivity extends AppCompatActivity{
         adapter.AddFragment(new FragmentList(), "List");
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
+
+
     }
 }
