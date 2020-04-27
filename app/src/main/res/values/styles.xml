@@ -8,8 +8,21 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
     <style name="LogInTheme" parent="AppTheme">
         <item name="android:windowBackground">@android:color/white</item>
     </style>
+
+    <style name="MainTheme" parent="Theme.AppCompat.Light">
+        <item name="colorPrimary">@color/actionBar</item>
+      </style>
+
+
 
 </resources>
