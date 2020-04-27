@@ -9,9 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity" />
-        <activity android:name=".singlePendulum.SinglePendulumView" />
-        <activity android:name=".doublePendulum.DoublePendulumView" />
+        <activity android:name=".fragments.MainActivity" />
+        <activity android:name=".fragments.pendulumsFragments.views.SinglePendulumView" />
+        <activity android:name=".fragments.pendulumsFragments.views.DoublePendulumView" />
         <activity android:name=".firebase.FirebaseAuthActivity">
 
             <!-- <activity android:name=".DoublePendulum">   &lt;!&ndash;Temporarily changed later use the above lines&ndash;&gt; -->

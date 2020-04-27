@@ -4,18 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".doublePendulum.DoublePendulumView">
+    tools:context=".fragments.pendulumsFragments.views.DoublePendulumView">
     <FrameLayout
         android:id="@+id/frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/white">
 
-        <com.example.pendulumtestjava.DrawingPath
+        <com.example.pendulumtestjava.fragments.pendulumsFragments.views.DrawingPathView
             android:id="@+id/path"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-        <com.example.pendulumtestjava.DrawingPath
+        <com.example.pendulumtestjava.fragments.pendulumsFragments.views.DrawingPathView
             android:id="@+id/path2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
