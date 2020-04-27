@@ -16,13 +16,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pendulumtestjava.R;
-import com.example.pendulumtestjava.doublePendulum.DoublePendulum;
+import com.example.pendulumtestjava.doublePendulum.DoublePendulumView;
 import com.example.pendulumtestjava.fragments.listFragment.doubleP.DoublePObject;
 import com.example.pendulumtestjava.fragments.listFragment.shared.DbViewModel;
 import com.example.pendulumtestjava.fragments.listFragment.shared.PendulumAdapter;
 import com.example.pendulumtestjava.fragments.listFragment.shared.SavePendulumModel;
 import com.example.pendulumtestjava.fragments.listFragment.singleP.SinglePObject;
-import com.example.pendulumtestjava.singlePendulum.SinglePendulum;
+import com.example.pendulumtestjava.singlePendulum.SinglePendulumView;
 
 import java.util.Objects;
 
@@ -75,7 +75,7 @@ public class FragmentList extends Fragment {
             if(pendulum.getType().equals("Single"))
             {
                 SinglePObject p = viewModel.getSinglePendulum(pendulum.getId());
-                Intent intent = new Intent(getActivity(), SinglePendulum.class);
+                Intent intent = new Intent(getActivity(), SinglePendulumView.class);
 
                 viewModel.installSinglePendulum(p);
 
@@ -88,7 +88,7 @@ public class FragmentList extends Fragment {
                 DoublePObject p = viewModel.getDoublePendulum(pendulum.getId());
                 viewModel.installDoublePendulum(p);
 
-                Intent intent = new Intent(getActivity(), DoublePendulum.class);
+                Intent intent = new Intent(getActivity(), DoublePendulumView.class);
                 String type = "double";
                 intent.putExtra("path", type);
                 startActivity(intent);

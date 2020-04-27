@@ -2,8 +2,8 @@ package com.example.pendulumtestjava.doublePendulum;
 
 import java.util.ArrayList;
 
-public class DoublePModel {
-    private static DoublePModel instance;
+public class DoublePendulumModel {
+    private static DoublePendulumModel instance;
 
     private double r1, r2, a1, a2, g, m1, m2;
     private int trace1, trace2, trace1Color, trace2Color, ball1Color, ball2Color;
@@ -170,9 +170,9 @@ public class DoublePModel {
         this.trace2Color = color2;
     }
 
-    public static synchronized DoublePModel getInstance() {
+    public static synchronized DoublePendulumModel getInstance() {
         if (instance == null) {
-            instance = new DoublePModel();
+            instance = new DoublePendulumModel();
         }
         return instance;
     }

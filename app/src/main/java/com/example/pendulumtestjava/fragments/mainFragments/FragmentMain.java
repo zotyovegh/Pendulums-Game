@@ -12,19 +12,19 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.pendulumtestjava.R;
-import com.example.pendulumtestjava.doublePendulum.DoublePModel;
-import com.example.pendulumtestjava.doublePendulum.DoublePendulum;
+import com.example.pendulumtestjava.doublePendulum.DoublePendulumModel;
+import com.example.pendulumtestjava.doublePendulum.DoublePendulumView;
 import com.example.pendulumtestjava.firebase.FirebaseAuthActivity;
-import com.example.pendulumtestjava.singlePendulum.SinglePModel;
-import com.example.pendulumtestjava.singlePendulum.SinglePendulum;
+import com.example.pendulumtestjava.singlePendulum.SinglePendulumModel;
+import com.example.pendulumtestjava.singlePendulum.SinglePendulumView;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
 public class FragmentMain extends Fragment {
 
-    private SinglePModel dataS = SinglePModel.getInstance();
-    private DoublePModel dataD = DoublePModel.getInstance();
+    private SinglePendulumModel dataS = SinglePendulumModel.getInstance();
+    private DoublePendulumModel dataD = DoublePendulumModel.getInstance();
     private Button logout;
 
 
@@ -68,14 +68,14 @@ public class FragmentMain extends Fragment {
 
     private void openDoublePendulumActivity()
     {
-        Intent intent = new Intent(getActivity(), DoublePendulum.class);
+        Intent intent = new Intent(getActivity(), DoublePendulumView.class);
         dataD.resetValues();
         startActivity(intent);
     }
 
     private void openSinglePendulumActivity()
     {
-        Intent intent = new Intent(getActivity(), SinglePendulum.class);
+        Intent intent = new Intent(getActivity(), SinglePendulumView.class);
         dataS.resetValues();
         startActivity(intent);
     }

@@ -24,14 +24,14 @@ import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class DoublePendulum extends AppCompatActivity implements View.OnClickListener {
+public class DoublePendulumView extends AppCompatActivity implements View.OnClickListener {
     private TextView stick, stick2, ball, ball2, middle;
 
     private Handler handler = new Handler();
     private Timer timer = new Timer();
     private DrawingPath path, path2;
-    private DoublePSettings doublePSettings = new DoublePSettings();
-    private DoublePModel model = DoublePModel.getInstance();
+    private DoublePendulumSettings doublePendulumSettings = new DoublePendulumSettings();
+    private DoublePendulumModel model = DoublePendulumModel.getInstance();
     private DbViewModel dbViewModel;
 
     private double widthMiddleBall, heightMiddleBall;
@@ -252,7 +252,7 @@ public class DoublePendulum extends AppCompatActivity implements View.OnClickLis
                 stop = !stop;
                 break;
             case R.id.settings:
-                doublePSettings.show(getSupportFragmentManager(), "Settings");
+                doublePendulumSettings.show(getSupportFragmentManager(), "Settings");
                 break;
             case R.id.save:
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

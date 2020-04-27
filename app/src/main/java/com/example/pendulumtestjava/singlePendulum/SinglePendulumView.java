@@ -21,14 +21,14 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 
-public class SinglePendulum extends AppCompatActivity implements View.OnClickListener {
+public class SinglePendulumView extends AppCompatActivity implements View.OnClickListener {
     private TextView stick, ball, middle;
     private Handler handler = new Handler();
     private Timer timer = new Timer();
-    private SinglePSettings singlePSettings = new SinglePSettings();
-    private SinglePModel model = SinglePModel.getInstance();
+    private SinglePendulumSettings singlePendulumSettings = new SinglePendulumSettings();
+    private SinglePendulumModel model = SinglePendulumModel.getInstance();
 
-    private SinglePViewModel viewModel;
+    private SinglePendulumViewModel viewModel;
     private DbViewModel dbViewModel;
     private DrawingPath path;
     private double widthMiddle, heightPoint;
@@ -40,7 +40,7 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_single_pendulum);
 
         dbViewModel = new ViewModelProvider(this).get(DbViewModel.class);
-        viewModel = new ViewModelProvider(this).get(SinglePViewModel.class);
+        viewModel = new ViewModelProvider(this).get(SinglePendulumViewModel.class);
 
         stick = findViewById(R.id.stickBox);
         ball = findViewById(R.id.ballPaint);
@@ -135,7 +135,7 @@ public class SinglePendulum extends AppCompatActivity implements View.OnClickLis
                 stop = !stop;
                 break;
             case R.id.settings:
-                singlePSettings.show(getSupportFragmentManager(), "Settings");
+                singlePendulumSettings.show(getSupportFragmentManager(), "Settings");
                 break;
             case R.id.save:
                 viewModel.save();

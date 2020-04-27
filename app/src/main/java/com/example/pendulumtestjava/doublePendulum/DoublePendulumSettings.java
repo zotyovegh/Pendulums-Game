@@ -20,13 +20,13 @@ import java.util.Objects;
 
 import yuku.ambilwarna.AmbilWarnaDialog;
 
-public class DoublePSettings extends AppCompatDialogFragment {
+public class DoublePendulumSettings extends AppCompatDialogFragment {
     private Button ballColor1, ballColor2, traceColor1, traceColor2;
     private int trace1DefaultColor, trace2DefaultColor, ball1DefaultColor, ball2DefaultColor;
     private Switch trace1Switch, trace2Switch;
     private CheckBox checkBoxTrace1, checkBoxTrace2;
     private EditText a1, a2, r1, r2, g, m1, m2, trace1, trace2;
-    private DoublePModel data = DoublePModel.getInstance();
+    private DoublePendulumModel data = DoublePendulumModel.getInstance();
 
     @NonNull
     @Override

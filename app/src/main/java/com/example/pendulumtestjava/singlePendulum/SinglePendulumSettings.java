@@ -20,10 +20,10 @@ import java.util.Objects;
 
 import yuku.ambilwarna.AmbilWarnaDialog;
 
-public class SinglePSettings extends AppCompatDialogFragment {
+public class SinglePendulumSettings extends AppCompatDialogFragment {
     private Button traceColorButton, ballColorButton;
     private int traceDefaultColor, ballDefaultColor;
-    SinglePModel data = SinglePModel.getInstance();
+    SinglePendulumModel data = SinglePendulumModel.getInstance();
     private EditText a, r, g, damp, trace;
     private Switch switch1;
     private CheckBox checkBox;

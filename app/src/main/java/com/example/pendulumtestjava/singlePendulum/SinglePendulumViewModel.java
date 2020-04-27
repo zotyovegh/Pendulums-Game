@@ -6,13 +6,12 @@ import com.example.pendulumtestjava.DrawingPath;
 import com.example.pendulumtestjava.fragments.listFragment.shared.DbViewModel;
 import com.example.pendulumtestjava.fragments.listFragment.singleP.SinglePObject;
 import com.google.gson.Gson;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class SinglePViewModel extends ViewModel {
+public class SinglePendulumViewModel extends ViewModel {
 
-    private SinglePModel model = SinglePModel.getInstance();
+    private SinglePendulumModel model = SinglePendulumModel.getInstance();
 
     public double a = model.getA();
     private float gravity = model.getGravity();
@@ -45,8 +44,8 @@ public class SinglePViewModel extends ViewModel {
 
         calcPositions();
         drawTrace();
-
     }
+
     public void calcPositions()
     {
         x = widthMiddleBall + (r * Math.sin(a));
@@ -92,7 +91,6 @@ public class SinglePViewModel extends ViewModel {
         SinglePObject pendulum = new SinglePObject(a, r, gravity, damping, trace, ballDrawColor, traceDrawColor, json, millisInString, endlessTrace, isTraceOn);
         dbViewModel.insertSingleP(pendulum);
     }
-
 
     public void resetVariables() {
         a = model.getA();
