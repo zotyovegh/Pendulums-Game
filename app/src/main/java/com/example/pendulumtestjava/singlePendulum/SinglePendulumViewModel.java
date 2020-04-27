@@ -77,9 +77,7 @@ public class SinglePendulumViewModel extends ViewModel {
         r = Math.sqrt(((newx - widthMiddleBall) * (newx - widthMiddleBall)) + ((newy - heightMiddleBall) * (newy - heightMiddleBall)));
         angularVel = 0;
         angularAcc = 0;
-        if(isTraceOn) {
-            path.setVariables(x, y, trace, traceDrawColor, endlessTrace);
-        }
+        drawTrace();
     }
 
     public void save(){
@@ -102,9 +100,11 @@ public class SinglePendulumViewModel extends ViewModel {
         ballDrawColor = model.getBallDrawColor();
         endlessTrace = model.isEndlessTrace();
         isTraceOn = model.isTraceOn();
+
+        path.reset();
         angularVel = 0;
         angularAcc = 0;
-        path.reset();
+
         calcPositions();
     }
 }
