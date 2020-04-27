@@ -31,7 +31,7 @@ public class DoublePendulum extends AppCompatActivity implements View.OnClickLis
     private Timer timer = new Timer();
     private DrawingPath path, path2;
     private DoublePSettings doublePSettings = new DoublePSettings();
-    private DoublePModel data = DoublePModel.getInstance();
+    private DoublePModel model = DoublePModel.getInstance();
     private DbViewModel dbViewModel;
 
     private double widthMiddleBall, heightMiddleBall;
@@ -41,23 +41,23 @@ public class DoublePendulum extends AppCompatActivity implements View.OnClickLis
     private boolean stop = false;
     private double a1_v = 0;
     private double a2_v = 0;
-    private double r1 = data.getR1();
-    private double r2 = data.getR2();
-    private double a1 = data.getA1();
-    private double a2 = data.getA2();
-    private double g = data.getG();
-    private double m1 = data.getM1();
-    private double m2 = data.getM2();
-    private int trace1 = data.getTrace1();
-    private int trace2 = data.getTrace2();
-    private int trace1Color = data.getTrace1Color();
-    private int trace2Color = data.getTrace2Color();
-    private int ball1Color = data.getBall1Color();
-    private int ball2Color = data.getBall2Color();
-    private boolean endlessTrace1 = data.isEndlessTrace1();
-    private boolean endlessTrace2 = data.isEndlessTrace2();
-    private boolean isTrace1On = data.isTrace1On();
-    private boolean isTrace2On = data.isTrace2On();
+    private double r1 = model.getR1();
+    private double r2 = model.getR2();
+    private double a1 = model.getA1();
+    private double a2 = model.getA2();
+    private double g = model.getG();
+    private double m1 = model.getM1();
+    private double m2 = model.getM2();
+    private int trace1 = model.getTrace1();
+    private int trace2 = model.getTrace2();
+    private int trace1Color = model.getTrace1Color();
+    private int trace2Color = model.getTrace2Color();
+    private int ball1Color = model.getBall1Color();
+    private int ball2Color = model.getBall2Color();
+    private boolean endlessTrace1 = model.isEndlessTrace1();
+    private boolean endlessTrace2 = model.isEndlessTrace2();
+    private boolean isTrace1On = model.isTrace1On();
+    private boolean isTrace2On = model.isTrace2On();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,8 +81,8 @@ public class DoublePendulum extends AppCompatActivity implements View.OnClickLis
         Intent intent = getIntent();
         if(intent.hasExtra("path"))
         {
-            path.setPath(data.getPoints1());
-            path2.setPath(data.getPoints2());
+            path.setPath(model.getPoints1());
+            path2.setPath(model.getPoints2());
         }
 
         widthMiddle = getWindowManager().getDefaultDisplay().getWidth() / 2;
@@ -130,7 +130,7 @@ public class DoublePendulum extends AppCompatActivity implements View.OnClickLis
         ball2.setX((float)x2);
         ball2.setY((float)y2);
 
-        if(data.isStop())
+        if(model.isStop())
         {
             stop = true;
         }
@@ -248,7 +248,7 @@ public class DoublePendulum extends AppCompatActivity implements View.OnClickLis
                 resetVariables();
                 break;
             case R.id.pause:
-                data.setStop(false);
+                model.setStop(false);
                 stop = !stop;
                 break;
             case R.id.settings:
@@ -268,28 +268,28 @@ public class DoublePendulum extends AppCompatActivity implements View.OnClickLis
     }
 
     public void resetVariables() {
-        r1 = data.getR1();
-        r2 = data.getR2();
-        a1 = data.getA1();
-        a2 = data.getA2();
-        g = data.getG();
-        m1 = data.getM1();
-        m2 = data.getM2();
-        trace1 = data.getTrace1();
-        trace2 = data.getTrace2();
-        trace1Color = data.getTrace1Color();
-        trace2Color = data.getTrace2Color();
-        ball1Color = data.getBall1Color();
-        ball2Color = data.getBall2Color();
+        r1 = model.getR1();
+        r2 = model.getR2();
+        a1 = model.getA1();
+        a2 = model.getA2();
+        g = model.getG();
+        m1 = model.getM1();
+        m2 = model.getM2();
+        trace1 = model.getTrace1();
+        trace2 = model.getTrace2();
+        trace1Color = model.getTrace1Color();
+        trace2Color = model.getTrace2Color();
+        ball1Color = model.getBall1Color();
+        ball2Color = model.getBall2Color();
 
         a1_v = 0;
         a2_v = 0;
         calcPositions();
         draw();
-        endlessTrace1 = data.isEndlessTrace1();
-        endlessTrace2 = data.isEndlessTrace2();
-        isTrace1On = data.isTrace1On();
-        isTrace2On = data.isTrace2On();
+        endlessTrace1 = model.isEndlessTrace1();
+        endlessTrace2 = model.isEndlessTrace2();
+        isTrace1On = model.isTrace1On();
+        isTrace2On = model.isTrace2On();
         path.reset();
         path2.reset();
     }
