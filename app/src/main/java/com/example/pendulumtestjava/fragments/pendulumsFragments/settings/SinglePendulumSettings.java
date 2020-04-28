@@ -77,8 +77,9 @@ public class SinglePendulumSettings extends AppCompatDialogFragment {
                         (dialog, whichButton) -> {
                             data.setA(Double.parseDouble(a.getText().toString()));
                             data.setR(Double.parseDouble(r.getText().toString()));
-                            data.setGravity(Float.parseFloat(g.getText().toString()));
-                            data.setDamping(Float.parseFloat(damp.getText().toString()));
+
+                            data.setGravity(Float.parseFloat((g.getText().toString()).replace(',','.')));
+                            data.setDamping(Float.parseFloat((damp.getText().toString()).replace(',','.')));
 
                             if(switch1.isChecked()) {
                                 data.setTrace(Integer.parseInt(trace.getText().toString()));

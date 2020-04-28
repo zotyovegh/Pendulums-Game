@@ -107,7 +107,8 @@ public class DoublePendulumSettings extends AppCompatDialogFragment {
                             data.setA2(Double.parseDouble(a2.getText().toString()));
                             data.setR1(Double.parseDouble(r1.getText().toString()));
                             data.setR2(Double.parseDouble(r2.getText().toString()));
-                            data.setG(Float.parseFloat(g.getText().toString()));
+
+                            data.setG(Float.parseFloat((g.getText().toString()).replace(',','.')));
                             data.setM1(Double.parseDouble(m1.getText().toString()));
                             data.setM2(Double.parseDouble(m2.getText().toString()));
 
