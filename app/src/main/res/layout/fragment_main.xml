@@ -10,18 +10,19 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/singleCard"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="5dp"
-        android:layout_weight="1"
         app:cardBackgroundColor="#E3E3E3">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical">
+            android:layout_gravity="center_vertical"
+            android:paddingTop="20dp"
+            android:paddingBottom="10dp">
 
             <ImageView
                 android:id="@+id/imageViewr"
@@ -60,18 +61,18 @@
                 app:layout_constraintTop_toBottomOf="@+id/singlePendulum" />
 
             <TextView
-                android:id="@+id/textView6p"
+                android:id="@+id/lastPlayedSingle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginLeft="10dp"
-                android:text="2020-04-28 01:21:14"
+                android:text="-"
                 android:textSize="14sp"
                 app:layout_constraintStart_toEndOf="@+id/imageViewr"
                 app:layout_constraintTop_toBottomOf="@+id/textView5b" />
 
             <Button
-                android:id="@+id/buttont"
+                android:id="@+id/singleInfo"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginEnd="15dp"
@@ -87,18 +88,19 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/doubleCard"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="5dp"
-        android:layout_weight="1"
         app:cardBackgroundColor="#E3E3E3">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical">
+            android:layout_gravity="center_vertical"
+            android:paddingTop="10dp"
+            android:paddingBottom="20dp">
 
             <ImageView
                 android:id="@+id/imageView5"
@@ -136,18 +138,18 @@
                 app:layout_constraintTop_toBottomOf="@+id/doublePendulum" />
 
             <TextView
-                android:id="@+id/textView6"
+                android:id="@+id/lastPlayedDouble"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginLeft="10dp"
-                android:text="2020-04-28 01:21:14"
+                android:text="-"
                 android:textSize="14sp"
                 app:layout_constraintStart_toEndOf="@+id/imageView5"
                 app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/doubleInfo"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginEnd="15dp"
@@ -162,10 +164,6 @@
 
 
     <!--FOR LATER-->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"/>
 
 
 </LinearLayout>

@@ -5,7 +5,8 @@ import java.util.ArrayList;
 public class DoublePendulumModel {
     private static DoublePendulumModel instance;
 
-    private double r1, r2, a1, a2, g, m1, m2;
+    private double r1, r2, a1, a2, m1, m2;
+    private float g;
     private int trace1, trace2, trace1Color, trace2Color, ball1Color, ball2Color;
     private boolean endlessTrace1, endlessTrace2, isTrace1On, isTrace2On, stop;
     private ArrayList<Float> points1, points2;
@@ -114,11 +115,11 @@ public class DoublePendulumModel {
         this.a2 = Math.toRadians(a2);
     }
 
-    public double getG() {
+    public float getG() {
         return g;
     }
 
-    public void setG(double g) {
+    public void setG(float g) {
         this.g = g;
     }
 

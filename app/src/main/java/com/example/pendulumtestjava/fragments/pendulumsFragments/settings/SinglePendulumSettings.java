@@ -77,10 +77,11 @@ public class SinglePendulumSettings extends AppCompatDialogFragment {
                         (dialog, whichButton) -> {
                             data.setA(Double.parseDouble(a.getText().toString()));
                             data.setR(Double.parseDouble(r.getText().toString()));
-                            data.setGravity((float)Double.parseDouble(g.getText().toString()));
-                            data.setDamping((float)Double.parseDouble(damp.getText().toString()));
+                            data.setGravity(Float.parseFloat(g.getText().toString()));
+                            data.setDamping(Float.parseFloat(damp.getText().toString()));
+
                             if(switch1.isChecked()) {
-                                data.setTrace((int) Double.parseDouble(trace.getText().toString()));
+                                data.setTrace(Integer.parseInt(trace.getText().toString()));
                                 data.setTraceOn(true);
                                 data.setEndlessTrace(checkBox.isChecked());
                             }else {
@@ -89,8 +90,6 @@ public class SinglePendulumSettings extends AppCompatDialogFragment {
                             }
                             data.setTraceDrawColor(traceDefaultColor);
                             data.setBallDrawColor(ballDefaultColor);
-
-
                         }
                 )
                 .setNegativeButton("Cancel",

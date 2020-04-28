@@ -25,7 +25,7 @@ public class DoublePendulumViewModel extends ViewModel {
     private double r2 = model.getR2();
     private double a1 = model.getA1();
     private double a2 = model.getA2();
-    private double g = model.getG();
+    private float g = model.getG();
     private double m1 = model.getM1();
     private double m2 = model.getM2();
     private int trace1 = model.getTrace1();

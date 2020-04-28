@@ -12,7 +12,7 @@ public class DoublePObject {
     private double a2;
     private double r1;
     private double r2;
-    private double g;
+    private float g;
     private double m1;
     private double m2;
     private int trace1;
@@ -29,7 +29,7 @@ public class DoublePObject {
     private boolean isTrace1On;
     private boolean isTrace2On;
 
-    public DoublePObject(double a1, double a2, double r1, double r2, double g,
+    public DoublePObject(double a1, double a2, double r1, double r2, float g,
                          double m1, double m2, int trace1, int trace2,
                          int traceColor1, int traceColor2, int ballColor1,
                          int ballColor2, String points1Json, String points2Json,
@@ -81,7 +81,7 @@ public class DoublePObject {
         return r2;
     }
 
-    public double getG() {
+    public float getG() {
         return g;
     }
 

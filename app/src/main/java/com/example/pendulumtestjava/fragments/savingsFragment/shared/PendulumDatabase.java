@@ -14,7 +14,7 @@ import com.example.pendulumtestjava.fragments.savingsFragment.doubleP.DoublePObj
 import com.example.pendulumtestjava.fragments.savingsFragment.singleP.SinglePDao;
 import com.example.pendulumtestjava.fragments.savingsFragment.singleP.SinglePObject;
 
-@Database(entities = {SinglePObject.class, DoublePObject.class}, version = 1)
+@Database(entities = {SinglePObject.class, DoublePObject.class}, version = 2)
 public abstract class PendulumDatabase extends RoomDatabase {
     private static PendulumDatabase instance;
 
