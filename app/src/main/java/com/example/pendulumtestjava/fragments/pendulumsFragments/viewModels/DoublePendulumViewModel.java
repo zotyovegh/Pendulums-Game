@@ -16,29 +16,29 @@ import java.util.Date;
 public class DoublePendulumViewModel extends ViewModel {
     private DoublePendulumModel model = DoublePendulumModel.getInstance();
 
-    public double widthMiddleBall, heightMiddleBall;
-    public double x1, y1, x2, y2;
+    private double widthMiddleBall, heightMiddleBall;
+    private double x1, y1, x2, y2;
 
-    public double a1_v = 0;
-    public double a2_v = 0;
-    public double r1 = model.getR1();
-    public double r2 = model.getR2();
-    public double a1 = model.getA1();
-    public double a2 = model.getA2();
-    public double g = model.getG();
-    public double m1 = model.getM1();
-    public double m2 = model.getM2();
-    public int trace1 = model.getTrace1();
-    public int trace2 = model.getTrace2();
-    public int trace1Color = model.getTrace1Color();
-    public int trace2Color = model.getTrace2Color();
-    public int ball1Color = model.getBall1Color();
-    public int ball2Color = model.getBall2Color();
-    public boolean endlessTrace1 = model.isEndlessTrace1();
-    public boolean endlessTrace2 = model.isEndlessTrace2();
-    public boolean isTrace1On = model.isTrace1On();
-    public boolean isTrace2On = model.isTrace2On();
-    public DrawingPathView path, path2;
+    private double a1_v = 0;
+    private double a2_v = 0;
+    private double r1 = model.getR1();
+    private double r2 = model.getR2();
+    private double a1 = model.getA1();
+    private double a2 = model.getA2();
+    private double g = model.getG();
+    private double m1 = model.getM1();
+    private double m2 = model.getM2();
+    private int trace1 = model.getTrace1();
+    private int trace2 = model.getTrace2();
+    private int trace1Color = model.getTrace1Color();
+    private int trace2Color = model.getTrace2Color();
+    private int ball1Color = model.getBall1Color();
+    private int ball2Color = model.getBall2Color();
+    private boolean endlessTrace1 = model.isEndlessTrace1();
+    private boolean endlessTrace2 = model.isEndlessTrace2();
+    private boolean isTrace1On = model.isTrace1On();
+    private boolean isTrace2On = model.isTrace2On();
+    private DrawingPathView path, path2;
 
     private DbViewModel dbViewModel;
 
@@ -182,6 +182,43 @@ public class DoublePendulumViewModel extends ViewModel {
         calcPositions();
     }
 
+    public double getX1() {
+        return x1;
+    }
 
+    public double getY1() {
+        return y1;
+    }
 
+    public double getX2() {
+        return x2;
+    }
+
+    public double getY2() {
+        return y2;
+    }
+
+    public double getR1() {
+        return r1;
+    }
+
+    public double getR2() {
+        return r2;
+    }
+
+    public double getA1() {
+        return a1;
+    }
+
+    public double getA2() {
+        return a2;
+    }
+
+    public int getBall1Color() {
+        return ball1Color;
+    }
+
+    public int getBall2Color() {
+        return ball2Color;
+    }
 }

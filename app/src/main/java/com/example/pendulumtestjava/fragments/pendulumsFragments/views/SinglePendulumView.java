@@ -86,19 +86,19 @@ public class SinglePendulumView extends AppCompatActivity implements View.OnClic
     }
 
     public void drawObjects() {
-        stick.setRotation((float) Math.toDegrees(-viewModel.a));
+        stick.setRotation((float) Math.toDegrees(-viewModel.getA()));
         stick.setX((float) (widthMiddle - 2));
         stick.setY((float) (heightPoint));
 
-        ball.setX((float) viewModel.x);
-        ball.setY((float) viewModel.y);
+        ball.setX((float) viewModel.getX());
+        ball.setY((float) viewModel.getY());
 
         middle.setX((float) (widthMiddle - 5));
         middle.setY((float) (heightPoint - 5));
 
         middle.setBackgroundResource(R.color.colorPrimaryDark);
-        stick.setLayoutParams(new FrameLayout.LayoutParams(4, (int) viewModel.r));
-        ball.getBackground().setColorFilter(viewModel.ballDrawColor, PorterDuff.Mode.SRC_ATOP);
+        stick.setLayoutParams(new FrameLayout.LayoutParams(4, (int) viewModel.getR()));
+        ball.getBackground().setColorFilter(viewModel.getBallDrawColor(), PorterDuff.Mode.SRC_ATOP);
 
         if(model.isStop())
         {

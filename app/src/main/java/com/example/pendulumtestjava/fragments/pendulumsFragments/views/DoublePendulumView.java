@@ -95,24 +95,24 @@ public class DoublePendulumView extends AppCompatActivity implements View.OnClic
     }
 
     public void drawObjects() {
-        stick.setRotation((float)Math.toDegrees(-viewModel.a1));
+        stick.setRotation((float)Math.toDegrees(-viewModel.getA1()));
         stick.setX((float)(widthMiddle-2));
         stick.setY((float)(heightPoint));
 
-        stick2.setRotation((float)Math.toDegrees(-viewModel.a2));
-        stick2.setX((float)(viewModel.x1+28));
-        stick2.setY((float)(viewModel.y1+30));
+        stick2.setRotation((float)Math.toDegrees(-viewModel.getA2()));
+        stick2.setX((float)(viewModel.getX1()+28));
+        stick2.setY((float)(viewModel.getY1()+30));
 
-        ball.setX((float)viewModel.x1);
-        ball.setY((float)viewModel.y1);
-        ball2.setX((float)viewModel.x2);
-        ball2.setY((float)viewModel.y2);
+        ball.setX((float)viewModel.getX1());
+        ball.setY((float)viewModel.getY1());
+        ball2.setX((float)viewModel.getX2());
+        ball2.setY((float)viewModel.getY2());
 
-        stick.setLayoutParams(new FrameLayout.LayoutParams(4, (int) viewModel.r1));
-        stick2.setLayoutParams(new FrameLayout.LayoutParams(4, (int) viewModel.r2));
+        stick.setLayoutParams(new FrameLayout.LayoutParams(4, (int) viewModel.getR1()));
+        stick2.setLayoutParams(new FrameLayout.LayoutParams(4, (int) viewModel.getR2()));
 
-        ball.getBackground().setColorFilter(viewModel.ball1Color, PorterDuff.Mode.SRC_ATOP);
-        ball2.getBackground().setColorFilter(viewModel.ball2Color, PorterDuff.Mode.SRC_ATOP);
+        ball.getBackground().setColorFilter(viewModel.getBall1Color(), PorterDuff.Mode.SRC_ATOP);
+        ball2.getBackground().setColorFilter(viewModel.getBall2Color(), PorterDuff.Mode.SRC_ATOP);
 
         if(model.isStop())
         {
@@ -127,16 +127,16 @@ public class DoublePendulumView extends AppCompatActivity implements View.OnClic
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
             case MotionEvent.ACTION_MOVE:
-                double difference1 = Math.sqrt(((newx - viewModel.x1) * (newx - viewModel.x1)) + ((newy - viewModel.y1) * (newy - viewModel.y1)));
-                double difference2 = Math.sqrt(((newx - viewModel.x2) * (newx - viewModel.x2)) + ((newy - viewModel.y2) * (newy - viewModel.y2)));
+                double difference1 = Math.sqrt(((newx - viewModel.getX1()) * (newx - viewModel.getX1())) + ((newy - viewModel.getY1()) * (newy - viewModel.getY1())));
+                double difference2 = Math.sqrt(((newx - viewModel.getX2()) * (newx - viewModel.getX2())) + ((newy - viewModel.getY2()) * (newy - viewModel.getY2())));
 
                 if(difference1 < difference2)
                 {
                     viewModel.onHold(true, newx, newy);
-                    stick.setLayoutParams(new FrameLayout.LayoutParams(5, (int) viewModel.r1));
+                    stick.setLayoutParams(new FrameLayout.LayoutParams(5, (int) viewModel.getR1()));
                 } else{
                     viewModel.onHold(false, newx, newy);
-                    stick2.setLayoutParams(new FrameLayout.LayoutParams(5, (int) viewModel.r2));
+                    stick2.setLayoutParams(new FrameLayout.LayoutParams(5, (int) viewModel.getR2()));
                 }
                 viewModel.calcPositions();
                 onHold = true;

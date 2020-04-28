@@ -8,19 +8,19 @@
     android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/actionBar"
-        android:id="@+id/toolbar"/>
+        android:background="#46A14A" />
 
 
     <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tablayout_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/tabs"
-        app:tabMode="fixed"
+        android:background="#59C85D"
         app:tabGravity="fill"
-        android:id="@+id/tablayout_id" />
+        app:tabMode="fixed" />
 
     <androidx.viewpager.widget.ViewPager
         android:layout_width="match_parent"

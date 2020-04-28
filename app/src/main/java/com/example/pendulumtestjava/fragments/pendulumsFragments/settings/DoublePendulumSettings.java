@@ -35,7 +35,7 @@ public class DoublePendulumSettings extends AppCompatDialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(Objects.requireNonNull(getActivity()));
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
-        View view = inflater.inflate(R.layout.layout_doublepsettings, null);
+        View view = inflater.inflate(R.layout.settings_doublep, null);
 
         a1 = view.findViewById(R.id.a1);
         double temp1a = Math.toDegrees(data.getA1());

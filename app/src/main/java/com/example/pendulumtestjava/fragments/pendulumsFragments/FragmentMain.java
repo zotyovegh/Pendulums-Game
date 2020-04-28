@@ -14,56 +14,28 @@ import androidx.fragment.app.Fragment;
 import com.example.pendulumtestjava.R;
 import com.example.pendulumtestjava.fragments.pendulumsFragments.models.DoublePendulumModel;
 import com.example.pendulumtestjava.fragments.pendulumsFragments.views.DoublePendulumView;
-import com.example.pendulumtestjava.firebase.FirebaseAuthActivity;
 import com.example.pendulumtestjava.fragments.pendulumsFragments.models.SinglePendulumModel;
 import com.example.pendulumtestjava.fragments.pendulumsFragments.views.SinglePendulumView;
-import com.firebase.ui.auth.AuthUI;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 
 public class FragmentMain extends Fragment {
 
     private SinglePendulumModel dataS = SinglePendulumModel.getInstance();
     private DoublePendulumModel dataD = DoublePendulumModel.getInstance();
-    private Button logout;
+
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.main_fragment, container, false);
+        View v = inflater.inflate(R.layout.fragment_main, container, false);
 
         Button singlePendulum = v.findViewById(R.id.singlePendulum);
         singlePendulum.setOnClickListener(v1 -> openSinglePendulumActivity());
         Button doublePendulum = v.findViewById(R.id.doublePendulum);
         doublePendulum.setOnClickListener(v12 -> openDoublePendulumActivity());
-        logout = v.findViewById(R.id.logout);
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                signOut(v);
-            }
-        });
+
 
         return v;
-    }
-
-    public void signOut(View view) {
-        AuthUI.getInstance()
-                .signOut(getActivity())
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            startActivity(new Intent(
-                                    getActivity(),
-                                    FirebaseAuthActivity.class));
-                            getActivity().finish();
-                        } else {
-                            // Report error to user
-                        }
-                    }
-                });
     }
 
     private void openDoublePendulumActivity()

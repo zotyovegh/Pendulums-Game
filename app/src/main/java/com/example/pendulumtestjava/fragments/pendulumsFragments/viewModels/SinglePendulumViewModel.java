@@ -14,18 +14,18 @@ public class SinglePendulumViewModel extends ViewModel {
 
     private SinglePendulumModel model = SinglePendulumModel.getInstance();
 
-    public double a = model.getA();
+    private double a = model.getA();
     private float gravity = model.getGravity();
-    public float damping = model.getDamping();
-    public int traceDrawColor = model.getTraceDrawColor();
-    public int ballDrawColor = model.getBallDrawColor();
+    private float damping = model.getDamping();
+    private int traceDrawColor = model.getTraceDrawColor();
+    private int ballDrawColor = model.getBallDrawColor();
     private boolean endlessTrace = model.isEndlessTrace();
-    public boolean isTraceOn = model.isTraceOn();
-    public int trace = model.getTrace();
-    public double r = model.getR();
+    private boolean isTraceOn = model.isTraceOn();
+    private int trace = model.getTrace();
+    private double r = model.getR();
     private double widthMiddleBall, heightMiddleBall;
     private double angularAcc, angularVel;
-    public double x, y;
+    private double x, y;
     private DrawingPathView path;
     private DbViewModel dbViewModel;
 
@@ -107,5 +107,25 @@ public class SinglePendulumViewModel extends ViewModel {
         angularAcc = 0;
 
         calcPositions();
+    }
+
+    public double getA() {
+        return a;
+    }
+
+    public int getBallDrawColor() {
+        return ballDrawColor;
+    }
+
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    public double getR() {
+        return r;
     }
 }

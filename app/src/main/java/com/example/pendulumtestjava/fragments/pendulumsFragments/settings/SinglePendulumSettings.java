@@ -35,7 +35,7 @@ public class SinglePendulumSettings extends AppCompatDialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(Objects.requireNonNull(getActivity()));
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
-        View view = inflater.inflate(R.layout.layout_singlepsettings, null);
+        View view = inflater.inflate(R.layout.settings_singlep, null);
 
         a = view.findViewById(R.id.a);
         double temp = Math.toDegrees(data.getA());

@@ -10,7 +10,7 @@
     <include
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        layout="@layout/content_main"/>
+        layout="@layout/nav_content"/>
 
     <com.google.android.material.navigation.NavigationView
         android:layout_width="match_parent"
