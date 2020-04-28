@@ -9,6 +9,7 @@ import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import com.example.pendulumtestjava.R;
@@ -29,10 +30,10 @@ public class FragmentMain extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_main, container, false);
 
-        Button singlePendulum = v.findViewById(R.id.singlePendulum);
-        singlePendulum.setOnClickListener(v1 -> openSinglePendulumActivity());
-        Button doublePendulum = v.findViewById(R.id.doublePendulum);
-        doublePendulum.setOnClickListener(v12 -> openDoublePendulumActivity());
+        CardView singleCard = v.findViewById(R.id.singleCard);
+        singleCard.setOnClickListener(v1 -> openSinglePendulumActivity());
+        CardView doubleCard = v.findViewById(R.id.doubleCard);
+        doubleCard.setOnClickListener(v12 -> openDoublePendulumActivity());
 
 
         return v;
