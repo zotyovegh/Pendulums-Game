@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/drawer"
-    tools:context="pendulumSimulator.fragments.MainActivity">
+    tools:context="com.example.pendulumtestjava.fragments.MainActivity">
 
     <include
         android:layout_height="match_parent"
