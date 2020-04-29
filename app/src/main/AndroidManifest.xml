@@ -9,11 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".fragments.MainActivity"
+        <activity android:name="pendulumSimulator.fragments.MainActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".fragments.pendulumsFragments.views.SinglePendulumView" />
-        <activity android:name=".fragments.pendulumsFragments.views.DoublePendulumView" />
-        <activity android:name=".firebase.FirebaseAuthActivity">
+        <activity android:name="pendulumSimulator.fragments.pendulumsFragments.views.SinglePendulumView" />
+        <activity android:name="pendulumSimulator.fragments.pendulumsFragments.views.DoublePendulumView" />
+        <activity android:name="pendulumSimulator.firebase.FirebaseAuthActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
