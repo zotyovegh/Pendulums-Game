@@ -8,6 +8,8 @@ import androidx.lifecycle.LiveData;
 
 import com.example.pendulumtestjava.fragments.savingsFragment.doubleP.DoublePObject;
 import com.example.pendulumtestjava.fragments.savingsFragment.doubleP.DoublePRepository;
+import com.example.pendulumtestjava.fragments.savingsFragment.savedObject.PendulumsRepository;
+import com.example.pendulumtestjava.fragments.savingsFragment.savedObject.SavePendulumModel;
 import com.example.pendulumtestjava.fragments.savingsFragment.singleP.SinglePObject;
 import com.example.pendulumtestjava.fragments.savingsFragment.singleP.SinglePRepository;
 

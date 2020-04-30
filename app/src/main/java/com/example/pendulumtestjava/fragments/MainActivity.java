@@ -90,21 +90,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             if(user.getPhotoUrl() == null)
             {
                 Picasso.get().load(R.drawable.logosized).into(this.profilePic);
-
             }else {
                 Picasso.get().load(photo).into(this.profilePic);
             }
-
-
-
-
-
         }
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        if(menuItem.getItemId() == R.id.menuItem1) {
+        if(menuItem.getItemId() == R.id.logOut) {
             AuthUI.getInstance()
                     .signOut(this)
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -120,9 +114,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             }
                         }
                     });
-
         }
-
         return false;
     }
 }

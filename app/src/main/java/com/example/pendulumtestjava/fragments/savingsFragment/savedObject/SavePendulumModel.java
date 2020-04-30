@@ -1,4 +1,4 @@
-package com.example.pendulumtestjava.fragments.savingsFragment.shared;
+package com.example.pendulumtestjava.fragments.savingsFragment.savedObject;
 
 public class SavePendulumModel {
     private int id;

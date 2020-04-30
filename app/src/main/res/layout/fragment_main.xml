@@ -120,6 +120,7 @@
                     app:srcCompat="@drawable/logosized" />
 
                 <TextView
+                    android:onClick="onClick"
                     android:id="@+id/doublePendulum"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

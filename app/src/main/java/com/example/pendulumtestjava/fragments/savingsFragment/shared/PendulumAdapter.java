@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pendulumtestjava.R;
+import com.example.pendulumtestjava.fragments.savingsFragment.savedObject.SavePendulumModel;
 
 public class PendulumAdapter extends ListAdapter<SavePendulumModel, PendulumAdapter.PendulumHolder> {
     private OnItemClickListener listener;

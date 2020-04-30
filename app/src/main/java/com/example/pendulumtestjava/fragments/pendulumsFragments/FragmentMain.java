@@ -17,7 +17,7 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import com.example.pendulumtestjava.R;
-import com.example.pendulumtestjava.fragments.pendulumsFragments.infoApi.InfoFragment;
+import com.example.pendulumtestjava.fragments.pendulumsFragments.infoApi.InfoApi;
 import com.example.pendulumtestjava.fragments.pendulumsFragments.models.DoublePendulumModel;
 import com.example.pendulumtestjava.fragments.pendulumsFragments.views.DoublePendulumView;
 import com.example.pendulumtestjava.fragments.pendulumsFragments.models.SinglePendulumModel;
@@ -26,15 +26,14 @@ import com.example.pendulumtestjava.fragments.pendulumsFragments.views.SinglePen
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class FragmentMain extends Fragment {
+public class FragmentMain extends Fragment{
 
     private SinglePendulumModel dataS = SinglePendulumModel.getInstance();
     private DoublePendulumModel dataD = DoublePendulumModel.getInstance();
     private SharedPreferences preferences;
     private TextView lastPlayedSingle, lastPlayedDouble;
-    private Button singleInfo, doubleInfo;
     SharedPreferences.Editor editor;
-    private InfoFragment infoFragment = new InfoFragment();
+    Button singleInfo, doubleInfo;
 
 
     @Nullable
@@ -46,13 +45,13 @@ public class FragmentMain extends Fragment {
         singleCard.setOnClickListener(v1 -> openSinglePendulumActivity());
         CardView doubleCard = v.findViewById(R.id.doubleCard);
         doubleCard.setOnClickListener(v12 -> openDoublePendulumActivity());
-        singleInfo = v.findViewById(R.id.singleInfo);
-        singleInfo.setOnClickListener(v13 -> openInformation("single"));
-        doubleInfo = v.findViewById(R.id.doubleInfo);
-        doubleInfo.setOnClickListener(v13 -> openInformation("double"));
 
         lastPlayedSingle = v.findViewById(R.id.lastPlayedSingle);
         lastPlayedDouble = v.findViewById(R.id.lastPlayedDouble);
+        singleInfo = v.findViewById(R.id.singleInfo);
+        doubleInfo = v.findViewById(R.id.doubleInfo);
+        singleInfo.setOnClickListener(v13 -> openInfoFragment("single"));
+        doubleInfo.setOnClickListener(v14 -> openInfoFragment("double"));
 
         preferences = getActivity().getSharedPreferences("prefs", Context.MODE_PRIVATE);
         editor = preferences.edit();
@@ -63,12 +62,15 @@ public class FragmentMain extends Fragment {
         return v;
     }
 
-    private void openInformation(String type) {
-        Bundle bundle = new Bundle();
-        bundle.putString("type", type);
-        infoFragment.setArguments(bundle);
-        infoFragment.show(getParentFragmentManager(), "Info");
+    private void openInfoFragment(String type) {
+        Intent intent = new Intent(getActivity(), InfoApi.class);
+
+        intent.putExtra("type", type);
+
+        startActivity(intent);
+
     }
+
 
     private void openSinglePendulumActivity()
     {
@@ -107,4 +109,6 @@ public class FragmentMain extends Fragment {
 
         return millisInString;
     }
+
+
 }

@@ -20,7 +20,7 @@ import com.example.pendulumtestjava.fragments.pendulumsFragments.views.DoublePen
 import com.example.pendulumtestjava.fragments.savingsFragment.doubleP.DoublePObject;
 import com.example.pendulumtestjava.fragments.savingsFragment.shared.DbViewModel;
 import com.example.pendulumtestjava.fragments.savingsFragment.shared.PendulumAdapter;
-import com.example.pendulumtestjava.fragments.savingsFragment.shared.SavePendulumModel;
+import com.example.pendulumtestjava.fragments.savingsFragment.savedObject.SavePendulumModel;
 import com.example.pendulumtestjava.fragments.savingsFragment.singleP.SinglePObject;
 import com.example.pendulumtestjava.fragments.pendulumsFragments.views.SinglePendulumView;
 

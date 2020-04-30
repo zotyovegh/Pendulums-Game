@@ -11,6 +11,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.example.pendulumtestjava.fragments.savingsFragment.doubleP.DoublePDao;
 import com.example.pendulumtestjava.fragments.savingsFragment.doubleP.DoublePObject;
+import com.example.pendulumtestjava.fragments.savingsFragment.savedObject.PendulumsDao;
 import com.example.pendulumtestjava.fragments.savingsFragment.singleP.SinglePDao;
 import com.example.pendulumtestjava.fragments.savingsFragment.singleP.SinglePObject;
 

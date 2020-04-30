@@ -1,8 +1,10 @@
-package com.example.pendulumtestjava.fragments.savingsFragment.shared;
+package com.example.pendulumtestjava.fragments.savingsFragment.savedObject;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Query;
+
+import com.example.pendulumtestjava.fragments.savingsFragment.savedObject.SavePendulumModel;
 
 import java.util.List;
 
