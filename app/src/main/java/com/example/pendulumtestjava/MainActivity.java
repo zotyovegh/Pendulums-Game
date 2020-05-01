@@ -1,11 +1,11 @@
-package com.example.pendulumtestjava.fragments;
+package com.example.pendulumtestjava;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,46 +14,32 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.pendulumtestjava.R;
 import com.example.pendulumtestjava.firebase.FirebaseAuthActivity;
-import com.example.pendulumtestjava.fragments.savingsFragment.FragmentList;
-import com.example.pendulumtestjava.fragments.pendulumsFragments.FragmentMain;
+import com.example.pendulumtestjava.fragments.apiFragment.DescriptionFragment;
+import com.example.pendulumtestjava.fragments.MainFragment;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.squareup.picasso.Picasso;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
-    private ViewPagerAdapter adapter;
+
     private DrawerLayout drawerLayout;
     ActionBarDrawerToggle toggle;
     NavigationView navigationView;
+    FirebaseAuth mAuth;
     TextView email;
     TextView name;
     ImageView profilePic;
-    FirebaseAuth mAuth;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        tabLayout = (TabLayout) findViewById(R.id.tablayout_id);
-        viewPager = (ViewPager) findViewById(R.id.viewpager_id);
-        adapter = new ViewPagerAdapter(getSupportFragmentManager());
-
-        adapter.AddFragment(new FragmentMain(), "Pendulums");
-        adapter.AddFragment(new FragmentList(), "Saved");
-        viewPager.setAdapter(adapter);
-        tabLayout.setupWithViewPager(viewPager);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -61,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout = findViewById(R.id.drawer);
         navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
         View headerView = navigationView.getHeaderView(0);
         email = headerView.findViewById(R.id.email);
         name = headerView.findViewById(R.id.name);
@@ -68,8 +55,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(toggle);
-        toggle.setDrawerIndicatorEnabled(true);
         toggle.syncState();
+
+        if(savedInstanceState == null)
+        {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MainFragment()).commit();
+            navigationView.setCheckedItem(R.id.nav_main);
+        }
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -98,23 +90,34 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        if(menuItem.getItemId() == R.id.logOut) {
-            AuthUI.getInstance()
-                    .signOut(this)
-                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful()) {
-                                startActivity(new Intent(
-                                        MainActivity.this,
-                                        FirebaseAuthActivity.class));
-                                MainActivity.this.finish();
-                            } else {
-                                // Report error to user
+        switch (menuItem.getItemId()){
+            case R.id.nav_main:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MainFragment()).commit();
+                break;
+            case R.id.nav_what:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DescriptionFragment()).commit();
+                break;
+            case R.id.nav_logOut:
+                AuthUI.getInstance()
+                        .signOut(this)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    startActivity(new Intent(
+                                            MainActivity.this,
+                                            FirebaseAuthActivity.class));
+                                    MainActivity.this.finish();
+                                } else {
+                                    // Report error to user
+                                }
                             }
-                        }
-                    });
+                        });
+                break;
         }
+        drawerLayout.closeDrawer(GravityCompat.START);
         return false;
     }
+
+
 }

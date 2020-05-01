@@ -1,4 +1,4 @@
-package com.example.pendulumtestjava.fragments.pendulumsFragments.settings;
+package com.example.pendulumtestjava.fragments.pendulumFragments.settings;
 
 import android.app.Dialog;
 import android.os.Bundle;
@@ -15,7 +15,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
 import com.example.pendulumtestjava.R;
-import com.example.pendulumtestjava.fragments.pendulumsFragments.models.SinglePendulumModel;
+import com.example.pendulumtestjava.fragments.pendulumFragments.models.SinglePendulumModel;
 
 import java.util.Objects;
 

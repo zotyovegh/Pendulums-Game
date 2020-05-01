@@ -1,4 +1,4 @@
-package com.example.pendulumtestjava.fragments.pendulumsFragments.views;
+package com.example.pendulumtestjava.fragments.pendulumFragments.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -15,9 +15,9 @@ import android.widget.TextView;
 
 import com.example.pendulumtestjava.R;
 import com.example.pendulumtestjava.fragments.savingsFragment.shared.DbViewModel;
-import com.example.pendulumtestjava.fragments.pendulumsFragments.settings.DoublePendulumSettings;
-import com.example.pendulumtestjava.fragments.pendulumsFragments.viewModels.DoublePendulumViewModel;
-import com.example.pendulumtestjava.fragments.pendulumsFragments.models.DoublePendulumModel;
+import com.example.pendulumtestjava.fragments.pendulumFragments.settings.DoublePendulumSettings;
+import com.example.pendulumtestjava.fragments.pendulumFragments.viewModels.DoublePendulumViewModel;
+import com.example.pendulumtestjava.fragments.pendulumFragments.models.DoublePendulumModel;
 
 import java.util.Timer;
 import java.util.TimerTask;

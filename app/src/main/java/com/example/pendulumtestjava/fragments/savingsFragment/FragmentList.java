@@ -16,13 +16,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pendulumtestjava.R;
-import com.example.pendulumtestjava.fragments.pendulumsFragments.views.DoublePendulumView;
+import com.example.pendulumtestjava.fragments.pendulumFragments.views.DoublePendulumView;
 import com.example.pendulumtestjava.fragments.savingsFragment.doubleP.DoublePObject;
 import com.example.pendulumtestjava.fragments.savingsFragment.shared.DbViewModel;
 import com.example.pendulumtestjava.fragments.savingsFragment.shared.PendulumAdapter;
 import com.example.pendulumtestjava.fragments.savingsFragment.savedObject.SavePendulumModel;
 import com.example.pendulumtestjava.fragments.savingsFragment.singleP.SinglePObject;
-import com.example.pendulumtestjava.fragments.pendulumsFragments.views.SinglePendulumView;
+import com.example.pendulumtestjava.fragments.pendulumFragments.views.SinglePendulumView;
 
 import java.util.Objects;
 

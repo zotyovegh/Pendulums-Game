@@ -1,9 +1,10 @@
-package com.example.pendulumtestjava.fragments.pendulumsFragments;
+package com.example.pendulumtestjava.fragments.pendulumFragments;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,16 +17,16 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import com.example.pendulumtestjava.R;
-import com.example.pendulumtestjava.fragments.pendulumsFragments.views.infoActivity.InfoView;
-import com.example.pendulumtestjava.fragments.pendulumsFragments.models.DoublePendulumModel;
-import com.example.pendulumtestjava.fragments.pendulumsFragments.views.DoublePendulumView;
-import com.example.pendulumtestjava.fragments.pendulumsFragments.models.SinglePendulumModel;
-import com.example.pendulumtestjava.fragments.pendulumsFragments.views.SinglePendulumView;
+import com.example.pendulumtestjava.fragments.pendulumFragments.views.infoActivity.InfoView;
+import com.example.pendulumtestjava.fragments.pendulumFragments.models.DoublePendulumModel;
+import com.example.pendulumtestjava.fragments.pendulumFragments.views.DoublePendulumView;
+import com.example.pendulumtestjava.fragments.pendulumFragments.models.SinglePendulumModel;
+import com.example.pendulumtestjava.fragments.pendulumFragments.views.SinglePendulumView;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class FragmentMain extends Fragment{
+public class PendulumsFragment extends Fragment{
 
     private SinglePendulumModel dataS = SinglePendulumModel.getInstance();
     private DoublePendulumModel dataD = DoublePendulumModel.getInstance();
@@ -38,7 +39,7 @@ public class FragmentMain extends Fragment{
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_main, container, false);
+        View v = inflater.inflate(R.layout.fragment_pendulums, container, false);
 
         CardView singleCard = v.findViewById(R.id.singleCard);
         singleCard.setOnClickListener(v1 -> openSinglePendulumActivity());
@@ -57,6 +58,8 @@ public class FragmentMain extends Fragment{
 
         lastPlayedSingle.setText(preferences.getString("single", "-"));
         lastPlayedDouble.setText(preferences.getString("double", "-"));
+
+        Log.i("TAG", "PIKACHU");
 
         return v;
     }
@@ -96,7 +99,6 @@ public class FragmentMain extends Fragment{
     @Override
     public void onResume() {
         super.onResume();
-
         lastPlayedSingle.setText(preferences.getString("single", "-"));
         lastPlayedDouble.setText(preferences.getString("double", "-"));
     }

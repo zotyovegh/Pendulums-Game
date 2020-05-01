@@ -1,4 +1,4 @@
-package com.example.pendulumtestjava.fragments.pendulumsFragments.models;
+package com.example.pendulumtestjava.fragments.pendulumFragments.models;
 
 import java.util.ArrayList;
 

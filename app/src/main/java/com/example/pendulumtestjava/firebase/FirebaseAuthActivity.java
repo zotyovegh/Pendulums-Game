@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.pendulumtestjava.fragments.MainActivity;
+import com.example.pendulumtestjava.MainActivity;
 import com.example.pendulumtestjava.R;
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.ErrorCodes;

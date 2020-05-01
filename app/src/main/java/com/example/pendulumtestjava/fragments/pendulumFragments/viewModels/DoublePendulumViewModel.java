@@ -1,13 +1,13 @@
-package com.example.pendulumtestjava.fragments.pendulumsFragments.viewModels;
+package com.example.pendulumtestjava.fragments.pendulumFragments.viewModels;
 
 import android.util.Log;
 
 import androidx.lifecycle.ViewModel;
 
-import com.example.pendulumtestjava.fragments.pendulumsFragments.views.DrawingPathView;
+import com.example.pendulumtestjava.fragments.pendulumFragments.views.DrawingPathView;
 import com.example.pendulumtestjava.fragments.savingsFragment.doubleP.DoublePObject;
 import com.example.pendulumtestjava.fragments.savingsFragment.shared.DbViewModel;
-import com.example.pendulumtestjava.fragments.pendulumsFragments.models.DoublePendulumModel;
+import com.example.pendulumtestjava.fragments.pendulumFragments.models.DoublePendulumModel;
 import com.google.gson.Gson;
 
 import java.text.SimpleDateFormat;

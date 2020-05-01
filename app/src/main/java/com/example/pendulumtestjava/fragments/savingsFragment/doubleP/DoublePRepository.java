@@ -3,7 +3,7 @@ package com.example.pendulumtestjava.fragments.savingsFragment.doubleP;
 import android.app.Application;
 import android.os.AsyncTask;
 
-import com.example.pendulumtestjava.fragments.pendulumsFragments.models.DoublePendulumModel;
+import com.example.pendulumtestjava.fragments.pendulumFragments.models.DoublePendulumModel;
 import com.example.pendulumtestjava.fragments.savingsFragment.shared.PendulumDatabase;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;

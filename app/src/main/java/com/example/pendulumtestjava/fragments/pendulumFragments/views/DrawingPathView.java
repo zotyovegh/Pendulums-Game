@@ -1,4 +1,4 @@
-package com.example.pendulumtestjava.fragments.pendulumsFragments.views;
+package com.example.pendulumtestjava.fragments.pendulumFragments.views;
 
 import android.content.Context;
 import android.graphics.Canvas;

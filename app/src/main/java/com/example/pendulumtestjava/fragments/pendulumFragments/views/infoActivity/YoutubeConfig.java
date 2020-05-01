@@ -1,4 +1,4 @@
-package com.example.pendulumtestjava.fragments.pendulumsFragments.views.infoActivity;
+package com.example.pendulumtestjava.fragments.pendulumFragments.views.infoActivity;
 
 public class YoutubeConfig {
     private static final String API_KEY = "AIzaSyBsjRRHNhsszlRVrlVmgwP4D8_XbxQxvw8";

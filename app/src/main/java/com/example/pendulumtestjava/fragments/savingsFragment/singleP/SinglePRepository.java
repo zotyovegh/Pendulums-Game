@@ -4,7 +4,7 @@ import android.app.Application;
 import android.os.AsyncTask;
 
 import com.example.pendulumtestjava.fragments.savingsFragment.shared.PendulumDatabase;
-import com.example.pendulumtestjava.fragments.pendulumsFragments.models.SinglePendulumModel;
+import com.example.pendulumtestjava.fragments.pendulumFragments.models.SinglePendulumModel;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 

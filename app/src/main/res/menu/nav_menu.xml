@@ -2,6 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/logOut"
+        android:id="@+id/nav_main"
+        android:title="Main" />
+
+    <item
+        android:id="@+id/nav_what"
+        android:title="What is this?" />
+
+    <item
+        android:id="@+id/nav_logOut"
         android:title="Log out" />
 </menu>
