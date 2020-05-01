@@ -139,7 +139,7 @@ public class DoublePendulumSettings extends AppCompatDialogFragment {
         return builder.create();
     }
 
-    public void ball1ColorPicker() {
+    private void ball1ColorPicker() {
         AmbilWarnaDialog colorPicker = new AmbilWarnaDialog(getActivity(), ball1DefaultColor, new AmbilWarnaDialog.OnAmbilWarnaListener() {
             @Override
             public void onCancel(AmbilWarnaDialog dialog) {
@@ -154,7 +154,7 @@ public class DoublePendulumSettings extends AppCompatDialogFragment {
         colorPicker.show();
     }
 
-    public void ball2ColorPicker() {
+    private void ball2ColorPicker() {
         AmbilWarnaDialog colorPicker = new AmbilWarnaDialog(getActivity(), ball2DefaultColor, new AmbilWarnaDialog.OnAmbilWarnaListener() {
             @Override
             public void onCancel(AmbilWarnaDialog dialog) {
@@ -169,7 +169,7 @@ public class DoublePendulumSettings extends AppCompatDialogFragment {
         colorPicker.show();
     }
 
-    public void trace1ColorPicker() {
+    private void trace1ColorPicker() {
         AmbilWarnaDialog colorPicker = new AmbilWarnaDialog(getActivity(), trace1DefaultColor, new AmbilWarnaDialog.OnAmbilWarnaListener() {
             @Override
             public void onCancel(AmbilWarnaDialog dialog) {
@@ -184,7 +184,7 @@ public class DoublePendulumSettings extends AppCompatDialogFragment {
         colorPicker.show();
     }
 
-    public void trace2ColorPicker() {
+    private void trace2ColorPicker() {
         AmbilWarnaDialog colorPicker = new AmbilWarnaDialog(getActivity(), trace2DefaultColor, new AmbilWarnaDialog.OnAmbilWarnaListener() {
             @Override
             public void onCancel(AmbilWarnaDialog dialog) {

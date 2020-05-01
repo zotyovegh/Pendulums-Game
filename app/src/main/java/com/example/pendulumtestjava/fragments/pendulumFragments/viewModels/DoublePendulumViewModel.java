@@ -1,6 +1,5 @@
 package com.example.pendulumtestjava.fragments.pendulumFragments.viewModels;
 
-import android.util.Log;
 
 import androidx.lifecycle.ViewModel;
 
@@ -96,7 +95,6 @@ public class DoublePendulumViewModel extends ViewModel {
     {
         if(check)
         {
-            Log.i("TAG", "FIRST");
             x1 = newx;
             y1 = newy;
             if (newy - heightMiddleBall > 0) {
@@ -117,7 +115,6 @@ public class DoublePendulumViewModel extends ViewModel {
             }
             r1 = Math.sqrt(((newx - widthMiddleBall) * (newx - widthMiddleBall)) + ((newy - heightMiddleBall) * (newy - heightMiddleBall)));
         }else{
-            Log.i("TAG", "SECOND");
             x2 = newx;
             y2 = newy;
             if (newy - y1 > 0) {

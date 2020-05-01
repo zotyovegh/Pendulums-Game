@@ -13,13 +13,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.pendulumtestjava.firebase.FirebaseAuthActivity;
 import com.example.pendulumtestjava.fragments.apiFragment.DescriptionFragment;
 import com.example.pendulumtestjava.fragments.MainFragment;
 import com.firebase.ui.auth.AuthUI;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -100,17 +99,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_logOut:
                 AuthUI.getInstance()
                         .signOut(this)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    startActivity(new Intent(
-                                            MainActivity.this,
-                                            FirebaseAuthActivity.class));
-                                    MainActivity.this.finish();
-                                } else {
-                                    // Report error to user
-                                }
+                        .addOnCompleteListener(task -> {
+                            if (task.isSuccessful()) {
+                                startActivity(new Intent(
+                                        MainActivity.this,
+                                        FirebaseAuthActivity.class));
+                                MainActivity.this.finish();
+                            } else {
+                                Toast.makeText(MainActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
+                                // Report error to user
                             }
                         });
                 break;

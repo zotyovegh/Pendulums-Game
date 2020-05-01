@@ -42,7 +42,7 @@ public class FragmentList extends Fragment {
         recyclerView.setAdapter(adapter);
 
         viewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity())).get(DbViewModel.class);
-        viewModel.getAllPendulums().observe(getActivity(), pendulums -> adapter.submitList(pendulums));
+        viewModel.getAllPendulums().observe(getActivity(), adapter::submitList);
 
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
             @Override

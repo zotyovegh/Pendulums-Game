@@ -5,7 +5,7 @@ public class YoutubeConfig {
 
     public YoutubeConfig() {}
 
-    public static String getApiKey() {
+    static String getApiKey() {
         return API_KEY;
     }
 }

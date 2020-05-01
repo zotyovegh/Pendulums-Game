@@ -24,7 +24,7 @@ import yuku.ambilwarna.AmbilWarnaDialog;
 public class SinglePendulumSettings extends AppCompatDialogFragment {
     private Button traceColorButton, ballColorButton;
     private int traceDefaultColor, ballDefaultColor;
-    SinglePendulumModel data = SinglePendulumModel.getInstance();
+    private SinglePendulumModel data = SinglePendulumModel.getInstance();
     private EditText a, r, g, damp, trace;
     private Switch switch1;
     private CheckBox checkBox;
@@ -99,7 +99,7 @@ public class SinglePendulumSettings extends AppCompatDialogFragment {
         return builder.create();
     }
 
-    public void openColorPicker() {
+    private void openColorPicker() {
         AmbilWarnaDialog colorPicker = new AmbilWarnaDialog(getActivity(), traceDefaultColor, new AmbilWarnaDialog.OnAmbilWarnaListener() {
             @Override
             public void onCancel(AmbilWarnaDialog dialog) {}
@@ -113,10 +113,12 @@ public class SinglePendulumSettings extends AppCompatDialogFragment {
         colorPicker.show();
     }
 
-    public void openColorPicker2() {
+    private void openColorPicker2() {
         AmbilWarnaDialog colorPicker2 = new AmbilWarnaDialog(getActivity(), ballDefaultColor, new AmbilWarnaDialog.OnAmbilWarnaListener() {
             @Override
-            public void onCancel(AmbilWarnaDialog dialog) {}
+            public void onCancel(AmbilWarnaDialog dialog) {
+
+            }
 
             @Override
             public void onOk(AmbilWarnaDialog dialog, int color) {

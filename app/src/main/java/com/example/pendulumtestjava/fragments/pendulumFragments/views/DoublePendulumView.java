@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -23,15 +24,16 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class DoublePendulumView extends AppCompatActivity implements View.OnClickListener {
-    private TextView stick, stick2, ball, ball2, middle;
+    private TextView stick;
+    private TextView stick2;
+    private TextView ball;
+    private TextView ball2;
 
     private Handler handler = new Handler();
     private Timer timer = new Timer();
-    private DrawingPathView path, path2;
     private DoublePendulumSettings doublePendulumSettings = new DoublePendulumSettings();
     private DoublePendulumModel model = DoublePendulumModel.getInstance();
     private DoublePendulumViewModel viewModel;
-    private DbViewModel dbViewModel;
 
     private double widthMiddle, heightPoint;
     private boolean onHold = false;
@@ -42,16 +44,17 @@ public class DoublePendulumView extends AppCompatActivity implements View.OnClic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_double_pendulum);
 
-        dbViewModel = new ViewModelProvider(this).get(DbViewModel.class);
+        DbViewModel dbViewModel = new ViewModelProvider(this).get(DbViewModel.class);
         viewModel = new ViewModelProvider(this).get(DoublePendulumViewModel.class);
 
         stick = findViewById(R.id.stickBox);
         stick2 = findViewById(R.id.stickBox2);
         ball = findViewById(R.id.ballPaint);
         ball2 = findViewById(R.id.ballPaint2);
-        middle = findViewById(R.id.middlePaint);
-        path = findViewById(R.id.path);
-        path2 = findViewById(R.id.path2);
+
+        TextView middle = findViewById(R.id.middlePaint);
+        DrawingPathView path = findViewById(R.id.path);
+        DrawingPathView path2 = findViewById(R.id.path2);
         Button reset = findViewById(R.id.reset);
         Button pause = findViewById(R.id.pause);
         Button settings = findViewById(R.id.settings);
@@ -168,4 +171,13 @@ public class DoublePendulumView extends AppCompatActivity implements View.OnClic
                 break;
         }
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        timer.cancel();
+        finish();
+    }
+
+
 }

@@ -13,7 +13,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     private final List<Fragment> listFragment = new ArrayList<>();
     private final List<String> listTitles = new ArrayList<>();
 
-    public ViewPagerAdapter(FragmentManager supportFragmentManager) {
+    ViewPagerAdapter(FragmentManager supportFragmentManager) {
         super(supportFragmentManager);
     }
 
@@ -34,7 +34,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
         return listTitles.get(position);
     }
 
-    public void AddFragment(Fragment fragment, String title)
+    void AddFragment(Fragment fragment, String title)
     {
         listFragment.add(fragment);
         listTitles.add(title);

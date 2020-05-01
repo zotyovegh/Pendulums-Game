@@ -2,6 +2,7 @@ package com.example.pendulumtestjava.fragments.pendulumFragments.views.infoActiv
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.example.pendulumtestjava.R;
 import com.google.android.youtube.player.YouTubeBaseActivity;
@@ -20,10 +21,8 @@ public class InfoView extends YouTubeBaseActivity {
         setTheme(R.style.AppTheme_InfoDialog);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.youtube);
-
-
-
-        mYouTubePlayerView = (YouTubePlayerView) findViewById(R.id.youtubePlay);
+        
+        mYouTubePlayerView = findViewById(R.id.youtubePlay);
 
         mOnInitializedListener = new YouTubePlayer.OnInitializedListener() {
             @Override
@@ -38,12 +37,11 @@ public class InfoView extends YouTubeBaseActivity {
                 {
                     youTubePlayer.loadVideo("QXf95_EKS6E");
                 }
-
             }
 
             @Override
             public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
-
+                Toast.makeText(InfoView.this, "ERROR", Toast.LENGTH_SHORT).show();
             }
         };
 

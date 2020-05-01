@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -31,8 +32,6 @@ public class SinglePendulumView extends AppCompatActivity implements View.OnClic
     private SinglePendulumModel model = SinglePendulumModel.getInstance();
 
     private SinglePendulumViewModel viewModel;
-    private DbViewModel dbViewModel;
-    private DrawingPathView path;
     private double widthMiddle, heightPoint;
     private boolean onHold, stop;
 
@@ -41,13 +40,13 @@ public class SinglePendulumView extends AppCompatActivity implements View.OnClic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_pendulum);
 
-        dbViewModel = new ViewModelProvider(this).get(DbViewModel.class);
+        DbViewModel dbViewModel = new ViewModelProvider(this).get(DbViewModel.class);
         viewModel = new ViewModelProvider(this).get(SinglePendulumViewModel.class);
 
         stick = findViewById(R.id.stickBox);
         ball = findViewById(R.id.ballPaint);
         middle = findViewById(R.id.middlePaint);
-        path = findViewById(R.id.path);
+        DrawingPathView path = findViewById(R.id.path);
         Button reset = findViewById(R.id.reset);
         Button pause = findViewById(R.id.pause);
         Button settings = findViewById(R.id.settings);
@@ -145,4 +144,10 @@ public class SinglePendulumView extends AppCompatActivity implements View.OnClic
         }
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        timer.cancel();
+        finish();
+    }
 }

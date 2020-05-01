@@ -53,11 +53,9 @@ public class DrawingPathView extends View {
         this.paint.setColor(color);
         this.x = (float) x + 30;
         this.y = (float) y + 30;
-        if (endless == false) {
+        if (!endless) {
             if (array.size() > trace) {
-                for (int i = 0; i < 4; i++) {
-                    array.remove(0);
-                }
+                array.subList(0, 4).clear();
             }
         }
 

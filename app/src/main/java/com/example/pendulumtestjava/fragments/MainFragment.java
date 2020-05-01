@@ -16,16 +16,13 @@ import com.example.pendulumtestjava.fragments.savingsFragment.FragmentList;
 import com.google.android.material.tabs.TabLayout;
 
 public class MainFragment extends Fragment {
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
-    private ViewPagerAdapter adapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
 
-        tabLayout = (TabLayout) view.findViewById(R.id.tablayout_id);
-        viewPager = (ViewPager) view.findViewById(R.id.viewpager_id);
-        adapter = new ViewPagerAdapter(getChildFragmentManager());
+        TabLayout tabLayout = view.findViewById(R.id.tablayout_id);
+        ViewPager viewPager = view.findViewById(R.id.viewpager_id);
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
 
         adapter.AddFragment(new PendulumsFragment(), "Pendulums");
         adapter.AddFragment(new FragmentList(), "Saved");

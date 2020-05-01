@@ -26,15 +26,13 @@ import com.example.pendulumtestjava.fragments.pendulumFragments.views.SinglePend
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class PendulumsFragment extends Fragment{
+public class PendulumsFragment extends Fragment {
 
     private SinglePendulumModel dataS = SinglePendulumModel.getInstance();
     private DoublePendulumModel dataD = DoublePendulumModel.getInstance();
     private SharedPreferences preferences;
     private TextView lastPlayedSingle, lastPlayedDouble;
-    SharedPreferences.Editor editor;
-    Button singleInfo, doubleInfo;
-
+    private SharedPreferences.Editor editor;
 
     @Nullable
     @Override
@@ -48,10 +46,10 @@ public class PendulumsFragment extends Fragment{
 
         lastPlayedSingle = v.findViewById(R.id.lastPlayedSingle);
         lastPlayedDouble = v.findViewById(R.id.lastPlayedDouble);
-        singleInfo = v.findViewById(R.id.singleInfo);
-        doubleInfo = v.findViewById(R.id.doubleInfo);
-        singleInfo.setOnClickListener(v13 -> openInfoFragment("single"));
-        doubleInfo.setOnClickListener(v14 -> openInfoFragment("double"));
+        Button singleInfo = v.findViewById(R.id.singleInfo);
+        Button doubleInfo = v.findViewById(R.id.doubleInfo);
+        singleInfo.setOnClickListener(v14 -> openInfoFragment("single"));
+        doubleInfo.setOnClickListener(v13 -> openInfoFragment("double"));
 
         preferences = getActivity().getSharedPreferences("prefs", Context.MODE_PRIVATE);
         editor = preferences.edit();
@@ -59,23 +57,18 @@ public class PendulumsFragment extends Fragment{
         lastPlayedSingle.setText(preferences.getString("single", "-"));
         lastPlayedDouble.setText(preferences.getString("double", "-"));
 
-        Log.i("TAG", "PIKACHU");
-
         return v;
     }
 
     private void openInfoFragment(String type) {
         Intent intent = new Intent(getActivity(), InfoView.class);
-
         intent.putExtra("type", type);
 
         startActivity(intent);
-
     }
 
 
-    private void openSinglePendulumActivity()
-    {
+    private void openSinglePendulumActivity() {
         Intent intent = new Intent(getActivity(), SinglePendulumView.class);
         dataS.resetValues();
 
@@ -85,11 +78,10 @@ public class PendulumsFragment extends Fragment{
         startActivity(intent);
     }
 
-    private void openDoublePendulumActivity()
-    {
+    private void openDoublePendulumActivity() {
         Intent intent = new Intent(getActivity(), DoublePendulumView.class);
-        dataD.resetValues();
 
+        dataD.resetValues();
         editor.putString("double", getCurrentTime());
         editor.apply();
 
@@ -103,13 +95,10 @@ public class PendulumsFragment extends Fragment{
         lastPlayedDouble.setText(preferences.getString("double", "-"));
     }
 
-    public String getCurrentTime()
-    {
+    private String getCurrentTime() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String millisInString  = dateFormat.format(new Date());
 
-        return millisInString;
+        return dateFormat.format(new Date());
     }
-
 
 }
