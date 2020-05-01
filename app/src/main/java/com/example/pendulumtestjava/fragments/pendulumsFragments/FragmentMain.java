@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +16,7 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import com.example.pendulumtestjava.R;
-import com.example.pendulumtestjava.fragments.pendulumsFragments.infoApi.InfoApi;
+import com.example.pendulumtestjava.fragments.pendulumsFragments.views.infoActivity.InfoView;
 import com.example.pendulumtestjava.fragments.pendulumsFragments.models.DoublePendulumModel;
 import com.example.pendulumtestjava.fragments.pendulumsFragments.views.DoublePendulumView;
 import com.example.pendulumtestjava.fragments.pendulumsFragments.models.SinglePendulumModel;
@@ -63,7 +62,7 @@ public class FragmentMain extends Fragment{
     }
 
     private void openInfoFragment(String type) {
-        Intent intent = new Intent(getActivity(), InfoApi.class);
+        Intent intent = new Intent(getActivity(), InfoView.class);
 
         intent.putExtra("type", type);
 

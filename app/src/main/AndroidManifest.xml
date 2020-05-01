@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".fragments.pendulumsFragments.infoApi.InfoApi"
+        <activity android:name=".fragments.pendulumsFragments.views.infoActivity.InfoView"
             android:theme="@style/Theme.AppCompat.Dialog"/>
         <activity
             android:name=".fragments.MainActivity"
