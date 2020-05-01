@@ -19,7 +19,7 @@ public class InfoView extends YouTubeBaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.AppTheme_InfoDialog);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_infoapi);
+        setContentView(R.layout.youtube);
 
 
 

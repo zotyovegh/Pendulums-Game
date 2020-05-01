@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.pendulumtestjava.R;
-import com.example.pendulumtestjava.fragments.ViewPagerAdapter;
 import com.example.pendulumtestjava.fragments.pendulumFragments.PendulumsFragment;
 import com.example.pendulumtestjava.fragments.savingsFragment.FragmentList;
 import com.google.android.material.tabs.TabLayout;
