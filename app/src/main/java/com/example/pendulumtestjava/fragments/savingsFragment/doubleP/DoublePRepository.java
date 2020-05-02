@@ -37,6 +37,11 @@ public class DoublePRepository {
         return doublePDao.getDoublePObject(id);
     }
 
+    public void deleteAllDoublePendulum()
+    {
+        new DeleteAllDoublePendulumsAsyncTask(doublePDao).execute();
+    }
+
     public void installDoublePendulum(DoublePObject pendulum)
     {
         Gson gson = new Gson();
@@ -91,6 +96,21 @@ public class DoublePRepository {
         @Override
         protected Void doInBackground(DoublePObject... doublePendulumObjects) {
             dbDao.deleteDoubleP(doublePendulumObjects[0]);
+            return null;
+        }
+    }
+
+    private static class DeleteAllDoublePendulumsAsyncTask extends AsyncTask<Void, Void, Void> {
+        private DoublePDao dbDao;
+
+        private DeleteAllDoublePendulumsAsyncTask(DoublePDao dbDao)
+        {
+            this.dbDao = dbDao;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            dbDao.deleteAllDoublePendulum();
             return null;
         }
     }

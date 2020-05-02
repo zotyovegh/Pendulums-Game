@@ -16,4 +16,7 @@ public interface DoublePDao {
     @Query("SELECT * FROM double_table WHERE id = :id ")
     DoublePObject getDoublePObject(int id);
 
+    @Query("DELETE FROM double_table")
+    void deleteAllDoublePendulum();
+
 }

@@ -33,6 +33,11 @@ public class SinglePRepository {
         new DeleteSinglePendulumAsyncTask(singlePDao).execute(pendulum);
     }
 
+    public void deleteAllSinglePendulum()
+    {
+        new DeleteAllSinglePendulumsAsyncTask(singlePDao).execute();
+    }
+
     public SinglePObject getSinglePendulum(int id)
         {
             return singlePDao.getSinglePObject(id);
@@ -81,6 +86,21 @@ public class SinglePRepository {
         @Override
         protected Void doInBackground(SinglePObject... singlePendulumObjects) {
             dbDao.deleteSingleP(singlePendulumObjects[0]);
+            return null;
+        }
+    }
+
+    private static class DeleteAllSinglePendulumsAsyncTask extends AsyncTask<Void, Void, Void> {
+        private SinglePDao dbDao;
+
+        private DeleteAllSinglePendulumsAsyncTask(SinglePDao dbDao)
+        {
+            this.dbDao = dbDao;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            dbDao.deleteAllSinglePendulum();
             return null;
         }
     }

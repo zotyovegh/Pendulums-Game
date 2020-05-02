@@ -15,4 +15,7 @@ public interface SinglePDao {
 
     @Query("SELECT * FROM single_table WHERE id = :id ")
     SinglePObject getSinglePObject(int id);
+
+    @Query("DELETE FROM single_table")
+    void deleteAllSinglePendulum();
 }

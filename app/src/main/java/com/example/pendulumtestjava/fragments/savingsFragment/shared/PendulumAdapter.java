@@ -38,7 +38,7 @@ public class PendulumAdapter extends ListAdapter<SavePendulumModel, PendulumAdap
     @Override
     public PendulumHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_list_item, parent, false);
+                .inflate(R.layout.fragment_main_list_item, parent, false);
         return new PendulumHolder(itemView);
     }
 

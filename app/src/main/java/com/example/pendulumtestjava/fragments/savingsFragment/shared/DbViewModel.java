@@ -72,6 +72,16 @@ public class DbViewModel extends AndroidViewModel {
         doublePRepository.installDoublePendulum(pendulum);
     }
 
+    public void deleteAllSinglePendulums()
+    {
+        singlePRepository.deleteAllSinglePendulum();
+    }
+
+    public void deleteAllDoublePendulums()
+    {
+        doublePRepository.deleteAllDoublePendulum();
+    }
+
     public LiveData<List<SavePendulumModel>> getAllPendulums()
     {
         return allPendulums;

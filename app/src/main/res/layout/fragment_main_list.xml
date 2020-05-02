@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/recycler_view"
+        tools:listitem="@layout/fragment_main_list_item"/>
+
+
+
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="220dp"
+        android:src="@drawable/z_single"
+        android:elevation="6dp"
+        android:id="@+id/deleteSingle"
+        app:pressedTranslationZ="12dp"
+        app:backgroundTint="@color/trashSingle"
+        android:visibility="invisible"
+        />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="160dp"
+        android:src="@drawable/z_double"
+        android:elevation="6dp"
+        android:id="@+id/deleteDouble"
+        app:pressedTranslationZ="12dp"
+        app:backgroundTint="@color/trashDouble"
+        android:visibility="invisible"
+        />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="100dp"
+        android:src="@drawable/z_all"
+        android:elevation="6dp"
+        android:id="@+id/deleteAll"
+        app:pressedTranslationZ="12dp"
+        app:backgroundTint="@color/trashAll"
+        android:visibility="invisible"
+        />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="40dp"
+        android:src="@drawable/ic_delete"
+        android:elevation="6dp"
+        android:id="@+id/delete"
+        app:pressedTranslationZ="12dp"
+        />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
