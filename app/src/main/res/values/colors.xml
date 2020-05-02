@@ -6,8 +6,17 @@
     <color name="backgroundFragment">#2b2b2b</color>
     <color name="tabs">#A4C639</color>
     <color name="actionBar">#789e00</color>
-    <color name="trashMain">#4CAF50</color>
-    <color name="trashSingle">#2196F3</color>
-    <color name="trashDouble">#FF4080</color>
-    <color name="trashAll">#fcba03</color>
+
+    <color name="trashMain">#ffb217</color>
+    <color name="trashMainPressed">#bd8413</color>
+
+    <color name="trashSingle">#00a6ff</color>
+    <color name="trashSinglePressed">#0069a1</color>
+
+    <color name="trashDouble">#ff00dd</color>
+    <color name="trashDoublePressed">#a3008d</color>
+
+    <color name="trashAll">#00a32e</color>
+    <color name="trashAllPressed">#006b1e</color>
+
 </resources>
