@@ -179,21 +179,21 @@ public class DoublePendulumModel {
     }
 
     public void resetValues() {
-        r1 = 250;
+        r1 = 200;
         r2 = 250;
         a1 = Math.PI / 2;
         a2 = Math.PI / 2;
-        g = 1;
-        m1 = 100;
+        g = (float)0.6;
+        m1 = 50;
         m2 = 10;
-        trace1 = 250;
-        trace2 = 250;
+        trace1 = 200;
+        trace2 = 200;
         trace1Color = 0xFF0000FF;
         trace2Color = 0xFF000000;
         ball1Color = 0xFF0000FF;
         ball2Color = 0xFFFF0000;
         endlessTrace1 = false;
-        endlessTrace2 = true;
+        endlessTrace2 = false;
         isTrace1On = false;
         isTrace2On = true;
         stop = false;
