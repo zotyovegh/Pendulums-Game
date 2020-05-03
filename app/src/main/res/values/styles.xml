@@ -29,9 +29,6 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="customFab">
-        <item name="android:textColor">@color/colorPrimaryDark</item>
-    </style>
 
 
 </resources>

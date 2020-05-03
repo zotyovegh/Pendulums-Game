@@ -25,14 +25,13 @@ import com.example.pendulumtestjava.fragments.savingsFragment.shared.PendulumAda
 import com.example.pendulumtestjava.fragments.savingsFragment.savedObject.SavePendulumModel;
 import com.example.pendulumtestjava.fragments.savingsFragment.singleP.SinglePObject;
 import com.example.pendulumtestjava.fragments.pendulumFragments.views.SinglePendulumView;
-import com.getbase.floatingactionbutton.FloatingActionButton;
-import com.getbase.floatingactionbutton.FloatingActionsMenu;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Objects;
 
 public class FragmentList extends Fragment {
     private DbViewModel viewModel;
-    FloatingActionButton deleteSingle, deleteDouble, deleteAll;
+    FloatingActionButton delete, deleteSingle, deleteDouble, deleteAll;
     Animation open, close, clockWise, antiClockwise;
     boolean isOpen;
 
@@ -41,7 +40,7 @@ public class FragmentList extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_main_list, container, false);
 
-
+        delete = v.findViewById(R.id.delete);
         deleteSingle = v.findViewById(R.id.deleteSingle);
         deleteDouble = v.findViewById(R.id.deleteDouble);
         deleteAll = v.findViewById(R.id.deleteAll);
@@ -51,6 +50,27 @@ public class FragmentList extends Fragment {
         clockWise = AnimationUtils.loadAnimation(getActivity(), R.anim.rotate_clickwise);
         antiClockwise = AnimationUtils.loadAnimation(getActivity(), R.anim.rotate_anticlockwise);
 
+        delete.setOnClickListener(v1 -> {
+            if (isOpen) {
+                deleteSingle.startAnimation(close);
+                deleteDouble.startAnimation(close);
+                deleteAll.startAnimation(close);
+                delete.startAnimation(antiClockwise);
+                deleteSingle.setClickable(false);
+                deleteDouble.setClickable(false);
+                deleteAll.setClickable(false);
+                isOpen = false;
+            } else {
+                deleteSingle.startAnimation(open);
+                deleteDouble.startAnimation(open);
+                deleteAll.startAnimation(open);
+                delete.startAnimation(clockWise);
+                deleteSingle.setClickable(true);
+                deleteDouble.setClickable(true);
+                deleteAll.setClickable(true);
+                isOpen = true;
+            }
+        });
         deleteSingle.setOnClickListener(v12 -> {
             viewModel.deleteAllSinglePendulums();
             Toast.makeText(getActivity(), "All Single Pendulums deleted", Toast.LENGTH_SHORT).show();
