@@ -7,14 +7,11 @@
     <color name="tabs">#A4C639</color>
     <color name="actionBar">#789e00</color>
 
-    <color name="trashMain">#ffb217</color>
-    <color name="trashMainPressed">#bd8413</color>
-
     <color name="trashSingle">#00a6ff</color>
     <color name="trashSinglePressed">#0069a1</color>
 
-    <color name="trashDouble">#ff00dd</color>
-    <color name="trashDoublePressed">#a3008d</color>
+    <color name="trashDouble">#ffb217</color>
+    <color name="trashDoublePressed">#bd8413</color>
 
     <color name="trashAll">#00a32e</color>
     <color name="trashAllPressed">#006b1e</color>
