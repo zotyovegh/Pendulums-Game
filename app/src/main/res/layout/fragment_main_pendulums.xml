@@ -50,7 +50,8 @@
                     android:text="Single Pendulum"
                     android:textSize="22sp"
                     app:layout_constraintStart_toEndOf="@+id/imageViewr"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginStart="10dp" />
 
                 <TextView
                     android:id="@+id/textView5b"
@@ -120,7 +121,6 @@
                     app:srcCompat="@drawable/logosized" />
 
                 <TextView
-                    android:onClick="onClick"
                     android:id="@+id/doublePendulum"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -129,7 +129,8 @@
                     android:text="Double Pendulum"
                     android:textSize="22sp"
                     app:layout_constraintStart_toEndOf="@+id/imageView5"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginStart="10dp" />
 
                 <TextView
                     android:id="@+id/textView5"
