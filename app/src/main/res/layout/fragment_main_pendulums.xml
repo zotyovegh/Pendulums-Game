@@ -46,7 +46,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:paddingTop="10dp"
-                    android:text="Single Pendulum"
+                    android:text="@string/single_pendulum"
                     android:textSize="22sp"
                     app:layout_constraintStart_toEndOf="@+id/imageViewr"
                     app:layout_constraintTop_toTopOf="parent"
@@ -59,7 +59,7 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="15dp"
-                    android:text="Last played:"
+                    android:text="@string/last_played"
                     android:textSize="18sp"
                     app:layout_constraintStart_toEndOf="@+id/imageViewr"
                     app:layout_constraintTop_toBottomOf="@+id/singlePendulum" />
@@ -70,7 +70,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginLeft="10dp"
-                    android:text="-"
+                    android:text="@string/dash"
                     android:textSize="14sp"
                     app:layout_constraintStart_toEndOf="@+id/imageViewr"
                     app:layout_constraintTop_toBottomOf="@+id/textView5b" />
@@ -123,7 +123,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:paddingTop="10dp"
-                    android:text="Double Pendulum"
+                    android:text="@string/double_pendulum"
                     android:textSize="22sp"
                     app:layout_constraintStart_toEndOf="@+id/imageView5"
                     app:layout_constraintTop_toTopOf="parent"
@@ -136,7 +136,7 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="15dp"
-                    android:text="Last played:"
+                    android:text="@string/last_played"
                     android:textSize="18sp"
                     app:layout_constraintStart_toEndOf="@+id/imageView5"
                     app:layout_constraintTop_toBottomOf="@+id/doublePendulum" />
@@ -147,7 +147,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginLeft="10dp"
-                    android:text="-"
+                    android:text="@string/dash"
                     android:textSize="14sp"
                     app:layout_constraintStart_toEndOf="@+id/imageView5"
                     app:layout_constraintTop_toBottomOf="@+id/textView5" />
