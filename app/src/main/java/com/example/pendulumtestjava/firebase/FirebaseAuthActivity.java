@@ -27,11 +27,10 @@ public class FirebaseAuthActivity extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
 
-        if(auth.getCurrentUser() != null)
-        {
+        if (auth.getCurrentUser() != null) {
             startActivity(new Intent(this, MainActivity.class));
             finish();
-        }else{
+        } else {
             authenticateUser();
         }
     }
@@ -39,10 +38,10 @@ public class FirebaseAuthActivity extends AppCompatActivity {
     private void authenticateUser() {
         startActivityForResult(
                 AuthUI.getInstance().createSignInIntentBuilder()
-                .setAvailableProviders(getProviderList())
-                .setIsSmartLockEnabled(false)
+                        .setAvailableProviders(getProviderList())
+                        .setIsSmartLockEnabled(false)
                         .setLogo(R.drawable.loginlogo)
-                .build(),
+                        .build(),
                 REQUEST_CODE);
     }
 
@@ -51,7 +50,7 @@ public class FirebaseAuthActivity extends AppCompatActivity {
                 new AuthUI.IdpConfig.EmailBuilder().build(),
                 new AuthUI.IdpConfig.GoogleBuilder().build()
         );
-        return  providers;
+        return providers;
     }
 
     @Override

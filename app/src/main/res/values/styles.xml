@@ -1,15 +1,12 @@
 <resources>
 
-    <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
     <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -23,7 +20,6 @@
         <item name="colorPrimary">@color/actionBar</item>
       </style>
 
-
     <style name="AppTheme.InfoDialog" parent="Base.Theme.AppCompat.Light.Dialog.FixedSize">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
@@ -32,6 +28,4 @@
     <style name="customFab">
         <item name="android:textColor">@color/colorPrimaryDark</item>
     </style>
-
-
 </resources>

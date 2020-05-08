@@ -12,7 +12,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
@@ -23,7 +22,6 @@
             android:id="@+id/fragment_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
-
     </LinearLayout>
 
     <com.google.android.material.navigation.NavigationView
@@ -35,7 +33,4 @@
         android:fitsSystemWindows="true"
         android:foregroundGravity="left"
         android:layout_gravity="start"/>
-
-
-
 </androidx.drawerlayout.widget.DrawerLayout>

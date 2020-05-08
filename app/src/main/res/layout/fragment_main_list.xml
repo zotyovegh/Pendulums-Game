@@ -54,6 +54,4 @@
             app:fab_size="mini"
             app:fab_label="Delete All" />
     </com.github.clans.fab.FloatingActionMenu>
-
-
 </RelativeLayout>

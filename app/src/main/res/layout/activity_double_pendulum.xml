@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.pendulumFragments.views.DoublePendulumView">
+
     <FrameLayout
         android:id="@+id/frame"
         android:layout_width="match_parent"
@@ -15,6 +16,7 @@
             android:id="@+id/path"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+
         <com.example.pendulumtestjava.fragments.pendulumFragments.views.DrawingPathView
             android:id="@+id/path2"
             android:layout_width="wrap_content"
@@ -48,9 +50,7 @@
             android:id="@+id/middlePaint"
             android:layout_width="10px"
             android:layout_height="10px"
-            android:background="@drawable/ball"
-            />
-
+            android:background="@drawable/ball"/>
     </FrameLayout>
 
     <LinearLayout
@@ -83,5 +83,4 @@
             android:layout_height="match_parent"
             android:text="Save" />
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
