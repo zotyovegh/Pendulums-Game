@@ -15,6 +15,7 @@ public class SinglePendulumViewModel extends ViewModel {
     private SinglePendulumModel model = SinglePendulumModel.getInstance();
 
     private double a = model.getA();
+    private double aDegree;
     private float gravity = model.getGravity();
     private float damping = model.getDamping();
     private int traceDrawColor = model.getTraceDrawColor();
@@ -43,8 +44,19 @@ public class SinglePendulumViewModel extends ViewModel {
         angularVel *= damping;
         a += angularVel;
 
+        optimization();
         calcPositions();
         drawTrace();
+    }
+
+    private void optimization()
+    {
+        aDegree = (Math.toDegrees(a)) % 360;
+        a = Math.toRadians(aDegree);
+        if (angularVel < -6.00000000000E70 || angularVel > 6.00000000000E70)
+        {
+            angularVel /= 2.E60;
+        }
     }
 
     public void calcPositions()

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.example.pendulumtestjava.MainActivity;
 import com.example.pendulumtestjava.R;
@@ -16,9 +17,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class FirebaseAuthActivity extends AppCompatActivity {
-
+    FirebaseAuth auth;
     private static final int REQUEST_CODE = 101;
-    private FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,11 +46,10 @@ public class FirebaseAuthActivity extends AppCompatActivity {
     }
 
     private List<AuthUI.IdpConfig> getProviderList() {
-        List<AuthUI.IdpConfig> providers = Arrays.asList(
+        return Arrays.asList(
                 new AuthUI.IdpConfig.EmailBuilder().build(),
                 new AuthUI.IdpConfig.GoogleBuilder().build()
         );
-        return providers;
     }
 
     @Override
@@ -63,7 +62,6 @@ public class FirebaseAuthActivity extends AppCompatActivity {
 
             if (resultCode == RESULT_OK) {
                 startActivity(new Intent(this, MainActivity.class));
-                return;
             }
         } else {
             if (response == null) {

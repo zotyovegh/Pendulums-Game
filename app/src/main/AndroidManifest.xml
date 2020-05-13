@@ -17,12 +17,11 @@
         <activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".fragments.pendulumFragments.views.SinglePendulumView"/>
-        <activity android:name=".fragments.pendulumFragments.views.DoublePendulumView"/>
+        <activity android:name=".fragments.pendulumFragments.views.SinglePendulumView" />
+        <activity android:name=".fragments.pendulumFragments.views.DoublePendulumView" />
         <activity android:name=".firebase.FirebaseAuthActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
