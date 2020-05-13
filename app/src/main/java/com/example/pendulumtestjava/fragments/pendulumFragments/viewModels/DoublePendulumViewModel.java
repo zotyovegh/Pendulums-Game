@@ -1,6 +1,8 @@
 package com.example.pendulumtestjava.fragments.pendulumFragments.viewModels;
 
 
+import android.util.Log;
+
 import androidx.lifecycle.ViewModel;
 
 import com.example.pendulumtestjava.fragments.pendulumFragments.views.DrawingPathView;
@@ -69,8 +71,20 @@ public class DoublePendulumViewModel extends ViewModel {
         a1 += a1_v;
         a2 += a2_v;
 
+        optimization();
         calcPositions();
         drawTraces();
+    }
+
+    private void optimization()
+    {
+        double a1Degree = (Math.toDegrees(a1)) % 360;
+        double a2Degree = (Math.toDegrees(a2)) % 360;
+        a1 = Math.toRadians(a1Degree);
+        a2 = Math.toRadians(a2Degree);
+        //In case the pendulum would get to a fastened loop, where it would crash out because of the limitations of the 'double':
+        a1_v %= 6.00000000000E150;
+        a2_v %= 6.00000000000E150;
     }
 
     public void calcPositions() {
