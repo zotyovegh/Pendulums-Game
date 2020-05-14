@@ -1,5 +1,6 @@
 package com.example.pendulumtestjava.fragments.pendulumFragments.settings;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -29,13 +30,14 @@ public class SinglePendulumSettings extends AppCompatDialogFragment {
     private Switch switch1;
     private CheckBox checkBox;
 
+    @SuppressLint("DefaultLocale")
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(Objects.requireNonNull(getActivity()));
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
-        View view = inflater.inflate(R.layout.settings_singlep, null);
+        @SuppressLint("InflateParams") View view = inflater.inflate(R.layout.settings_singlep, null);
 
         a = view.findViewById(R.id.a);
         double temp = Math.toDegrees(data.getA());

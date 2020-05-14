@@ -68,7 +68,7 @@ public class DoublePendulumView extends AppCompatActivity implements View.OnClic
         }
 
         widthMiddle = getWindowManager().getDefaultDisplay().getWidth() / 2;
-        heightPoint = getWindowManager().getDefaultDisplay().getHeight() / 8;
+        heightPoint = getWindowManager().getDefaultDisplay().getHeight() / 2 - 200;
         viewModel.defineVariables(widthMiddle, heightPoint, path, path2, dbViewModel);
 
         reset.setOnClickListener(this);

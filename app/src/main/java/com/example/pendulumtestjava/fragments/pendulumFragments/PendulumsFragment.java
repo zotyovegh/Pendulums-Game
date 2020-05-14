@@ -1,5 +1,6 @@
 package com.example.pendulumtestjava.fragments.pendulumFragments;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -25,6 +26,7 @@ import com.example.pendulumtestjava.fragments.pendulumFragments.views.SinglePend
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Objects;
 
 public class PendulumsFragment extends Fragment {
 
@@ -34,6 +36,7 @@ public class PendulumsFragment extends Fragment {
     private TextView lastPlayedSingle, lastPlayedDouble;
     private SharedPreferences.Editor editor;
 
+    @SuppressLint("CommitPrefEdits")
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -51,7 +54,7 @@ public class PendulumsFragment extends Fragment {
         singleInfo.setOnClickListener(v14 -> openInfoFragment("single"));
         doubleInfo.setOnClickListener(v13 -> openInfoFragment("double"));
 
-        preferences = getActivity().getSharedPreferences("prefs", Context.MODE_PRIVATE);
+        preferences = Objects.requireNonNull(getActivity()).getSharedPreferences("prefs", Context.MODE_PRIVATE);
         editor = preferences.edit();
 
         lastPlayedSingle.setText(preferences.getString("single", "-"));

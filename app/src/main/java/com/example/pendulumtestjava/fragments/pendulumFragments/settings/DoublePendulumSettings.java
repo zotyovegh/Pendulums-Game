@@ -1,5 +1,6 @@
 package com.example.pendulumtestjava.fragments.pendulumFragments.settings;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -29,13 +30,14 @@ public class DoublePendulumSettings extends AppCompatDialogFragment {
     private EditText a1, a2, r1, r2, g, m1, m2, trace1, trace2;
     private DoublePendulumModel data = DoublePendulumModel.getInstance();
 
+    @SuppressLint("DefaultLocale")
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(Objects.requireNonNull(getActivity()));
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
-        View view = inflater.inflate(R.layout.settings_doublep, null);
+        @SuppressLint("InflateParams") View view = inflater.inflate(R.layout.settings_doublep, null);
 
         a1 = view.findViewById(R.id.a1);
         double temp1a = Math.toDegrees(data.getA1());
