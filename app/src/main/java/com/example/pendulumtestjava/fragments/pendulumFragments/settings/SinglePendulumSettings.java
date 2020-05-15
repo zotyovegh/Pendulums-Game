@@ -2,6 +2,7 @@ package com.example.pendulumtestjava.fragments.pendulumFragments.settings;
 
 import android.app.Dialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -30,8 +31,8 @@ public class SinglePendulumSettings extends AppCompatDialogFragment {
     private EditText r, g, damp, trace;
     private Switch switch1;
     private CheckBox checkBox;
-    private SeekBar aSeekBar;
-    private TextView aSeekBarNum;
+    private SeekBar aSeekBar, rSeekBar, gSeekBar, dampSeekBar, traceSeekBar;
+    private TextView aNum, rNum, gNum, dampNum, traceNum;
 
     @NonNull
     @Override
@@ -42,19 +43,77 @@ public class SinglePendulumSettings extends AppCompatDialogFragment {
         View view = inflater.inflate(R.layout.settings_singlep, null);
 
         aSeekBar = view.findViewById(R.id.aSeekBar);
-        aSeekBarNum = view.findViewById(R.id.aNum);
+        rSeekBar = view.findViewById(R.id.rSeekBar);
+        gSeekBar = view.findViewById(R.id.gSeekBar);
+        dampSeekBar = view.findViewById(R.id.dampSeekBar);
+        traceSeekBar = view.findViewById(R.id.traceSeekBar);
+
         aSeekBar.setProgress((int)Math.toDegrees(data.getA()));
-        aSeekBarNum.setText(String.format("%.0f",Math.toDegrees(data.getA())));
+        rSeekBar.setProgress((int)data.getR());
+        gSeekBar.setProgress((int)data.getGravity()*100);
+        dampSeekBar.setProgress((int)data.getDamping());
+        traceSeekBar.setProgress(data.getTrace());
+
+
+
+
+        aNum = view.findViewById(R.id.aNum);
+        aNum.setText(String.format("%.0f",Math.toDegrees(data.getA())));
+        rNum = view.findViewById(R.id.rNum);
+        rNum.setText(String.format("%.0f",data.getR()));
+        gNum = view.findViewById(R.id.gNum);
+        gNum.setText(String.format("%.2f",data.getGravity()));
+
+
+
+
+
+
         aSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                aSeekBarNum.setText(String.valueOf(progress));
+                aNum.setText(String.valueOf(progress));
             }
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {}
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {}
         });
+        rSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                rNum.setText(String.valueOf(progress));
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+        gSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                gNum.setText(String.format("%.2f",(double)progress / 100));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+
 
         r = view.findViewById(R.id.r);
         r.setText(String.format("%.0f", data.getR()));
@@ -92,9 +151,10 @@ public class SinglePendulumSettings extends AppCompatDialogFragment {
                 .setPositiveButton("OK",
                         (dialog, whichButton) -> {
                             data.setA(aSeekBar.getProgress());
-                            data.setR(Double.parseDouble(r.getText().toString()));
+                            data.setR(rSeekBar.getProgress());
 
-                            data.setGravity(Float.parseFloat((g.getText().toString()).replace(',','.')));
+                            data.setGravity(gSeekBar.getProgress());
+                            Log.i("TAG", "Set: " + gSeekBar.getProgress());
                             data.setDamping(Float.parseFloat((damp.getText().toString()).replace(',','.')));
 
                             if(switch1.isChecked()) {
