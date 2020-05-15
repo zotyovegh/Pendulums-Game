@@ -1,7 +1,6 @@
 package com.example.pendulumtestjava.fragments.pendulumFragments.viewModels;
 
 
-import android.annotation.SuppressLint;
 import android.util.Log;
 
 import androidx.lifecycle.ViewModel;
@@ -156,7 +155,7 @@ public class DoublePendulumViewModel extends ViewModel {
     }
 
     public void save() {
-        @SuppressLint("SimpleDateFormat") SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String millisInString = dateFormat.format(new Date());
 
         String json = new Gson().toJson(path.getArray());
