@@ -2,12 +2,15 @@ package com.example.pendulumtestjava.fragments.pendulumFragments.settings;
 
 import android.app.Dialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.SeekBar;
 import android.widget.Switch;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,9 +28,11 @@ public class SinglePendulumSettings extends AppCompatDialogFragment {
     private Button traceColorButton, ballColorButton;
     private int traceDefaultColor, ballDefaultColor;
     private SinglePendulumModel data = SinglePendulumModel.getInstance();
-    private EditText a, r, g, damp, trace;
+    private EditText r, g, damp, trace;
     private Switch switch1;
     private CheckBox checkBox;
+    private SeekBar aSeekBar;
+    private TextView aSeekBarNum;
 
     @NonNull
     @Override
@@ -37,9 +42,21 @@ public class SinglePendulumSettings extends AppCompatDialogFragment {
 
         View view = inflater.inflate(R.layout.settings_singlep, null);
 
-        a = view.findViewById(R.id.a);
-        double temp = Math.toDegrees(data.getA());
-        a.setText(String.format("%.0f", temp));
+        aSeekBar = view.findViewById(R.id.aSeekBar);
+        aSeekBarNum = view.findViewById(R.id.aSeekBarNum);
+        aSeekBar.setProgress((int)Math.toDegrees(data.getA()));
+        aSeekBarNum.setText(String.format("%.0f",Math.toDegrees(data.getA())));
+        aSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                aSeekBarNum.setText(String.valueOf(progress));
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {}
+        });
+
         r = view.findViewById(R.id.r);
         r.setText(String.format("%.0f", data.getR()));
         g = view.findViewById(R.id.g);
@@ -75,7 +92,7 @@ public class SinglePendulumSettings extends AppCompatDialogFragment {
                 .setTitle("Settings")
                 .setPositiveButton("OK",
                         (dialog, whichButton) -> {
-                            data.setA(Double.parseDouble(a.getText().toString()));
+                            data.setA(aSeekBar.getProgress());
                             data.setR(Double.parseDouble(r.getText().toString()));
 
                             data.setGravity(Float.parseFloat((g.getText().toString()).replace(',','.')));

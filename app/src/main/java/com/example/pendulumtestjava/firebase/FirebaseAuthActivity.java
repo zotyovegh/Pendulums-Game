@@ -61,6 +61,7 @@ public class FirebaseAuthActivity extends AppCompatActivity {
         if (requestCode == REQUEST_CODE) {
 
             if (resultCode == RESULT_OK) {
+//                Log.i("TAG", "ID: " + auth.getUid());
                 startActivity(new Intent(this, MainActivity.class));
             }
         } else {
