@@ -2,7 +2,6 @@ package com.example.pendulumtestjava.fragments.pendulumFragments.settings;
 
 import android.app.Dialog;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -43,7 +42,7 @@ public class SinglePendulumSettings extends AppCompatDialogFragment {
         View view = inflater.inflate(R.layout.settings_singlep, null);
 
         aSeekBar = view.findViewById(R.id.aSeekBar);
-        aSeekBarNum = view.findViewById(R.id.aSeekBarNum);
+        aSeekBarNum = view.findViewById(R.id.aNum);
         aSeekBar.setProgress((int)Math.toDegrees(data.getA()));
         aSeekBarNum.setText(String.format("%.0f",Math.toDegrees(data.getA())));
         aSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
