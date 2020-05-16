@@ -54,20 +54,16 @@ public class SinglePendulumSettings extends AppCompatDialogFragment {
         dampSeekBar.setProgress((int)data.getDamping());
         traceSeekBar.setProgress(data.getTrace());
 
-
-
-
         aNum = view.findViewById(R.id.aNum);
         aNum.setText(String.format("%.0f",Math.toDegrees(data.getA())));
         rNum = view.findViewById(R.id.rNum);
         rNum.setText(String.format("%.0f",data.getR()));
         gNum = view.findViewById(R.id.gNum);
         gNum.setText(String.format("%.2f",data.getGravity()));
-
-
-
-
-
+        dampNum = view.findViewById(R.id.dampNum);
+        dampNum.setText(String.format("%.4f", data.getDamping()));
+        traceNum = view.findViewById(R.id.traceNum);
+        traceNum.setText(String.format("%.0f", data.getTrace()));
 
         aSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -83,17 +79,12 @@ public class SinglePendulumSettings extends AppCompatDialogFragment {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 rNum.setText(String.valueOf(progress));
-
             }
-
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-
             }
-
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-
             }
         });
         gSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -101,20 +92,40 @@ public class SinglePendulumSettings extends AppCompatDialogFragment {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 gNum.setText(String.format("%.2f",(double)progress / 100));
             }
-
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-
             }
-
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-
             }
         });
 
+        dampSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
 
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+        });
 
+        traceSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+        });
+        
         r = view.findViewById(R.id.r);
         r.setText(String.format("%.0f", data.getR()));
         g = view.findViewById(R.id.g);
