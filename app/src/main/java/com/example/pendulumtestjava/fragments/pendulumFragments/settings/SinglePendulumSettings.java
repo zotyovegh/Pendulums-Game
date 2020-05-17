@@ -50,10 +50,8 @@ public class SinglePendulumSettings extends AppCompatDialogFragment {
 
         aSeekBar.setProgress((int)Math.toDegrees(data.getA()));
         rSeekBar.setProgress((int)data.getR());
-        int gravity = (int)(data.getGravity()*1000);
-        gSeekBar.setProgress(gravity);
-        Log.i("TAG", "Gravity: " + gravity);
-        dampSeekBar.setProgress((int)data.getDamping());
+        gSeekBar.setProgress( (int)(data.getGravity()*1000));
+        dampSeekBar.setProgress((int)(data.getDamping()*10000));
         traceSeekBar.setProgress(data.getTrace());
 
         aNum = view.findViewById(R.id.aNum);
@@ -61,9 +59,9 @@ public class SinglePendulumSettings extends AppCompatDialogFragment {
         rNum = view.findViewById(R.id.rNum);
         rNum.setText(String.format("%.0f",data.getR()));
         gNum = view.findViewById(R.id.gNum);
-        gNum.setText(String.format("%.2f",data.getGravity()*10));
-//        dampNum = view.findViewById(R.id.dampNum);
-//        dampNum.setText(String.format("%.4f", data.getDamping()));
+        gNum.setText(String.format("%.2f", data.getGravity()*10));
+        dampNum = view.findViewById(R.id.dampNum);
+        dampNum.setText(String.format("%.4f", data.getDamping()));
 //        traceNum = view.findViewById(R.id.traceNum);
 //        traceNum.setText(String.format("%.0f", data.getTrace()));
 //
@@ -101,19 +99,19 @@ public class SinglePendulumSettings extends AppCompatDialogFragment {
             public void onStopTrackingTouch(SeekBar seekBar) {
             }
         });
-//
-//        dampSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-//            @Override
-//            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-//
-//            }
-//            @Override
-//            public void onStartTrackingTouch(SeekBar seekBar) {
-//            }
-//            @Override
-//            public void onStopTrackingTouch(SeekBar seekBar) {
-//            }
-//        });
+
+        dampSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                dampNum.setText(Float.toString((float)(progress * 0.0001)));
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+        });
 //
 //        traceSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 //            @Override
@@ -165,11 +163,8 @@ public class SinglePendulumSettings extends AppCompatDialogFragment {
                         (dialog, whichButton) -> {
                             data.setA(aSeekBar.getProgress());
                             data.setR(rSeekBar.getProgress());
-
                             data.setGravity((float)(gSeekBar.getProgress() * 0.01));
-
-                            Log.i("TAG", "Set: " + gSeekBar.getProgress());
-                            data.setDamping(Float.parseFloat((damp.getText().toString()).replace(',','.')));
+                            data.setDamping((float)(dampSeekBar.getProgress() * 0.0001));
 
                             if(switch1.isChecked()) {
                                 data.setTrace(Integer.parseInt(trace.getText().toString()));
