@@ -52,7 +52,7 @@ public class DoublePRepository {
         dataD.setA2(Math.toDegrees(pendulum.getA2()));
         dataD.setR1(pendulum.getR1());
         dataD.setR2(pendulum.getR2());
-        dataD.setG(pendulum.getG());
+        dataD.setG(pendulum.getG()*10);
         dataD.setM1(pendulum.getM1());
         dataD.setM2(pendulum.getM2());
         dataD.setTrace1(pendulum.getTrace1());

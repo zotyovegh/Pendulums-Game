@@ -116,7 +116,7 @@ public class DoublePendulumModel {
     }
 
     public float getG() {
-        return g;
+        return (float)(g * 0.1);
     }
 
     public void setG(float g) {
@@ -183,7 +183,7 @@ public class DoublePendulumModel {
         r2 = 250;
         a1 = Math.PI / 2;
         a2 = Math.PI / 2;
-        g = (float)0.6;
+        g = (float)9.81;
         m1 = 50;
         m2 = 10;
         trace1 = 200;

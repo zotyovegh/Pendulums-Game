@@ -1,5 +1,6 @@
 package com.example.pendulumtestjava.fragments.pendulumFragments.settings;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,7 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.SeekBar;
 import android.widget.Switch;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,35 +29,120 @@ public class DoublePendulumSettings extends AppCompatDialogFragment {
     private int trace1DefaultColor, trace2DefaultColor, ball1DefaultColor, ball2DefaultColor;
     private Switch trace1Switch, trace2Switch;
     private CheckBox checkBoxTrace1, checkBoxTrace2;
-    private EditText a1, a2, r1, r2, g, m1, m2, trace1, trace2;
+    private EditText trace1, trace2;
     private DoublePendulumModel data = DoublePendulumModel.getInstance();
+    private SeekBar a1b, a2b, r1b, r2b, gb, m1b, m2b;
+    private TextView a1num, a2num, r1num, r2num, gnum, m1num, m2num;
 
+    @SuppressLint({"SetTextI18n", "DefaultLocale", "InflateParams"})
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(Objects.requireNonNull(getActivity()));
         LayoutInflater inflater = getActivity().getLayoutInflater();
-
         View view = inflater.inflate(R.layout.settings_doublep, null);
 
-        a1 = view.findViewById(R.id.a1);
-        double temp1a = Math.toDegrees(data.getA1());
-        a1.setText(String.format("%.0f", temp1a));
-        a2 = view.findViewById(R.id.a2);
-        double temp2a = Math.toDegrees(data.getA2());
-        a2.setText(String.format("%.0f", temp2a));
+        a1b = view.findViewById(R.id.a1b);
+        a2b = view.findViewById(R.id.a2b);
+        r1b = view.findViewById(R.id.r1b);
+        r2b = view.findViewById(R.id.r2b);
+        gb = view.findViewById(R.id.gb);
+        m1b = view.findViewById(R.id.m1b);
+        m2b = view.findViewById(R.id.m2b);
 
-        r1 = view.findViewById(R.id.r1);
-        r1.setText(String.format("%.0f", data.getR1()));
-        r2 = view.findViewById(R.id.r2);
-        r2.setText(String.format("%.0f", data.getR2()));
-        g = view.findViewById(R.id.g);
-        g.setText(String.format("%.1f", data.getG()));
+        a1b.setProgress((int)Math.toDegrees(data.getA1()));
+        a2b.setProgress((int)Math.toDegrees(data.getA2()));
+        r1b.setProgress((int)data.getR1());
+        r2b.setProgress((int)data.getR2());
+        gb.setProgress((int)(data.getG()*1000));
+        m1b.setProgress((int)data.getM1());
+        m2b.setProgress((int)data.getM2());
 
-        m1 = view.findViewById(R.id.m1);
-        m1.setText(String.format("%.0f", data.getM1()));
-        m2 = view.findViewById(R.id.m2);
-        m2.setText(String.format("%.0f", data.getM2()));
+        a1num = view.findViewById(R.id.a1num);
+        a1num.setText(String.format("%.0f",Math.toDegrees(data.getA1())));
+        a2num = view.findViewById(R.id.a2num);
+        a2num.setText(String.format("%.0f",Math.toDegrees(data.getA2())));
+        r1num = view.findViewById(R.id.r1num);
+        r1num.setText(String.format("%.0f",data.getR1()));
+        r2num = view.findViewById(R.id.r2num);
+        r2num.setText(String.format("%.0f",data.getR2()));
+        gnum = view.findViewById(R.id.gnum);
+        gnum.setText(String.format("%.2f", data.getG()*10));
+        m1num = view.findViewById(R.id.m1num);
+        m1num.setText(String.format("%.0f",data.getM1()));
+        m2num = view.findViewById(R.id.m2num);
+        m2num.setText(String.format("%.0f",data.getM2()));
+
+        a1b.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                a1num.setText(String.valueOf(progress));
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {}
+        });
+        a2b.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                a2num.setText(String.valueOf(progress));
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {}
+        });
+        r1b.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                r1num.setText(String.valueOf(progress));
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {}
+        });
+        r2b.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                r2num.setText(String.valueOf(progress));
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {}
+        });
+        gb.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                gnum.setText(Float.toString((float)(progress * 0.01)));
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {}
+        });
+        m1b.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                m1num.setText(String.valueOf(progress));
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {}
+        });
+        m2b.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                m2num.setText(String.valueOf(progress));
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {}
+        });
 
         trace1 = view.findViewById(R.id.trace1);
         trace1.setText(String.valueOf(data.getTrace1()));
@@ -103,14 +191,14 @@ public class DoublePendulumSettings extends AppCompatDialogFragment {
                 .setTitle("Settings")
                 .setPositiveButton("OK",
                         (dialog, whichButton) -> {
-                            data.setA1(Double.parseDouble(a1.getText().toString()));
-                            data.setA2(Double.parseDouble(a2.getText().toString()));
-                            data.setR1(Double.parseDouble(r1.getText().toString()));
-                            data.setR2(Double.parseDouble(r2.getText().toString()));
+                            data.setA1(a1b.getProgress());
+                            data.setA2(a2b.getProgress());
+                            data.setR1(r1b.getProgress());
+                            data.setR2(r2b.getProgress());
 
-                            data.setG(Float.parseFloat((g.getText().toString()).replace(',','.')));
-                            data.setM1(Double.parseDouble(m1.getText().toString()));
-                            data.setM2(Double.parseDouble(m2.getText().toString()));
+                            data.setG((float)(gb.getProgress() * 0.01));
+                            data.setM1(m1b.getProgress());
+                            data.setM2(m2b.getProgress());
 
                             data.setBall1Color(ball1DefaultColor);
                             data.setBall2Color(ball2DefaultColor);
