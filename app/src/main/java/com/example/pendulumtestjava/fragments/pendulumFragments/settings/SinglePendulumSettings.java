@@ -1,15 +1,12 @@
 package com.example.pendulumtestjava.fragments.pendulumFragments.settings;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.SeekBar;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -25,31 +22,31 @@ import java.util.Objects;
 import yuku.ambilwarna.AmbilWarnaDialog;
 
 public class SinglePendulumSettings extends AppCompatDialogFragment {
-    private Button traceColorButton, ballColorButton;
-    private int traceDefaultColor, ballDefaultColor;
     private SinglePendulumModel data = SinglePendulumModel.getInstance();
-    private SeekBar aSeekBar, rSeekBar, gSeekBar, dampSeekBar, traceSeekBar;
+    private Button traceColorButton, ballColorButton;
     private TextView aNum, rNum, gNum, dampNum, traceNum;
+    private int traceDefaultColor, ballDefaultColor;
+    private SeekBar a, r, g, damp, trace;
 
+    @SuppressLint({"SetTextI18n", "DefaultLocale", "InflateParams"})
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(Objects.requireNonNull(getActivity()));
         LayoutInflater inflater = getActivity().getLayoutInflater();
-
         View view = inflater.inflate(R.layout.settings_singlep, null);
 
-        aSeekBar = view.findViewById(R.id.aSeekBar);
-        rSeekBar = view.findViewById(R.id.rSeekBar);
-        gSeekBar = view.findViewById(R.id.gSeekBar);
-        dampSeekBar = view.findViewById(R.id.dampSeekBar);
-        traceSeekBar = view.findViewById(R.id.traceSeekBar);
+        a = view.findViewById(R.id.aSeekBar);
+        r = view.findViewById(R.id.rSeekBar);
+        g = view.findViewById(R.id.gSeekBar);
+        damp = view.findViewById(R.id.dampSeekBar);
+        trace = view.findViewById(R.id.traceSeekBar);
 
-        aSeekBar.setProgress((int)Math.toDegrees(data.getA()));
-        rSeekBar.setProgress((int)data.getR());
-        gSeekBar.setProgress( (int)(data.getGravity()*1000));
-        dampSeekBar.setProgress((int)(data.getDamping()*10000));
-        traceSeekBar.setProgress(data.getTrace());
+        a.setProgress((int)Math.toDegrees(data.getA()));
+        r.setProgress((int)data.getR());
+        g.setProgress( (int)(data.getGravity()*1000));
+        damp.setProgress((int)(data.getDamping()*10000));
+        trace.setProgress(data.getTrace());
 
         aNum = view.findViewById(R.id.aNum);
         aNum.setText(String.format("%.0f",Math.toDegrees(data.getA())));
@@ -70,8 +67,7 @@ public class SinglePendulumSettings extends AppCompatDialogFragment {
             traceNum.setText(String.valueOf(data.getTrace()));
         }
 
-
-        aSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        a.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 aNum.setText(String.valueOf(progress));
@@ -81,45 +77,39 @@ public class SinglePendulumSettings extends AppCompatDialogFragment {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {}
         });
-        rSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        r.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 rNum.setText(String.valueOf(progress));
             }
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-            }
+            public void onStartTrackingTouch(SeekBar seekBar) {}
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-            }
+            public void onStopTrackingTouch(SeekBar seekBar) {}
         });
-        gSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        g.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 gNum.setText(Float.toString((float)(progress * 0.01)));
             }
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-            }
+            public void onStartTrackingTouch(SeekBar seekBar) {}
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-            }
+            public void onStopTrackingTouch(SeekBar seekBar) {}
         });
 
-        dampSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        damp.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 dampNum.setText(Float.toString((float)(progress * 0.0001)));
             }
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-            }
+            public void onStartTrackingTouch(SeekBar seekBar) {}
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-            }
+            public void onStopTrackingTouch(SeekBar seekBar) {}
         });
 
-        traceSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        trace.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 if(progress == 30)
@@ -131,8 +121,6 @@ public class SinglePendulumSettings extends AppCompatDialogFragment {
                 }else{
                     traceNum.setText(String.valueOf(progress));
                 }
-
-
             }
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
@@ -157,25 +145,22 @@ public class SinglePendulumSettings extends AppCompatDialogFragment {
                 .setTitle("Settings")
                 .setPositiveButton("OK",
                         (dialog, whichButton) -> {
-                            data.setA(aSeekBar.getProgress());
-                            data.setR(rSeekBar.getProgress());
-                            data.setGravity((float)(gSeekBar.getProgress() * 0.01));
-                            data.setDamping((float)(dampSeekBar.getProgress() * 0.0001));
-
-                            if(traceSeekBar.getProgress() == 30)
+                            data.setA(a.getProgress());
+                            data.setR(r.getProgress());
+                            data.setGravity((float)(g.getProgress() * 0.01));
+                            data.setDamping((float)(damp.getProgress() * 0.0001));
+                            if(trace.getProgress() == 30)
                             {
                                 data.setTraceOn(false);
                                 data.setEndlessTrace(false);
-                            }else if(traceSeekBar.getProgress() == 101)
+                            }else if(trace.getProgress() == 101)
                             {
                                 data.setTraceOn(true);
                                 data.setEndlessTrace(true);
                             }else{
-                                data.setTrace(traceSeekBar.getProgress());
+                                data.setTrace(trace.getProgress());
                                 data.setTraceOn(true);
                             }
-
-
                             data.setTraceDrawColor(traceDefaultColor);
                             data.setBallDrawColor(ballDefaultColor);
                         }
@@ -190,7 +175,6 @@ public class SinglePendulumSettings extends AppCompatDialogFragment {
         AmbilWarnaDialog colorPicker = new AmbilWarnaDialog(getActivity(), traceDefaultColor, new AmbilWarnaDialog.OnAmbilWarnaListener() {
             @Override
             public void onCancel(AmbilWarnaDialog dialog) {}
-
             @Override
             public void onOk(AmbilWarnaDialog dialog, int color) {
                 traceDefaultColor = color;
@@ -203,10 +187,7 @@ public class SinglePendulumSettings extends AppCompatDialogFragment {
     private void openColorPicker2() {
         AmbilWarnaDialog colorPicker2 = new AmbilWarnaDialog(getActivity(), ballDefaultColor, new AmbilWarnaDialog.OnAmbilWarnaListener() {
             @Override
-            public void onCancel(AmbilWarnaDialog dialog) {
-
-            }
-
+            public void onCancel(AmbilWarnaDialog dialog) {}
             @Override
             public void onOk(AmbilWarnaDialog dialog, int color) {
                 ballDefaultColor = color;

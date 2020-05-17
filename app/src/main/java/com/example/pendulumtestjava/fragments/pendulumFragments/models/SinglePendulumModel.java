@@ -109,7 +109,7 @@ public class SinglePendulumModel {
 
     public void resetValues() {
         trace = 100;
-        gravity = (float)9.82;
+        gravity = (float)9.81;
         damping = (float)0.999;
         r = 300;
         a = Math.PI / 2;
