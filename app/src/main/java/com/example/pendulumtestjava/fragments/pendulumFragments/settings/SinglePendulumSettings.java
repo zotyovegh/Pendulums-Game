@@ -62,9 +62,18 @@ public class SinglePendulumSettings extends AppCompatDialogFragment {
         gNum.setText(String.format("%.2f", data.getGravity()*10));
         dampNum = view.findViewById(R.id.dampNum);
         dampNum.setText(String.format("%.4f", data.getDamping()));
-//        traceNum = view.findViewById(R.id.traceNum);
-//        traceNum.setText(String.format("%.0f", data.getTrace()));
-//
+        traceNum = view.findViewById(R.id.traceNum);
+        if(data.getTrace() == 30)
+        {
+            traceNum.setText("Off");
+        }else if(data.getTrace() == 101)
+        {
+            traceNum.setText("Endless");
+        }else{
+            traceNum.setText(String.valueOf(data.getTrace()));
+        }
+
+
         aSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -112,19 +121,29 @@ public class SinglePendulumSettings extends AppCompatDialogFragment {
             public void onStopTrackingTouch(SeekBar seekBar) {
             }
         });
-//
-//        traceSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-//            @Override
-//            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-//
-//            }
-//            @Override
-//            public void onStartTrackingTouch(SeekBar seekBar) {
-//            }
-//            @Override
-//            public void onStopTrackingTouch(SeekBar seekBar) {
-//            }
-//        });
+
+        traceSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if(progress == 30)
+                {
+                    traceNum.setText("Off");
+                }else if(progress == 101)
+                {
+                    traceNum.setText("Endless");
+                }else{
+                    traceNum.setText(String.valueOf(progress));
+                }
+
+
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+        });
 
         r = view.findViewById(R.id.r);
         r.setText(String.format("%.0f", data.getR()));
@@ -166,14 +185,20 @@ public class SinglePendulumSettings extends AppCompatDialogFragment {
                             data.setGravity((float)(gSeekBar.getProgress() * 0.01));
                             data.setDamping((float)(dampSeekBar.getProgress() * 0.0001));
 
-                            if(switch1.isChecked()) {
-                                data.setTrace(Integer.parseInt(trace.getText().toString()));
-                                data.setTraceOn(true);
-                                data.setEndlessTrace(checkBox.isChecked());
-                            }else {
+                            if(traceSeekBar.getProgress() == 30)
+                            {
                                 data.setTraceOn(false);
-                                data.setEndlessTrace(checkBox.isChecked());
+                                data.setEndlessTrace(false);
+                            }else if(traceSeekBar.getProgress() == 101)
+                            {
+                                data.setTraceOn(true);
+                                data.setEndlessTrace(true);
+                            }else{
+                                data.setTrace(traceSeekBar.getProgress());
+                                data.setTraceOn(true);
                             }
+
+
                             data.setTraceDrawColor(traceDefaultColor);
                             data.setBallDrawColor(ballDefaultColor);
                         }
