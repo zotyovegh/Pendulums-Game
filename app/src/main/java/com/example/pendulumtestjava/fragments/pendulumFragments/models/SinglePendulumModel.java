@@ -76,7 +76,7 @@ public class SinglePendulumModel {
     }
 
     public float getGravity() {
-        return gravity;
+        return (float)(gravity * 0.1);
     }
 
     public void setGravity(float gravity) {
@@ -109,7 +109,7 @@ public class SinglePendulumModel {
 
     public void resetValues() {
         trace = 100;
-        gravity = (float)1;
+        gravity = (float)9.82;
         damping = (float)0.999;
         r = 300;
         a = Math.PI / 2;

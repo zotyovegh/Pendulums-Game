@@ -49,7 +49,7 @@ public class SinglePRepository {
         ArrayList<Float> temp = gson.fromJson(pendulum.getPointsJson(), listType);
         dataS.setA(Math.toDegrees(pendulum.getA()));
         dataS.setR(pendulum.getR());
-        dataS.setGravity(pendulum.getG());
+        dataS.setGravity(pendulum.getG()*10);
         dataS.setDamping(pendulum.getDamping());
         dataS.setTrace(pendulum.getTrace());
         dataS.setBallDrawColor(pendulum.getBallColor());
