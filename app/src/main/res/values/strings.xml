@@ -25,13 +25,13 @@
     <string name="m2">m2 =</string>
     <string name="trace_1">Trace 1 =</string>
     <string name="trace_2">Trace 2 =</string>
-    <string name="damping">Damping =</string>
+    <string name="damping">Damping</string>
     <string name="infinite">Infinite</string>
-    <string name="trajectory">Trajectory =</string>
-    <string name="ball_color">Ball color =</string>
+    <string name="trajectory">Trajectory</string>
+    <string name="ball_color">Ball color</string>
     <string name="ball_1_color">Ball 1 color =</string>
     <string name="ball_2_color">Ball 2 color =</string>
-    <string name="trace_color">Trace color =</string>
+    <string name="trace_color">Trace color</string>
     <string name="trace_1_color">Trace 1 color =</string>
     <string name="trace_2_color">Trace 2 color =</string>
 

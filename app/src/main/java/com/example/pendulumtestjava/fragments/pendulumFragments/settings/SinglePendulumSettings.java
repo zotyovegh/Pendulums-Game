@@ -28,9 +28,6 @@ public class SinglePendulumSettings extends AppCompatDialogFragment {
     private Button traceColorButton, ballColorButton;
     private int traceDefaultColor, ballDefaultColor;
     private SinglePendulumModel data = SinglePendulumModel.getInstance();
-    private EditText r, g, damp, trace;
-    private Switch switch1;
-    private CheckBox checkBox;
     private SeekBar aSeekBar, rSeekBar, gSeekBar, dampSeekBar, traceSeekBar;
     private TextView aNum, rNum, gNum, dampNum, traceNum;
 
@@ -144,26 +141,6 @@ public class SinglePendulumSettings extends AppCompatDialogFragment {
             public void onStopTrackingTouch(SeekBar seekBar) {
             }
         });
-
-        r = view.findViewById(R.id.r);
-        r.setText(String.format("%.0f", data.getR()));
-        g = view.findViewById(R.id.g);
-        g.setText(String.format("%.2f", data.getGravity()));
-        damp = view.findViewById(R.id.damp);
-        damp.setText(String.format("%.4f", data.getDamping()));
-        trace = view.findViewById(R.id.trace);
-        trace.setText(String.valueOf(data.getTrace()));
-        switch1 = view.findViewById(R.id.switch1);
-        switch1.setChecked(data.isTraceOn());
-        checkBox = view.findViewById(R.id.checkBox);
-        checkBox.setChecked(data.isEndlessTrace());
-
-        if(!data.isTraceOn())
-        {
-            switch1.setChecked(false);
-        } else {
-            switch1.setChecked(true);
-        }
 
         traceDefaultColor = data.getTraceDrawColor();
         ballDefaultColor = data.getBallDrawColor();
