@@ -307,13 +307,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <CheckBox
-                android:id="@+id/checkBoxTrace1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/infinite"
+            <SeekBar
+                android:id="@+id/trace1b"
+                android:layout_width="156dp"
+                android:layout_height="16dp"
+                android:layout_marginEnd="60dp"
+                android:layout_marginRight="60dp"
+                android:max="101"
+                android:min="30"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/trace1Switch"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -330,26 +333,14 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0" />
 
-            <EditText
-                android:id="@+id/trace1"
-                android:layout_width="60dp"
-                android:layout_height="38dp"
-                android:ems="10"
-                android:inputType="numberDecimal"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/t1t"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
-
-            <Switch
-                android:id="@+id/trace1Switch"
-                android:layout_width="45dp"
-                android:layout_height="20dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
+            <TextView
+                android:id="@+id/trace1num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="30"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/trace1b"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -357,13 +348,26 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <CheckBox
-                android:id="@+id/checkBoxTrace2"
+            <TextView
+                android:id="@+id/trace2num"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/infinite"
+                android:text="30"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/trace2Switch"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/trace2b"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <SeekBar
+                android:id="@+id/trace2b"
+                android:layout_width="156dp"
+                android:layout_height="16dp"
+                android:layout_marginEnd="60dp"
+                android:layout_marginRight="60dp"
+                android:max="101"
+                android:min="30"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -380,27 +384,6 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0" />
 
-            <EditText
-                android:id="@+id/trace2"
-                android:layout_width="60dp"
-                android:layout_height="38dp"
-                android:ems="10"
-                android:inputType="numberDecimal"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/t2t"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <Switch
-                android:id="@+id/trace2Switch"
-                android:layout_width="45dp"
-                android:layout_height="20dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.545" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -423,10 +406,10 @@
 
             <Button
                 android:id="@+id/ballColor1"
-                android:layout_width="100dp"
+                android:layout_width="120dp"
                 android:layout_height="35dp"
-                android:layout_marginEnd="40dp"
-                android:layout_marginRight="40dp"
+                android:layout_marginEnd="70dp"
+                android:layout_marginRight="70dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -453,10 +436,10 @@
 
             <Button
                 android:id="@+id/traceColor1"
-                android:layout_width="100dp"
+                android:layout_width="120dp"
                 android:layout_height="35dp"
-                android:layout_marginEnd="40dp"
-                android:layout_marginRight="40dp"
+                android:layout_marginEnd="70dp"
+                android:layout_marginRight="70dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -483,10 +466,10 @@
 
             <Button
                 android:id="@+id/ballColor2"
-                android:layout_width="100dp"
+                android:layout_width="120dp"
                 android:layout_height="35dp"
-                android:layout_marginEnd="40dp"
-                android:layout_marginRight="40dp"
+                android:layout_marginEnd="70dp"
+                android:layout_marginRight="70dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -513,10 +496,10 @@
 
             <Button
                 android:id="@+id/traceColor2"
-                android:layout_width="100dp"
+                android:layout_width="120dp"
                 android:layout_height="35dp"
-                android:layout_marginEnd="40dp"
-                android:layout_marginRight="40dp"
+                android:layout_marginEnd="70dp"
+                android:layout_marginRight="70dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
