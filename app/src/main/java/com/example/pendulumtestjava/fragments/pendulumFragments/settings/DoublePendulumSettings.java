@@ -31,6 +31,8 @@ public class DoublePendulumSettings extends AppCompatDialogFragment {
     private DoublePendulumModel data = DoublePendulumModel.getInstance();
     private SeekBar a1b, a2b, r1b, r2b, gb, m1b, m2b, trace1b, trace2b;
     private TextView a1num, a2num, r1num, r2num, gnum, m1num, m2num, trace1num, trace2num;
+    private static int TRACE1MAX = 101;
+    private static int TRACE2MAX = 401;
 
     @SuppressLint({"SetTextI18n", "DefaultLocale", "InflateParams"})
     @NonNull
@@ -81,6 +83,7 @@ public class DoublePendulumSettings extends AppCompatDialogFragment {
             trace1b.setProgress(30);
         } else if (data.isEndlessTrace1()) {
             trace1num.setText("Endless");
+            trace1b.setProgress(TRACE1MAX);
         } else {
             trace1num.setText(String.valueOf(data.getTrace1()));
         }
@@ -91,6 +94,7 @@ public class DoublePendulumSettings extends AppCompatDialogFragment {
             trace2b.setProgress(30);
         } else if (data.isEndlessTrace2()) {
             trace2num.setText("Endless");
+            trace2b.setProgress(TRACE2MAX);
         } else {
             trace2num.setText(String.valueOf(data.getTrace2()));
         }
@@ -198,7 +202,7 @@ public class DoublePendulumSettings extends AppCompatDialogFragment {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 if (progress == 30) {
                     trace1num.setText("Off");
-                } else if (progress == 101) {
+                } else if (progress == TRACE1MAX) {
                     trace1num.setText("Endless");
                 } else {
                     trace1num.setText(String.valueOf(progress));
@@ -218,7 +222,7 @@ public class DoublePendulumSettings extends AppCompatDialogFragment {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 if (progress == 30) {
                     trace2num.setText("Off");
-                } else if (progress == 401) {
+                } else if (progress == TRACE2MAX) {
                     trace2num.setText("Endless");
                 } else {
                     trace2num.setText(String.valueOf(progress));
@@ -271,31 +275,30 @@ public class DoublePendulumSettings extends AppCompatDialogFragment {
                             {
                                 data.setTrace1On(false);
                                 data.setEndlessTrace1(false);
-                            } else if (trace1b.getProgress() == 101)
+                            } else if (trace1b.getProgress() == TRACE1MAX)
                             {
                                 data.setTrace1On(true);
                                 data.setEndlessTrace1(true);
                             } else {
                                 data.setTrace1(trace1b.getProgress());
                                 data.setTrace1On(true);
+                                data.setEndlessTrace1(false);
                             }
 
                             if (trace2b.getProgress() == 30)
                             {
                                 data.setTrace2On(false);
                                 data.setEndlessTrace2(false);
-                                Log.i("TAG", "Progress: " + trace2b.getProgress() + " Trace 2: " + data.getTrace2());
 
-                            } else if (trace2b.getProgress() == 401)
+                            } else if (trace2b.getProgress() == TRACE2MAX)
                             {
                                 data.setTrace2On(true);
                                 data.setEndlessTrace2(true);
-                                Log.i("TAG", "Progress: " + trace2b.getProgress() + " Trace 2: " + data.getTrace2());
 
                             } else {
                                 data.setTrace2(trace2b.getProgress());
                                 data.setTrace2On(true);
-                                Log.i("TAG", "Progress: " + trace2b.getProgress() + " Trace 2: " + data.getTrace2());
+                                data.setEndlessTrace2(false);
                             }
                             data.setBall1Color(ball1DefaultColor);
                             data.setBall2Color(ball2DefaultColor);
