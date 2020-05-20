@@ -51,6 +51,7 @@ public class DoublePendulumView extends AppCompatActivity implements View.OnClic
         stick2 = findViewById(R.id.stickBox2);
         ball = findViewById(R.id.ballPaint);
         ball2 = findViewById(R.id.ballPaint2);
+        setBallSize();
 
         TextView middle = findViewById(R.id.middlePaint);
         DrawingPathView path = findViewById(R.id.path);
@@ -106,10 +107,11 @@ public class DoublePendulumView extends AppCompatActivity implements View.OnClic
         stick2.setX((float)(viewModel.getX1()+28));
         stick2.setY((float)(viewModel.getY1()+30));
 
-        ball.setX((float)viewModel.getX1());
-        ball.setY((float)viewModel.getY1());
-        ball2.setX((float)viewModel.getX2());
-        ball2.setY((float)viewModel.getY2());
+
+        ball.setX((float)viewModel.getX1()-(float)viewModel.getSizeCorrecter(true));
+        ball.setY((float)viewModel.getY1()-(float)viewModel.getSizeCorrecter(true));
+        ball2.setX((float)viewModel.getX2()-(float)viewModel.getSizeCorrecter(false));
+        ball2.setY((float)viewModel.getY2()-(float)viewModel.getSizeCorrecter(false));
 
         stick.setLayoutParams(new FrameLayout.LayoutParams(4, (int) viewModel.getR1()));
         stick2.setLayoutParams(new FrameLayout.LayoutParams(4, (int) viewModel.getR2()));
@@ -121,6 +123,12 @@ public class DoublePendulumView extends AppCompatActivity implements View.OnClic
         {
             stop = true;
         }
+    }
+
+    private void setBallSize()
+    {
+        ball.setLayoutParams(new FrameLayout.LayoutParams(viewModel.getBallSize(true), viewModel.getBallSize(true), FrameLayout.LayoutParams.WRAP_CONTENT));
+        ball2.setLayoutParams(new FrameLayout.LayoutParams(viewModel.getBallSize(false), viewModel.getBallSize(false), FrameLayout.LayoutParams.WRAP_CONTENT));
     }
 
     @Override
@@ -158,6 +166,7 @@ public class DoublePendulumView extends AppCompatActivity implements View.OnClic
                 viewModel.resetVariables();
                 viewModel.drawTraces();
                 drawObjects();
+                setBallSize();
                 break;
             case R.id.pause:
                 model.setStop(false);
@@ -178,6 +187,4 @@ public class DoublePendulumView extends AppCompatActivity implements View.OnClic
         timer.cancel();
         finish();
     }
-
-
 }

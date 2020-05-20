@@ -184,8 +184,8 @@ public class DoublePendulumModel {
         a1 = Math.PI / 2;
         a2 = Math.PI / 2;
         g = (float)9.81;
-        m1 = 50;
-        m2 = 10;
+        m1 = 40;
+        m2 = 30;
         trace1 = 100;
         trace2 = 100;
         trace1Color = 0xFF0000FF;

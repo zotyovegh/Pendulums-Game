@@ -232,4 +232,24 @@ public class DoublePendulumViewModel extends ViewModel {
     public int getBall2Color() {
         return ball2Color;
     }
+
+    public int getSizeCorrecter(boolean isFirstBall) {
+        //original is 60
+
+        return (getBallSize(isFirstBall) - 60) / 2;
+    }
+
+    public int getBallSize(boolean isFirstBall)
+    {
+        //Calc the new size from mass
+        if(isFirstBall)
+        {
+
+            return 40 + ((int)(0.8*model.getM1()));
+        }else
+        {
+            return 40 + ((int)(0.8*model.getM2()));
+
+        }
+    }
 }
