@@ -3,6 +3,7 @@ package com.example.pendulumtestjava.fragments.pendulumFragments.settings;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -73,20 +74,22 @@ public class DoublePendulumSettings extends AppCompatDialogFragment {
         m1num.setText(String.format("%.0f", data.getM1()));
         m2num = view.findViewById(R.id.m2num);
         m2num.setText(String.format("%.0f", data.getM2()));
-        trace1num = view.findViewById(R.id.trace1num);
 
-        if (data.getTrace1() == 30) {
+        trace1num = view.findViewById(R.id.trace1num);
+        if (!data.isTrace1On()) {
             trace1num.setText("Off");
-        } else if (data.getTrace1() == 101) {
+            trace1b.setProgress(30);
+        } else if (data.isEndlessTrace1()) {
             trace1num.setText("Endless");
         } else {
             trace1num.setText(String.valueOf(data.getTrace1()));
         }
 
         trace2num = view.findViewById(R.id.trace2num);
-        if (data.getTrace2() == 30) {
+        if (!data.isTrace2On()) {
             trace2num.setText("Off");
-        } else if (data.getTrace2() == 101) {
+            trace2b.setProgress(30);
+        } else if (data.isEndlessTrace2()) {
             trace2num.setText("Endless");
         } else {
             trace2num.setText(String.valueOf(data.getTrace2()));
@@ -215,7 +218,7 @@ public class DoublePendulumSettings extends AppCompatDialogFragment {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 if (progress == 30) {
                     trace2num.setText("Off");
-                } else if (progress == 101) {
+                } else if (progress == 401) {
                     trace2num.setText("Endless");
                 } else {
                     trace2num.setText(String.valueOf(progress));
@@ -264,10 +267,12 @@ public class DoublePendulumSettings extends AppCompatDialogFragment {
                             data.setM1(m1b.getProgress());
                             data.setM2(m2b.getProgress());
 
-                            if (trace1b.getProgress() == 30) {
+                            if (trace1b.getProgress() == 30)
+                            {
                                 data.setTrace1On(false);
                                 data.setEndlessTrace1(false);
-                            } else if (trace1b.getProgress() == 101) {
+                            } else if (trace1b.getProgress() == 101)
+                            {
                                 data.setTrace1On(true);
                                 data.setEndlessTrace1(true);
                             } else {
@@ -275,15 +280,22 @@ public class DoublePendulumSettings extends AppCompatDialogFragment {
                                 data.setTrace1On(true);
                             }
 
-                            if (trace2b.getProgress() == 30) {
+                            if (trace2b.getProgress() == 30)
+                            {
                                 data.setTrace2On(false);
                                 data.setEndlessTrace2(false);
-                            } else if (trace2b.getProgress() == 101) {
+                                Log.i("TAG", "Progress: " + trace2b.getProgress() + " Trace 2: " + data.getTrace2());
+
+                            } else if (trace2b.getProgress() == 401)
+                            {
                                 data.setTrace2On(true);
                                 data.setEndlessTrace2(true);
+                                Log.i("TAG", "Progress: " + trace2b.getProgress() + " Trace 2: " + data.getTrace2());
+
                             } else {
                                 data.setTrace2(trace2b.getProgress());
                                 data.setTrace2On(true);
+                                Log.i("TAG", "Progress: " + trace2b.getProgress() + " Trace 2: " + data.getTrace2());
                             }
                             data.setBall1Color(ball1DefaultColor);
                             data.setBall2Color(ball2DefaultColor);

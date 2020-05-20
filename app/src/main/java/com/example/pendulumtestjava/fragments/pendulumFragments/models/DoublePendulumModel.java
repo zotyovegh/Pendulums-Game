@@ -186,8 +186,8 @@ public class DoublePendulumModel {
         g = (float)9.81;
         m1 = 50;
         m2 = 10;
-        trace1 = 200;
-        trace2 = 200;
+        trace1 = 100;
+        trace2 = 100;
         trace1Color = 0xFF0000FF;
         trace2Color = 0xFF000000;
         ball1Color = 0xFF0000FF;

@@ -57,10 +57,10 @@ public class SinglePendulumSettings extends AppCompatDialogFragment {
         dampNum = view.findViewById(R.id.dampNum);
         dampNum.setText(String.format("%.4f", data.getDamping()));
         traceNum = view.findViewById(R.id.traceNum);
-        if(data.getTrace() == 30)
+        if(!data.isTraceOn())
         {
             traceNum.setText("Off");
-        }else if(data.getTrace() == 101)
+        }else if(data.isEndlessTrace())
         {
             traceNum.setText("Endless");
         }else{
