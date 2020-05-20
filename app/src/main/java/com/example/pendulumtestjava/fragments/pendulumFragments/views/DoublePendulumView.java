@@ -28,6 +28,8 @@ public class DoublePendulumView extends AppCompatActivity implements View.OnClic
     private TextView stick2;
     private TextView ball;
     private TextView ball2;
+    private float ball1Correcter;
+    private float ball2Correcter;
 
     private Handler handler = new Handler();
     private Timer timer = new Timer();
@@ -72,6 +74,9 @@ public class DoublePendulumView extends AppCompatActivity implements View.OnClic
         heightPoint = getWindowManager().getDefaultDisplay().getHeight() / 8;
         viewModel.defineVariables(widthMiddle, heightPoint, path, path2, dbViewModel);
 
+        ball1Correcter = (float)viewModel.getSizeCorrecter(true);
+        ball2Correcter = (float)viewModel.getSizeCorrecter(false);
+
         reset.setOnClickListener(this);
         pause.setOnClickListener(this);
         settings.setOnClickListener(this);
@@ -107,11 +112,10 @@ public class DoublePendulumView extends AppCompatActivity implements View.OnClic
         stick2.setX((float)(viewModel.getX1()+28));
         stick2.setY((float)(viewModel.getY1()+30));
 
-
-        ball.setX((float)viewModel.getX1()-(float)viewModel.getSizeCorrecter(true));
-        ball.setY((float)viewModel.getY1()-(float)viewModel.getSizeCorrecter(true));
-        ball2.setX((float)viewModel.getX2()-(float)viewModel.getSizeCorrecter(false));
-        ball2.setY((float)viewModel.getY2()-(float)viewModel.getSizeCorrecter(false));
+        ball.setX((float)viewModel.getX1()-ball1Correcter);
+        ball.setY((float)viewModel.getY1()-ball1Correcter);
+        ball2.setX((float)viewModel.getX2()-ball2Correcter);
+        ball2.setY((float)viewModel.getY2()-ball2Correcter);
 
         stick.setLayoutParams(new FrameLayout.LayoutParams(4, (int) viewModel.getR1()));
         stick2.setLayoutParams(new FrameLayout.LayoutParams(4, (int) viewModel.getR2()));
@@ -127,6 +131,8 @@ public class DoublePendulumView extends AppCompatActivity implements View.OnClic
 
     private void setBallSize()
     {
+        ball1Correcter = (float)viewModel.getSizeCorrecter(true);
+        ball2Correcter = (float)viewModel.getSizeCorrecter(false);
         ball.setLayoutParams(new FrameLayout.LayoutParams(viewModel.getBallSize(true), viewModel.getBallSize(true), FrameLayout.LayoutParams.WRAP_CONTENT));
         ball2.setLayoutParams(new FrameLayout.LayoutParams(viewModel.getBallSize(false), viewModel.getBallSize(false), FrameLayout.LayoutParams.WRAP_CONTENT));
     }
