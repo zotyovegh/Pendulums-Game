@@ -27,6 +27,7 @@ public class SinglePendulumSettings extends AppCompatDialogFragment {
     private TextView aNum, rNum, gNum, dampNum, traceNum;
     private int traceDefaultColor, ballDefaultColor;
     private SeekBar a, r, g, damp, trace;
+    private static int TRACEMAX = 101;
 
     @SuppressLint({"SetTextI18n", "DefaultLocale", "InflateParams"})
     @NonNull
@@ -60,9 +61,11 @@ public class SinglePendulumSettings extends AppCompatDialogFragment {
         if(!data.isTraceOn())
         {
             traceNum.setText("Off");
+            trace.setProgress(30);
         }else if(data.isEndlessTrace())
         {
             traceNum.setText("Endless");
+            trace.setProgress(TRACEMAX);
         }else{
             traceNum.setText(String.valueOf(data.getTrace()));
         }
@@ -115,7 +118,7 @@ public class SinglePendulumSettings extends AppCompatDialogFragment {
                 if(progress == 30)
                 {
                     traceNum.setText("Off");
-                }else if(progress == 101)
+                }else if(progress == TRACEMAX)
                 {
                     traceNum.setText("Endless");
                 }else{
@@ -153,13 +156,14 @@ public class SinglePendulumSettings extends AppCompatDialogFragment {
                             {
                                 data.setTraceOn(false);
                                 data.setEndlessTrace(false);
-                            }else if(trace.getProgress() == 101)
+                            }else if(trace.getProgress() == TRACEMAX)
                             {
                                 data.setTraceOn(true);
                                 data.setEndlessTrace(true);
                             }else{
                                 data.setTrace(trace.getProgress());
                                 data.setTraceOn(true);
+                                data.setEndlessTrace(false);
                             }
                             data.setTraceDrawColor(traceDefaultColor);
                             data.setBallDrawColor(ballDefaultColor);
