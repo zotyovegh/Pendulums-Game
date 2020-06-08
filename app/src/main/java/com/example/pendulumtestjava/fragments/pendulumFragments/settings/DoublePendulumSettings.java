@@ -369,4 +369,18 @@ public class DoublePendulumSettings extends AppCompatDialogFragment {
         });
         colorPicker.show();
     }
+
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        final AlertDialog d = (AlertDialog)getDialog();
+        if(d != null)
+        {
+            Button positiveButton = d.getButton(Dialog.BUTTON_NEUTRAL);
+            positiveButton.setOnClickListener(v -> {
+                Log.i("TAG", "Triggered");
+            });
+        }
+    }
 }

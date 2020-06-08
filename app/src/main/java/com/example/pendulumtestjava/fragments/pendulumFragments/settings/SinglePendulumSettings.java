@@ -2,7 +2,9 @@ package com.example.pendulumtestjava.fragments.pendulumFragments.settings;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -18,6 +20,8 @@ import com.example.pendulumtestjava.R;
 import com.example.pendulumtestjava.fragments.pendulumFragments.models.SinglePendulumModel;
 
 import java.util.Objects;
+
+import javax.security.auth.login.LoginException;
 
 import yuku.ambilwarna.AmbilWarnaDialog;
 
@@ -169,6 +173,7 @@ public class SinglePendulumSettings extends AppCompatDialogFragment {
                             data.setBallDrawColor(ballDefaultColor);
                         }
                 )
+                .setNeutralButton("Randomize", (dialog, which) -> {})
                 .setNegativeButton("Cancel",
                         (dialog, whichButton) -> dialog.dismiss()
                 );
@@ -199,5 +204,18 @@ public class SinglePendulumSettings extends AppCompatDialogFragment {
             }
         });
         colorPicker2.show();
+    }
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        final AlertDialog d = (AlertDialog)getDialog();
+        if(d != null)
+        {
+            Button positiveButton = d.getButton(Dialog.BUTTON_NEUTRAL);
+            positiveButton.setOnClickListener(v -> {
+                Log.i("TAG", "Triggered");
+            });
+        }
     }
 }
