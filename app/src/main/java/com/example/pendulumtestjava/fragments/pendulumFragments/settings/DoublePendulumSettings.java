@@ -305,7 +305,9 @@ public class DoublePendulumSettings extends AppCompatDialogFragment {
                             data.setTrace1Color(trace1DefaultColor);
                             data.setTrace2Color(trace2DefaultColor);
                         }
-                ).setNegativeButton("Cancel", (dialog, whichButton) -> dialog.dismiss()
+                )
+                .setNeutralButton("Randomize", (dialog, which) -> {})
+                .setNegativeButton("Cancel", (dialog, whichButton) -> dialog.dismiss()
         );
         return builder.create();
     }

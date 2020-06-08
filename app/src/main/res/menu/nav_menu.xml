@@ -5,10 +5,6 @@
         android:title="Main" />
 
     <item
-        android:id="@+id/nav_what"
-        android:title="What is this?" />
-
-    <item
         android:id="@+id/nav_logOut"
         android:title="Log out" />
 </menu>

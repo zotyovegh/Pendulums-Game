@@ -13,8 +13,8 @@ public interface DoublePDao {
     @Delete
     void deleteDoubleP(DoublePObject pendulum);
 
-    @Query("SELECT * FROM double_table WHERE id = :id ")
-    DoublePObject getDoublePObject(int id);
+    @Query("SELECT * FROM double_table WHERE id = :arg0 ")
+    DoublePObject getDoublePObject(int arg0);
 
     @Query("DELETE FROM double_table")
     void deleteAllDoublePendulum();

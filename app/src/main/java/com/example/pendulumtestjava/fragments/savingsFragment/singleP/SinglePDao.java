@@ -13,8 +13,8 @@ public interface SinglePDao {
     @Delete
     void deleteSingleP(SinglePObject pendulum);
 
-    @Query("SELECT * FROM single_table WHERE id = :id ")
-    SinglePObject getSinglePObject(int id);
+    @Query("SELECT * FROM single_table WHERE id = :arg0")
+    SinglePObject getSinglePObject(int arg0);
 
     @Query("DELETE FROM single_table")
     void deleteAllSinglePendulum();
