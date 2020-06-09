@@ -214,7 +214,8 @@ public class SinglePendulumSettings extends AppCompatDialogFragment {
         {
             Button positiveButton = d.getButton(Dialog.BUTTON_NEUTRAL);
             positiveButton.setOnClickListener(v -> {
-                Log.i("TAG", "Triggered");
+
+
             });
         }
     }
