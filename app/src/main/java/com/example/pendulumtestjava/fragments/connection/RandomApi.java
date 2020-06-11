@@ -9,7 +9,7 @@ import retrofit2.http.GET;
 public interface RandomApi {
 
     @GET("single")
-    Call<SinglePRandom> getSinglRandom();
+    Call<SinglePRandom> getSingleRandom();
 
     @GET("double")
     Call<DoublePRandom> getDoubleRandom();
