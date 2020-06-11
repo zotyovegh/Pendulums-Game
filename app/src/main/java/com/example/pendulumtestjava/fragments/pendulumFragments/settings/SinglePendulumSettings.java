@@ -13,10 +13,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.pendulumtestjava.R;
-import com.example.pendulumtestjava.fragments.connection.RandomizerRepository;
 import com.example.pendulumtestjava.fragments.pendulumFragments.models.SinglePendulumModel;
+import com.example.pendulumtestjava.fragments.pendulumFragments.viewModels.SingleSettingsViewModel;
 
 import java.util.Objects;
 
@@ -29,7 +30,7 @@ public class SinglePendulumSettings extends AppCompatDialogFragment {
     private int traceDefaultColor, ballDefaultColor;
     private SeekBar a, r, g, damp, trace;
     private static int TRACEMAX = 101;
-    private RandomizerRepository randomizerRepository;
+    private SingleSettingsViewModel viewModel;
 
     @SuppressLint({"SetTextI18n", "DefaultLocale", "InflateParams"})
     @NonNull
@@ -38,7 +39,7 @@ public class SinglePendulumSettings extends AppCompatDialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(Objects.requireNonNull(getActivity()));
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.settings_singlep, null);
-        randomizerRepository = RandomizerRepository.getInstance();
+        viewModel = new ViewModelProvider(this).get(SingleSettingsViewModel.class);
 
         a = view.findViewById(R.id.aSeekBar);
         r = view.findViewById(R.id.rSeekBar);
@@ -113,7 +114,6 @@ public class SinglePendulumSettings extends AppCompatDialogFragment {
             public void onStopTrackingTouch(SeekBar seekBar) {
             }
         });
-
         damp.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -128,7 +128,6 @@ public class SinglePendulumSettings extends AppCompatDialogFragment {
             public void onStopTrackingTouch(SeekBar seekBar) {
             }
         });
-
         trace.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -161,6 +160,20 @@ public class SinglePendulumSettings extends AppCompatDialogFragment {
         ballColorButton.setBackgroundColor(data.getBallDrawColor());
         ballColorButton.setOnClickListener(v -> openColorPicker2());
 
+        viewModel.getSinglePRandom().observe(this, singlePRandom -> {
+            aNum.setText(String.format("%.0f", Math.toDegrees(singlePRandom.getA()) / 100));
+            rNum.setText(String.format("%.0f", singlePRandom.getR()));
+            gNum.setText(String.format("%.2f", singlePRandom.getG()));
+            dampNum.setText(String.format("%.4f", singlePRandom.getDamping()));
+            traceNum.setText(String.valueOf(singlePRandom.getTrace()));
+
+            a.setProgress((int) Math.toDegrees(singlePRandom.getA()) / 100);
+            r.setProgress((int) singlePRandom.getR());
+            g.setProgress((int) (singlePRandom.getG() * 100));
+            damp.setProgress((int) (singlePRandom.getDamping() * 10000));
+            trace.setProgress(singlePRandom.getTrace());
+        });
+
         builder.setView(view)
                 .setTitle("Settings")
                 .setPositiveButton("OK",
@@ -189,9 +202,13 @@ public class SinglePendulumSettings extends AppCompatDialogFragment {
                 .setNegativeButton("Cancel",
                         (dialog, whichButton) -> dialog.dismiss()
                 );
+
         return builder.create();
+
+
     }
 
+    @SuppressLint("DefaultLocale")
     private void openColorPicker() {
         AmbilWarnaDialog colorPicker = new AmbilWarnaDialog(getActivity(), traceDefaultColor, new AmbilWarnaDialog.OnAmbilWarnaListener() {
             @Override
@@ -229,7 +246,7 @@ public class SinglePendulumSettings extends AppCompatDialogFragment {
         if (d != null) {
             Button positiveButton = d.getButton(Dialog.BUTTON_NEUTRAL);
             positiveButton.setOnClickListener(v -> {
-                randomizerRepository.requestSingleRandom();
+                viewModel.requestSingleRandom();
             });
         }
     }

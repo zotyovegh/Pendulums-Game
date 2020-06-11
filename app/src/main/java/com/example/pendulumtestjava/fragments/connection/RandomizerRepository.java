@@ -2,6 +2,9 @@ package com.example.pendulumtestjava.fragments.connection;
 
 import android.util.Log;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+
 import com.example.pendulumtestjava.fragments.connection.Response.DoublePRandom;
 import com.example.pendulumtestjava.fragments.connection.Response.SinglePRandom;
 
@@ -11,8 +14,13 @@ import retrofit2.Response;
 
 public class RandomizerRepository {
     private static RandomizerRepository instance;
+    private MutableLiveData<SinglePRandom> singlePRandom;
+    private MutableLiveData<DoublePRandom> doublePRandom;
 
-    private RandomizerRepository() {}
+    private RandomizerRepository() {
+        singlePRandom = new MutableLiveData<>();
+        doublePRandom = new MutableLiveData<>();
+    }
 
     public static synchronized RandomizerRepository getInstance() {
         if (instance == null) {
@@ -28,7 +36,7 @@ public class RandomizerRepository {
             @Override
             public void onResponse(Call<SinglePRandom> call, Response<SinglePRandom> response) {
                 if (response.code() == 200) {
-
+                    singlePRandom.setValue(response.body());
                 }else{
                     Log.i("RandomApi","Response code (single): " + response.code());
                 }
@@ -48,7 +56,7 @@ public class RandomizerRepository {
             @Override
             public void onResponse(Call<DoublePRandom> call, Response<DoublePRandom> response) {
                 if (response.code() == 200) {
-
+                    doublePRandom.setValue(response.body());
                 }else{
                     Log.i("RandomApi","Response code (double): " + response.code());
                 }
@@ -60,5 +68,15 @@ public class RandomizerRepository {
             }
         });
     }
+
+    public LiveData<SinglePRandom> getSinglePRandom() {
+        return singlePRandom;
+    }
+
+    public LiveData<DoublePRandom> getDoublePRandom() {
+        return doublePRandom;
+    }
+
+
 
 }

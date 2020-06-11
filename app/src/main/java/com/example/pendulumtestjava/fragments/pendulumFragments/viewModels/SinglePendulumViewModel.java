@@ -1,11 +1,9 @@
 package com.example.pendulumtestjava.fragments.pendulumFragments.viewModels;
 
 import android.annotation.SuppressLint;
-import android.util.Log;
 
 import androidx.lifecycle.ViewModel;
 
-import com.example.pendulumtestjava.fragments.connection.RandomizerRepository;
 import com.example.pendulumtestjava.fragments.pendulumFragments.views.DrawingPathView;
 import com.example.pendulumtestjava.fragments.savingsFragment.shared.DbViewModel;
 import com.example.pendulumtestjava.fragments.savingsFragment.singleP.SinglePObject;
@@ -52,21 +50,19 @@ public class SinglePendulumViewModel extends ViewModel {
         drawTrace();
     }
 
-    private void optimization()
-    {
+    private void optimization() {
         double aDegree = (Math.toDegrees(a)) % 360;
         a = Math.toRadians(aDegree);
         angularVel %= 6.00000000000E280;
     }
 
-    private void calcPositions()
-    {
+    private void calcPositions() {
         x = widthMiddleBall + (r * Math.sin(a));
         y = heightMiddleBall + (r * Math.cos(a));
     }
 
     public void drawTrace() {
-        if(isTraceOn) {
+        if (isTraceOn) {
             path.setVariables(x, y, trace, traceDrawColor, endlessTrace);
         }
     }
@@ -93,9 +89,9 @@ public class SinglePendulumViewModel extends ViewModel {
         drawTrace();
     }
 
-    public void save(){
+    public void save() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String millisInString  = dateFormat.format(new Date());
+        String millisInString = dateFormat.format(new Date());
 
         String json = new Gson().toJson(path.getArray());
 

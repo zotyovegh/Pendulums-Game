@@ -13,4 +13,24 @@ public class SinglePRandom {
     private float damping;
     @SerializedName("trace")
     private int trace;
+
+    public double getA() {
+        return a;
+    }
+
+    public double getR() {
+        return r;
+    }
+
+    public float getG() {
+        return g;
+    }
+
+    public float getDamping() {
+        return damping;
+    }
+
+    public int getTrace() {
+        return trace;
+    }
 }

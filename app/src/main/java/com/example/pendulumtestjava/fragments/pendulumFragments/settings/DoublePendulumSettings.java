@@ -3,24 +3,21 @@ package com.example.pendulumtestjava.fragments.pendulumFragments.settings;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.SeekBar;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.pendulumtestjava.R;
-import com.example.pendulumtestjava.fragments.connection.RandomizerRepository;
 import com.example.pendulumtestjava.fragments.pendulumFragments.models.DoublePendulumModel;
+import com.example.pendulumtestjava.fragments.pendulumFragments.viewModels.DoubleSettingsViewModel;
 
 import java.util.Objects;
 
@@ -34,7 +31,7 @@ public class DoublePendulumSettings extends AppCompatDialogFragment {
     private TextView a1num, a2num, r1num, r2num, gnum, m1num, m2num, trace1num, trace2num;
     private static int TRACE1MAX = 101;
     private static int TRACE2MAX = 401;
-    private RandomizerRepository randomizerRepository;
+    private DoubleSettingsViewModel viewModel;
 
     @SuppressLint({"SetTextI18n", "DefaultLocale", "InflateParams"})
     @NonNull
@@ -43,7 +40,7 @@ public class DoublePendulumSettings extends AppCompatDialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(Objects.requireNonNull(getActivity()));
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.settings_doublep, null);
-        randomizerRepository = RandomizerRepository.getInstance();
+        viewModel = new ViewModelProvider(this).get(DoubleSettingsViewModel.class);
 
         a1b = view.findViewById(R.id.a1b);
         a2b = view.findViewById(R.id.a2b);
@@ -261,6 +258,26 @@ public class DoublePendulumSettings extends AppCompatDialogFragment {
         traceColor1.setOnClickListener(v -> trace1ColorPicker());
         traceColor2.setOnClickListener(v -> trace2ColorPicker());
 
+        viewModel.getDoublePRandom().observe(this, doublePRandom -> {
+            a1num.setText(String.format("%.0f", Math.toDegrees(doublePRandom.getA1())));
+            a2num.setText(String.format("%.0f", Math.toDegrees(doublePRandom.getA2())));
+            r1num.setText(String.format("%.0f", doublePRandom.getR1()));
+            r2num.setText(String.format("%.0f", doublePRandom.getR2()));
+            gnum.setText(String.format("%.2f", doublePRandom.getG()));
+            m1num.setText(String.format("%.0f", doublePRandom.getM1()));
+            m2num.setText(String.format("%.0f", doublePRandom.getM2()));
+
+            a1b.setProgress((int) Math.toDegrees(doublePRandom.getA1()) / 100);
+            a2b.setProgress((int) Math.toDegrees(doublePRandom.getA2()) / 100);
+            r1b.setProgress((int) doublePRandom.getR1());
+            r2b.setProgress((int) doublePRandom.getR2());
+            gb.setProgress((int) (doublePRandom.getG() * 100));
+            m1b.setProgress((int) doublePRandom.getM1());
+            m2b.setProgress((int) doublePRandom.getM2());
+            trace1b.setProgress(doublePRandom.getTrace1());
+            trace2b.setProgress(doublePRandom.getTrace2());
+        });
+
         builder.setView(view)
                 .setTitle("Settings")
                 .setPositiveButton("OK",
@@ -274,12 +291,10 @@ public class DoublePendulumSettings extends AppCompatDialogFragment {
                             data.setM1(m1b.getProgress());
                             data.setM2(m2b.getProgress());
 
-                            if (trace1b.getProgress() == 30)
-                            {
+                            if (trace1b.getProgress() == 30) {
                                 data.setTrace1On(false);
                                 data.setEndlessTrace1(false);
-                            } else if (trace1b.getProgress() == TRACE1MAX)
-                            {
+                            } else if (trace1b.getProgress() == TRACE1MAX) {
                                 data.setTrace1On(true);
                                 data.setEndlessTrace1(true);
                             } else {
@@ -288,13 +303,11 @@ public class DoublePendulumSettings extends AppCompatDialogFragment {
                                 data.setEndlessTrace1(false);
                             }
 
-                            if (trace2b.getProgress() == 30)
-                            {
+                            if (trace2b.getProgress() == 30) {
                                 data.setTrace2On(false);
                                 data.setEndlessTrace2(false);
 
-                            } else if (trace2b.getProgress() == TRACE2MAX)
-                            {
+                            } else if (trace2b.getProgress() == TRACE2MAX) {
                                 data.setTrace2On(true);
                                 data.setEndlessTrace2(true);
 
@@ -309,9 +322,10 @@ public class DoublePendulumSettings extends AppCompatDialogFragment {
                             data.setTrace2Color(trace2DefaultColor);
                         }
                 )
-                .setNeutralButton("Randomize", (dialog, which) -> {})
+                .setNeutralButton("Randomize", (dialog, which) -> {
+                })
                 .setNegativeButton("Cancel", (dialog, whichButton) -> dialog.dismiss()
-        );
+                );
         return builder.create();
     }
 
@@ -376,15 +390,13 @@ public class DoublePendulumSettings extends AppCompatDialogFragment {
     }
 
     @Override
-    public void onResume()
-    {
+    public void onResume() {
         super.onResume();
-        final AlertDialog d = (AlertDialog)getDialog();
-        if(d != null)
-        {
+        final AlertDialog d = (AlertDialog) getDialog();
+        if (d != null) {
             Button positiveButton = d.getButton(Dialog.BUTTON_NEUTRAL);
             positiveButton.setOnClickListener(v -> {
-                randomizerRepository.requestDoubleRandom();
+                viewModel.requestDoubleRandom();
             });
         }
     }
