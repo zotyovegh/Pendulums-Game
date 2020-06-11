@@ -1,6 +1,7 @@
 package com.example.pendulumtestjava.fragments.pendulumFragments.viewModels;
 
 
+import android.annotation.SuppressLint;
 import android.util.Log;
 
 import androidx.lifecycle.ViewModel;
@@ -39,6 +40,7 @@ public class DoublePendulumViewModel extends ViewModel {
     private boolean endlessTrace2 = model.isEndlessTrace2();
     private boolean isTrace1On = model.isTrace1On();
     private boolean isTrace2On = model.isTrace2On();
+    @SuppressLint("StaticFieldLeak")
     private DrawingPathView path, path2;
 
     private DbViewModel dbViewModel;

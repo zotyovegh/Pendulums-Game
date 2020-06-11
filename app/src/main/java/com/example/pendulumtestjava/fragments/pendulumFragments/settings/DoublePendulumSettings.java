@@ -19,6 +19,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
 import com.example.pendulumtestjava.R;
+import com.example.pendulumtestjava.fragments.connection.RandomizerRepository;
 import com.example.pendulumtestjava.fragments.pendulumFragments.models.DoublePendulumModel;
 
 import java.util.Objects;
@@ -33,6 +34,7 @@ public class DoublePendulumSettings extends AppCompatDialogFragment {
     private TextView a1num, a2num, r1num, r2num, gnum, m1num, m2num, trace1num, trace2num;
     private static int TRACE1MAX = 101;
     private static int TRACE2MAX = 401;
+    private RandomizerRepository randomizerRepository;
 
     @SuppressLint({"SetTextI18n", "DefaultLocale", "InflateParams"})
     @NonNull
@@ -41,6 +43,7 @@ public class DoublePendulumSettings extends AppCompatDialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(Objects.requireNonNull(getActivity()));
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.settings_doublep, null);
+        randomizerRepository = RandomizerRepository.getInstance();
 
         a1b = view.findViewById(R.id.a1b);
         a2b = view.findViewById(R.id.a2b);
@@ -381,7 +384,7 @@ public class DoublePendulumSettings extends AppCompatDialogFragment {
         {
             Button positiveButton = d.getButton(Dialog.BUTTON_NEUTRAL);
             positiveButton.setOnClickListener(v -> {
-                Log.i("TAG", "Triggered");
+                randomizerRepository.requestDoubleRandom();
             });
         }
     }

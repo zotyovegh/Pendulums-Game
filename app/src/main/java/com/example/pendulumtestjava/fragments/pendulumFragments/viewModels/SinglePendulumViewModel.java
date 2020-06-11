@@ -1,9 +1,11 @@
 package com.example.pendulumtestjava.fragments.pendulumFragments.viewModels;
 
+import android.annotation.SuppressLint;
 import android.util.Log;
 
 import androidx.lifecycle.ViewModel;
 
+import com.example.pendulumtestjava.fragments.connection.RandomizerRepository;
 import com.example.pendulumtestjava.fragments.pendulumFragments.views.DrawingPathView;
 import com.example.pendulumtestjava.fragments.savingsFragment.shared.DbViewModel;
 import com.example.pendulumtestjava.fragments.savingsFragment.singleP.SinglePObject;
@@ -15,7 +17,6 @@ import java.util.Date;
 public class SinglePendulumViewModel extends ViewModel {
 
     private SinglePendulumModel model = SinglePendulumModel.getInstance();
-
     private double a = model.getA();
     private float gravity = model.getGravity();
     private float damping = model.getDamping();
@@ -28,6 +29,7 @@ public class SinglePendulumViewModel extends ViewModel {
     private double widthMiddleBall, heightMiddleBall;
     private double angularAcc, angularVel;
     private double x, y;
+    @SuppressLint("StaticFieldLeak")
     private DrawingPathView path;
     private DbViewModel dbViewModel;
 
