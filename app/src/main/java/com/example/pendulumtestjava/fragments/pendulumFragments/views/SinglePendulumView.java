@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -16,9 +15,9 @@ import android.widget.TextView;
 
 import com.example.pendulumtestjava.R;
 import com.example.pendulumtestjava.fragments.savingsFragment.shared.DbViewModel;
-import com.example.pendulumtestjava.fragments.pendulumFragments.models.SinglePendulumModel;
+import com.example.pendulumtestjava.fragments.pendulumFragments.repositories.SinglePModelRepo;
 import com.example.pendulumtestjava.fragments.pendulumFragments.settings.SinglePendulumSettings;
-import com.example.pendulumtestjava.fragments.pendulumFragments.viewModels.SinglePendulumViewModel;
+import com.example.pendulumtestjava.fragments.pendulumFragments.viewModels.Pendulums.SinglePendulumViewModel;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -29,7 +28,7 @@ public class SinglePendulumView extends AppCompatActivity implements View.OnClic
     private Handler handler = new Handler();
     private Timer timer = new Timer();
     private SinglePendulumSettings singlePendulumSettings = new SinglePendulumSettings();
-    private SinglePendulumModel model = SinglePendulumModel.getInstance();
+    private SinglePModelRepo model = SinglePModelRepo.getInstance();
 
     private SinglePendulumViewModel viewModel;
     private double widthMiddle, heightPoint;

@@ -1,4 +1,4 @@
-package com.example.pendulumtestjava.fragments.connection;
+package com.example.pendulumtestjava.fragments.pendulumFragments.connection;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 

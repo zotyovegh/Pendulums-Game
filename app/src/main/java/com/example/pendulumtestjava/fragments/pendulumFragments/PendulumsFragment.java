@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,9 +17,9 @@ import androidx.fragment.app.Fragment;
 
 import com.example.pendulumtestjava.R;
 import com.example.pendulumtestjava.fragments.pendulumFragments.views.infoActivity.InfoView;
-import com.example.pendulumtestjava.fragments.pendulumFragments.models.DoublePendulumModel;
+import com.example.pendulumtestjava.fragments.pendulumFragments.repositories.DoublePModelRepo;
 import com.example.pendulumtestjava.fragments.pendulumFragments.views.DoublePendulumView;
-import com.example.pendulumtestjava.fragments.pendulumFragments.models.SinglePendulumModel;
+import com.example.pendulumtestjava.fragments.pendulumFragments.repositories.SinglePModelRepo;
 import com.example.pendulumtestjava.fragments.pendulumFragments.views.SinglePendulumView;
 
 import java.text.SimpleDateFormat;
@@ -28,8 +27,8 @@ import java.util.Date;
 
 public class PendulumsFragment extends Fragment {
 
-    private SinglePendulumModel dataS = SinglePendulumModel.getInstance();
-    private DoublePendulumModel dataD = DoublePendulumModel.getInstance();
+    private SinglePModelRepo dataS = SinglePModelRepo.getInstance();
+    private DoublePModelRepo dataD = DoublePModelRepo.getInstance();
     private SharedPreferences preferences;
     private TextView lastPlayedSingle, lastPlayedDouble;
     private SharedPreferences.Editor editor;

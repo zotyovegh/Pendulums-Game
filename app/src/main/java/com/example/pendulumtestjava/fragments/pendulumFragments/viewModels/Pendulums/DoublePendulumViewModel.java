@@ -1,22 +1,21 @@
-package com.example.pendulumtestjava.fragments.pendulumFragments.viewModels;
+package com.example.pendulumtestjava.fragments.pendulumFragments.viewModels.Pendulums;
 
 
 import android.annotation.SuppressLint;
-import android.util.Log;
 
 import androidx.lifecycle.ViewModel;
 
 import com.example.pendulumtestjava.fragments.pendulumFragments.views.DrawingPathView;
 import com.example.pendulumtestjava.fragments.savingsFragment.doubleP.DoublePObject;
 import com.example.pendulumtestjava.fragments.savingsFragment.shared.DbViewModel;
-import com.example.pendulumtestjava.fragments.pendulumFragments.models.DoublePendulumModel;
+import com.example.pendulumtestjava.fragments.pendulumFragments.repositories.DoublePModelRepo;
 import com.google.gson.Gson;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class DoublePendulumViewModel extends ViewModel {
-    private DoublePendulumModel model = DoublePendulumModel.getInstance();
+    private DoublePModelRepo model = DoublePModelRepo.getInstance();
 
     private double widthMiddleBall, heightMiddleBall;
     private double x1, y1, x2, y2;

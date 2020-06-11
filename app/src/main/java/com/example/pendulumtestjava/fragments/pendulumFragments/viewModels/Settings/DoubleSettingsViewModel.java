@@ -1,10 +1,10 @@
-package com.example.pendulumtestjava.fragments.pendulumFragments.viewModels;
+package com.example.pendulumtestjava.fragments.pendulumFragments.viewModels.Settings;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.pendulumtestjava.fragments.connection.RandomizerRepository;
-import com.example.pendulumtestjava.fragments.connection.Response.DoublePRandom;
+import com.example.pendulumtestjava.fragments.pendulumFragments.connection.RandomizerRepository;
+import com.example.pendulumtestjava.fragments.pendulumFragments.connection.response.DoublePRandom;
 
 public class DoubleSettingsViewModel extends ViewModel {
     private RandomizerRepository randomizerRepository;

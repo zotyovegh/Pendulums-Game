@@ -16,8 +16,8 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.pendulumtestjava.R;
-import com.example.pendulumtestjava.fragments.pendulumFragments.models.DoublePendulumModel;
-import com.example.pendulumtestjava.fragments.pendulumFragments.viewModels.DoubleSettingsViewModel;
+import com.example.pendulumtestjava.fragments.pendulumFragments.repositories.DoublePModelRepo;
+import com.example.pendulumtestjava.fragments.pendulumFragments.viewModels.Settings.DoubleSettingsViewModel;
 
 import java.util.Objects;
 
@@ -26,7 +26,7 @@ import yuku.ambilwarna.AmbilWarnaDialog;
 public class DoublePendulumSettings extends AppCompatDialogFragment {
     private Button ballColor1, ballColor2, traceColor1, traceColor2;
     private int trace1DefaultColor, trace2DefaultColor, ball1DefaultColor, ball2DefaultColor;
-    private DoublePendulumModel data = DoublePendulumModel.getInstance();
+    private DoublePModelRepo data = DoublePModelRepo.getInstance();
     private SeekBar a1b, a2b, r1b, r2b, gb, m1b, m2b, trace1b, trace2b;
     private TextView a1num, a2num, r1num, r2num, gnum, m1num, m2num, trace1num, trace2num;
     private static int TRACE1MAX = 101;

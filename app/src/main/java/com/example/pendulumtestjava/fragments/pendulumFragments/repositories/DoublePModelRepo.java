@@ -1,9 +1,9 @@
-package com.example.pendulumtestjava.fragments.pendulumFragments.models;
+package com.example.pendulumtestjava.fragments.pendulumFragments.repositories;
 
 import java.util.ArrayList;
 
-public class DoublePendulumModel {
-    private static DoublePendulumModel instance;
+public class DoublePModelRepo {
+    private static DoublePModelRepo instance;
 
     private double r1, r2, a1, a2, m1, m2;
     private float g;
@@ -171,9 +171,9 @@ public class DoublePendulumModel {
         this.trace2Color = color2;
     }
 
-    public static synchronized DoublePendulumModel getInstance() {
+    public static synchronized DoublePModelRepo getInstance() {
         if (instance == null) {
-            instance = new DoublePendulumModel();
+            instance = new DoublePModelRepo();
         }
         return instance;
     }

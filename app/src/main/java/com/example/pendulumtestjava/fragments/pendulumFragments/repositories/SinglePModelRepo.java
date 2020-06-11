@@ -1,9 +1,9 @@
-package com.example.pendulumtestjava.fragments.pendulumFragments.models;
+package com.example.pendulumtestjava.fragments.pendulumFragments.repositories;
 
 import java.util.ArrayList;
 
-public class SinglePendulumModel {
-    private static SinglePendulumModel instance;
+public class SinglePModelRepo {
+    private static SinglePModelRepo instance;
 
     private float gravity, damping;
     private double r, a;
@@ -99,10 +99,10 @@ public class SinglePendulumModel {
         this.r = r;
     }
 
-    public static synchronized SinglePendulumModel getInstance() {
+    public static synchronized SinglePModelRepo getInstance() {
         if(instance==null)
         {
-            instance = new SinglePendulumModel();
+            instance = new SinglePModelRepo();
         }
         return instance;
     }

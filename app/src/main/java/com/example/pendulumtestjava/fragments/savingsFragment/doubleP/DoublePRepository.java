@@ -3,7 +3,7 @@ package com.example.pendulumtestjava.fragments.savingsFragment.doubleP;
 import android.app.Application;
 import android.os.AsyncTask;
 
-import com.example.pendulumtestjava.fragments.pendulumFragments.models.DoublePendulumModel;
+import com.example.pendulumtestjava.fragments.pendulumFragments.repositories.DoublePModelRepo;
 import com.example.pendulumtestjava.fragments.savingsFragment.shared.PendulumDatabase;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -15,7 +15,7 @@ import java.util.List;
 public class DoublePRepository {
     private DoublePDao doublePDao;
 
-    private DoublePendulumModel dataD = DoublePendulumModel.getInstance();
+    private DoublePModelRepo dataD = DoublePModelRepo.getInstance();
 
     public DoublePRepository(Application application) {
         PendulumDatabase database = PendulumDatabase.getInstance(application);

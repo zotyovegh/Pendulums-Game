@@ -1,4 +1,4 @@
-package com.example.pendulumtestjava.fragments.pendulumFragments.viewModels;
+package com.example.pendulumtestjava.fragments.pendulumFragments.viewModels.Pendulums;
 
 import android.annotation.SuppressLint;
 
@@ -7,14 +7,14 @@ import androidx.lifecycle.ViewModel;
 import com.example.pendulumtestjava.fragments.pendulumFragments.views.DrawingPathView;
 import com.example.pendulumtestjava.fragments.savingsFragment.shared.DbViewModel;
 import com.example.pendulumtestjava.fragments.savingsFragment.singleP.SinglePObject;
-import com.example.pendulumtestjava.fragments.pendulumFragments.models.SinglePendulumModel;
+import com.example.pendulumtestjava.fragments.pendulumFragments.repositories.SinglePModelRepo;
 import com.google.gson.Gson;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class SinglePendulumViewModel extends ViewModel {
 
-    private SinglePendulumModel model = SinglePendulumModel.getInstance();
+    private SinglePModelRepo model = SinglePModelRepo.getInstance();
     private double a = model.getA();
     private float gravity = model.getGravity();
     private float damping = model.getDamping();

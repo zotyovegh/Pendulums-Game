@@ -4,7 +4,7 @@ import android.app.Application;
 import android.os.AsyncTask;
 
 import com.example.pendulumtestjava.fragments.savingsFragment.shared.PendulumDatabase;
-import com.example.pendulumtestjava.fragments.pendulumFragments.models.SinglePendulumModel;
+import com.example.pendulumtestjava.fragments.pendulumFragments.repositories.SinglePModelRepo;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -15,7 +15,7 @@ import java.util.List;
 public class SinglePRepository {
     private SinglePDao singlePDao;
 
-    private SinglePendulumModel dataS = SinglePendulumModel.getInstance();
+    private SinglePModelRepo dataS = SinglePModelRepo.getInstance();
 
     public SinglePRepository(Application application)
     {

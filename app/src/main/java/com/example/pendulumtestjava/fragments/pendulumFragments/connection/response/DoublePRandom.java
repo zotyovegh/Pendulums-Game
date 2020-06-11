@@ -1,4 +1,4 @@
-package com.example.pendulumtestjava.fragments.connection.Response;
+package com.example.pendulumtestjava.fragments.pendulumFragments.connection.response;
 
 import com.google.gson.annotations.SerializedName;
 

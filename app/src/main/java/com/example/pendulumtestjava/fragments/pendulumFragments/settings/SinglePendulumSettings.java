@@ -16,15 +16,15 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.pendulumtestjava.R;
-import com.example.pendulumtestjava.fragments.pendulumFragments.models.SinglePendulumModel;
-import com.example.pendulumtestjava.fragments.pendulumFragments.viewModels.SingleSettingsViewModel;
+import com.example.pendulumtestjava.fragments.pendulumFragments.repositories.SinglePModelRepo;
+import com.example.pendulumtestjava.fragments.pendulumFragments.viewModels.Settings.SingleSettingsViewModel;
 
 import java.util.Objects;
 
 import yuku.ambilwarna.AmbilWarnaDialog;
 
 public class SinglePendulumSettings extends AppCompatDialogFragment {
-    private SinglePendulumModel data = SinglePendulumModel.getInstance();
+    private SinglePModelRepo data = SinglePModelRepo.getInstance();
     private Button traceColorButton, ballColorButton;
     private TextView aNum, rNum, gNum, dampNum, traceNum;
     private int traceDefaultColor, ballDefaultColor;

@@ -1,12 +1,12 @@
-package com.example.pendulumtestjava.fragments.connection;
+package com.example.pendulumtestjava.fragments.pendulumFragments.connection;
 
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.pendulumtestjava.fragments.connection.Response.DoublePRandom;
-import com.example.pendulumtestjava.fragments.connection.Response.SinglePRandom;
+import com.example.pendulumtestjava.fragments.pendulumFragments.connection.response.DoublePRandom;
+import com.example.pendulumtestjava.fragments.pendulumFragments.connection.response.SinglePRandom;
 
 import retrofit2.Call;
 import retrofit2.Callback;

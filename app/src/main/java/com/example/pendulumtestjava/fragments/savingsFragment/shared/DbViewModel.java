@@ -2,15 +2,12 @@ package com.example.pendulumtestjava.fragments.savingsFragment.shared;
 
 import android.app.Application;
 import android.content.Intent;
-import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-import com.example.pendulumtestjava.R;
 import com.example.pendulumtestjava.fragments.pendulumFragments.views.DoublePendulumView;
 import com.example.pendulumtestjava.fragments.pendulumFragments.views.SinglePendulumView;
 import com.example.pendulumtestjava.fragments.savingsFragment.doubleP.DoublePObject;
@@ -19,7 +16,6 @@ import com.example.pendulumtestjava.fragments.savingsFragment.savedObject.Pendul
 import com.example.pendulumtestjava.fragments.savingsFragment.savedObject.SavePendulumModel;
 import com.example.pendulumtestjava.fragments.savingsFragment.singleP.SinglePObject;
 import com.example.pendulumtestjava.fragments.savingsFragment.singleP.SinglePRepository;
-import com.github.clans.fab.FloatingActionButton;
 
 import java.util.List;
 
