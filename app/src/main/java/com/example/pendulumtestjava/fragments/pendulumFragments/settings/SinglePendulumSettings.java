@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -172,6 +173,10 @@ public class SinglePendulumSettings extends AppCompatDialogFragment {
             g.setProgress((int) (singlePRandom.getG() * 100));
             damp.setProgress((int) (singlePRandom.getDamping() * 10000));
             trace.setProgress(singlePRandom.getTrace());
+        });
+
+        viewModel.getErrorMessage().observe(this, s -> {
+            Toast.makeText(getActivity(), s, Toast.LENGTH_SHORT).show();
         });
 
         builder.setView(view)

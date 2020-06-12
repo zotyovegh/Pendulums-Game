@@ -20,4 +20,8 @@ public class DoubleSettingsViewModel extends ViewModel {
     public LiveData<DoublePRandom> getDoublePRandom() {
         return randomizerRepository.getDoublePRandom();
     }
+
+    public LiveData<String> getErrorMessage() {
+        return randomizerRepository.getErrorMessage();
+    }
 }

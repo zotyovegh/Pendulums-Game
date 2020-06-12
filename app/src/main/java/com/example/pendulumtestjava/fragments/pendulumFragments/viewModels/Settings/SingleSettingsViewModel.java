@@ -21,4 +21,8 @@ public class SingleSettingsViewModel extends ViewModel {
         return randomizerRepository.getSinglePRandom();
     }
 
+    public LiveData<String> getErrorMessage() {
+        return randomizerRepository.getErrorMessage();
+    }
+
 }

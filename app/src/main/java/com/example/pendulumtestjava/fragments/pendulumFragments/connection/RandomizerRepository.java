@@ -16,10 +16,12 @@ public class RandomizerRepository {
     private static RandomizerRepository instance;
     private MutableLiveData<SinglePRandom> singlePRandom;
     private MutableLiveData<DoublePRandom> doublePRandom;
+    private MutableLiveData<String> errorMessage;
 
     private RandomizerRepository() {
         singlePRandom = new MutableLiveData<>();
         doublePRandom = new MutableLiveData<>();
+        errorMessage = new MutableLiveData<>();
     }
 
     public static synchronized RandomizerRepository getInstance() {
@@ -38,6 +40,7 @@ public class RandomizerRepository {
                 if (response.code() == 200) {
                     singlePRandom.setValue(response.body());
                 }else{
+                    errorMessage.setValue("Something went wrong!");
                     Log.i("RandomApi","Response code (single): " + response.code());
                 }
             }
@@ -58,6 +61,7 @@ public class RandomizerRepository {
                 if (response.code() == 200) {
                     doublePRandom.setValue(response.body());
                 }else{
+                    errorMessage.setValue("Something went wrong!");
                     Log.i("RandomApi","Response code (double): " + response.code());
                 }
             }
@@ -77,6 +81,9 @@ public class RandomizerRepository {
         return doublePRandom;
     }
 
-
+    public LiveData<String> getErrorMessage()
+    {
+        return errorMessage;
+    }
 
 }

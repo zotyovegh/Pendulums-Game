@@ -8,11 +8,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.pendulumtestjava.R;
@@ -276,6 +278,10 @@ public class DoublePendulumSettings extends AppCompatDialogFragment {
             m2b.setProgress((int) doublePRandom.getM2());
             trace1b.setProgress(doublePRandom.getTrace1());
             trace2b.setProgress(doublePRandom.getTrace2());
+        });
+
+        viewModel.getErrorMessage().observe(this, s -> {
+            Toast.makeText(getActivity(), s, Toast.LENGTH_SHORT).show();
         });
 
         builder.setView(view)
