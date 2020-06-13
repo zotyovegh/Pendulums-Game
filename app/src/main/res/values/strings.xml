@@ -34,11 +34,10 @@
     <string name="trace_color">Trace color</string>
     <string name="trace_1_color">Trace 1 color</string>
     <string name="trace_2_color">Trace 2 color</string>
-
-
-
-
-
-
-
+    <string name="what_is_this">A pendulum is a weight suspended from a pivot so that it can swing freely.[1] When a pendulum is displaced sideways from its resting, equilibrium position, it is subject to a restoring force due to gravity that will accelerate it back toward the equilibrium position. When released, the restoring force acting on the pendulum\'s mass causes it to oscillate about the equilibrium position, swinging back and forth. The time for one complete cycle, a left swing and a right swing, is called the period. The period depends on the length of the pendulum and also to a slight degree on the amplitude, the width of the pendulum\'s swing.</string>
+    <string name="wit_title">What is this?</string>
+    <string name="github">Github code</string>
+    <string name="author">Created by: Zoltan Vegh</string>
+    <string name="name">Pendulum Simulator</string>
+    <string name="linkedin">My LinkedId page</string>
 </resources>

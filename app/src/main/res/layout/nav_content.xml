@@ -25,6 +25,7 @@
             android:layout_height="wrap_content"
             android:background="#59C85D"
             app:tabGravity="fill"
+            app:tabIndicatorColor="#000000"
             app:tabMode="fixed" />
 
         <androidx.viewpager.widget.ViewPager

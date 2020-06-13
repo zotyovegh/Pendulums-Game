@@ -1,5 +1,7 @@
 package com.example.pendulumtestjava.fragments.savingsFragment.shared;
 
+import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,6 +47,14 @@ public class PendulumAdapter extends ListAdapter<SavePendulumModel, PendulumAdap
     @Override
     public void onBindViewHolder(@NonNull PendulumHolder holder, int position) {
         SavePendulumModel currentPendulum = getItem(position);
+        if(currentPendulum.getType().equals("Single"))
+        {
+            holder.type.setBackgroundResource(R.color.singleType);
+        }else if(currentPendulum.getType().equals("Double"))
+        {
+            holder.type.setBackgroundResource(R.color.doubleType);
+        }
+
         holder.timeStamp.setText(currentPendulum.getTimeStamp());
         holder.type.setText(currentPendulum.getType());
     }

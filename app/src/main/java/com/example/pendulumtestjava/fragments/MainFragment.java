@@ -1,5 +1,6 @@
 package com.example.pendulumtestjava.fragments;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +29,7 @@ public class MainFragment extends Fragment {
         adapter.AddFragment(new FragmentList(), "Saved");
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
+        tabLayout.setSelectedTabIndicatorColor(Color.LTGRAY);
 
         return  view;
     }
