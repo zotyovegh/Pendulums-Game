@@ -52,9 +52,20 @@ public class DoublePendulumSettings extends AppCompatDialogFragment {
         m2b = view.findViewById(R.id.m2b);
         trace1b = view.findViewById(R.id.trace1b);
         trace2b = view.findViewById(R.id.trace2b);
+        a1num = view.findViewById(R.id.a1num);
+        a2num = view.findViewById(R.id.a2num);
+        r1num = view.findViewById(R.id.r1num);
+        r2num = view.findViewById(R.id.r2num);
+        gnum = view.findViewById(R.id.gnum);
+        m1num = view.findViewById(R.id.m1num);
+        m2num = view.findViewById(R.id.m2num);
+        trace1num = view.findViewById(R.id.trace1num);
+        trace2num = view.findViewById(R.id.trace2num);
+        ballColor1 = view.findViewById(R.id.ballColor1);
+        ballColor2 = view.findViewById(R.id.ballColor2);
+        traceColor1 = view.findViewById(R.id.traceColor1);
+        traceColor2 = view.findViewById(R.id.traceColor2);
 
-        a1b.setProgress((int) Math.toDegrees(data.getA1()));
-        a2b.setProgress((int) Math.toDegrees(data.getA2()));
         r1b.setProgress((int) data.getR1());
         r2b.setProgress((int) data.getR2());
         gb.setProgress((int) (data.getG() * 1000));
@@ -63,22 +74,30 @@ public class DoublePendulumSettings extends AppCompatDialogFragment {
         trace1b.setProgress(data.getTrace1());
         trace2b.setProgress(data.getTrace2());
 
-        a1num = view.findViewById(R.id.a1num);
-        a1num.setText(String.format("%.0f", Math.toDegrees(data.getA1())));
-        a2num = view.findViewById(R.id.a2num);
-        a2num.setText(String.format("%.0f", Math.toDegrees(data.getA2())));
-        r1num = view.findViewById(R.id.r1num);
         r1num.setText(String.format("%.0f", data.getR1()));
-        r2num = view.findViewById(R.id.r2num);
         r2num.setText(String.format("%.0f", data.getR2()));
-        gnum = view.findViewById(R.id.gnum);
         gnum.setText(String.format("%.2f", data.getG() * 10));
-        m1num = view.findViewById(R.id.m1num);
         m1num.setText(String.format("%.0f", data.getM1()));
-        m2num = view.findViewById(R.id.m2num);
         m2num.setText(String.format("%.0f", data.getM2()));
 
-        trace1num = view.findViewById(R.id.trace1num);
+        if(Math.toDegrees(data.getA1()) < 0)
+        {
+            a1b.setProgress((int) Math.toDegrees(data.getA1())+360);
+            a1num.setText(String.format("%.0f", Math.toDegrees(data.getA1())+360));
+        }else{
+            a1b.setProgress((int) Math.toDegrees(data.getA1()));
+            a1num.setText(String.format("%.0f", Math.toDegrees(data.getA1())));
+        }
+
+        if(Math.toDegrees(data.getA2()) < 0)
+        {
+            a2b.setProgress((int) Math.toDegrees(data.getA2())+360);
+            a2num.setText(String.format("%.0f", Math.toDegrees(data.getA2())+360));
+        }else{
+            a2b.setProgress((int) Math.toDegrees(data.getA2()));
+            a2num.setText(String.format("%.0f", Math.toDegrees(data.getA2())));
+        }
+
         if (!data.isTrace1On()) {
             trace1num.setText("Off");
             trace1b.setProgress(30);
@@ -89,7 +108,6 @@ public class DoublePendulumSettings extends AppCompatDialogFragment {
             trace1num.setText(String.valueOf(data.getTrace1()));
         }
 
-        trace2num = view.findViewById(R.id.trace2num);
         if (!data.isTrace2On()) {
             trace2num.setText("Off");
             trace2b.setProgress(30);
@@ -243,11 +261,6 @@ public class DoublePendulumSettings extends AppCompatDialogFragment {
         trace2DefaultColor = data.getTrace2Color();
         ball1DefaultColor = data.getBall1Color();
         ball2DefaultColor = data.getBall2Color();
-
-        ballColor1 = view.findViewById(R.id.ballColor1);
-        ballColor2 = view.findViewById(R.id.ballColor2);
-        traceColor1 = view.findViewById(R.id.traceColor1);
-        traceColor2 = view.findViewById(R.id.traceColor2);
 
         ballColor1.setBackgroundColor(data.getBall1Color());
         ballColor2.setBackgroundColor(data.getBall2Color());

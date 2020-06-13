@@ -47,22 +47,33 @@ public class SinglePendulumSettings extends AppCompatDialogFragment {
         g = view.findViewById(R.id.gSeekBar);
         damp = view.findViewById(R.id.dampSeekBar);
         trace = view.findViewById(R.id.traceSeekBar);
+        aNum = view.findViewById(R.id.aNum);
+        rNum = view.findViewById(R.id.rNum);
+        gNum = view.findViewById(R.id.gNum);
+        dampNum = view.findViewById(R.id.dampNum);
+        traceNum = view.findViewById(R.id.traceNum);
+        traceColorButton = view.findViewById(R.id.traceColorButton);
+        ballColorButton = view.findViewById(R.id.ballColorButton);
 
-        a.setProgress((int) Math.toDegrees(data.getA()));
         r.setProgress((int) data.getR());
         g.setProgress((int) (data.getGravity() * 1000));
         damp.setProgress((int) (data.getDamping() * 10000));
         trace.setProgress(data.getTrace());
 
-        aNum = view.findViewById(R.id.aNum);
         aNum.setText(String.format("%.0f", Math.toDegrees(data.getA())));
-        rNum = view.findViewById(R.id.rNum);
         rNum.setText(String.format("%.0f", data.getR()));
-        gNum = view.findViewById(R.id.gNum);
         gNum.setText(String.format("%.2f", data.getGravity() * 10));
-        dampNum = view.findViewById(R.id.dampNum);
         dampNum.setText(String.format("%.4f", data.getDamping()));
-        traceNum = view.findViewById(R.id.traceNum);
+
+        if(Math.toDegrees(data.getA()) < 0)
+        {
+            a.setProgress((int) Math.toDegrees(data.getA())+360);
+            aNum.setText(String.format("%.0f", Math.toDegrees(data.getA())+360));
+        }else{
+            a.setProgress((int) Math.toDegrees(data.getA()));
+            aNum.setText(String.format("%.0f", Math.toDegrees(data.getA())));
+        }
+
         if (!data.isTraceOn()) {
             traceNum.setText("Off");
             trace.setProgress(30);
@@ -153,11 +164,9 @@ public class SinglePendulumSettings extends AppCompatDialogFragment {
         traceDefaultColor = data.getTraceDrawColor();
         ballDefaultColor = data.getBallDrawColor();
 
-        traceColorButton = view.findViewById(R.id.traceColorButton);
         traceColorButton.setBackgroundColor(data.getTraceDrawColor());
         traceColorButton.setOnClickListener(v -> openColorPicker());
 
-        ballColorButton = view.findViewById(R.id.ballColorButton);
         ballColorButton.setBackgroundColor(data.getBallDrawColor());
         ballColorButton.setOnClickListener(v -> openColorPicker2());
 
