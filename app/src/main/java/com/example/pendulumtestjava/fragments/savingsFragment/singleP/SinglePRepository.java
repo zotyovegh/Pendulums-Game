@@ -17,39 +17,35 @@ public class SinglePRepository {
 
     private SinglePModelRepo dataS = SinglePModelRepo.getInstance();
 
-    public SinglePRepository(Application application)
-    {
+    public SinglePRepository(Application application) {
         PendulumDatabase database = PendulumDatabase.getInstance(application);
         singlePDao = database.singlePDao();
     }
 
-    public void insertSinglePendulum(SinglePObject pendulum)
-    {
+    public void insertSinglePendulum(SinglePObject pendulum) {
         new SinglePRepository.InsertSinglePendulumAsyncTask(singlePDao).execute(pendulum);
     }
 
-    public void deleteSinglePendulum(SinglePObject pendulum)
-    {
+    public void deleteSinglePendulum(SinglePObject pendulum) {
         new DeleteSinglePendulumAsyncTask(singlePDao).execute(pendulum);
     }
 
-    public void deleteAllSinglePendulum()
-    {
+    public void deleteAllSinglePendulum() {
         new DeleteAllSinglePendulumsAsyncTask(singlePDao).execute();
     }
 
-    public SinglePObject getSinglePendulum(int id)
-        {
-            return singlePDao.getSinglePObject(id);
+    public SinglePObject getSinglePendulum(int id) {
+        return singlePDao.getSinglePObject(id);
     }
 
     public void installSinglePendulum(SinglePObject pendulum) {
         Gson gson = new Gson();
-        Type listType = new TypeToken<List<Float>>(){}.getType();
+        Type listType = new TypeToken<List<Float>>() {
+        }.getType();
         ArrayList<Float> temp = gson.fromJson(pendulum.getPointsJson(), listType);
         dataS.setA(Math.toDegrees(pendulum.getA()));
         dataS.setR(pendulum.getR());
-        dataS.setGravity(pendulum.getG()*10);
+        dataS.setGravity(pendulum.getG() * 10);
         dataS.setDamping(pendulum.getDamping());
         dataS.setTrace(pendulum.getTrace());
         dataS.setBallDrawColor(pendulum.getBallColor());
@@ -60,14 +56,13 @@ public class SinglePRepository {
         dataS.setTraceOn(pendulum.isTraceOn());
     }
 
-    private static class InsertSinglePendulumAsyncTask extends AsyncTask<SinglePObject, Void, Void>
-    {
+    private static class InsertSinglePendulumAsyncTask extends AsyncTask<SinglePObject, Void, Void> {
         private SinglePDao dbDao;
 
-        private InsertSinglePendulumAsyncTask(SinglePDao dbDao)
-        {
+        private InsertSinglePendulumAsyncTask(SinglePDao dbDao) {
             this.dbDao = dbDao;
         }
+
         @Override
         protected Void doInBackground(SinglePObject... singlePendulumObjects) {
             dbDao.insertSingleP(singlePendulumObjects[0]);
@@ -75,14 +70,13 @@ public class SinglePRepository {
         }
     }
 
-    private static class DeleteSinglePendulumAsyncTask extends AsyncTask<SinglePObject, Void, Void>
-    {
+    private static class DeleteSinglePendulumAsyncTask extends AsyncTask<SinglePObject, Void, Void> {
         private SinglePDao dbDao;
 
-        private DeleteSinglePendulumAsyncTask(SinglePDao dbDao)
-        {
+        private DeleteSinglePendulumAsyncTask(SinglePDao dbDao) {
             this.dbDao = dbDao;
         }
+
         @Override
         protected Void doInBackground(SinglePObject... singlePendulumObjects) {
             dbDao.deleteSingleP(singlePendulumObjects[0]);
@@ -93,8 +87,7 @@ public class SinglePRepository {
     private static class DeleteAllSinglePendulumsAsyncTask extends AsyncTask<Void, Void, Void> {
         private SinglePDao dbDao;
 
-        private DeleteAllSinglePendulumsAsyncTask(SinglePDao dbDao)
-        {
+        private DeleteAllSinglePendulumsAsyncTask(SinglePDao dbDao) {
             this.dbDao = dbDao;
         }
 

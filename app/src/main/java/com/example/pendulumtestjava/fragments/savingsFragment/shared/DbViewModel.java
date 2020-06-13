@@ -20,7 +20,6 @@ import com.example.pendulumtestjava.fragments.savingsFragment.singleP.SinglePRep
 import java.util.List;
 
 public class DbViewModel extends AndroidViewModel {
-
     private SinglePRepository singlePRepository;
     private DoublePRepository doublePRepository;
     private LiveData<List<SavePendulumModel>> allPendulums;

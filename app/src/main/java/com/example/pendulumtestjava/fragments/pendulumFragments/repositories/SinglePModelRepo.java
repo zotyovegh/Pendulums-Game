@@ -76,7 +76,7 @@ public class SinglePModelRepo {
     }
 
     public float getGravity() {
-        return (float)(gravity * 0.1);
+        return (float) (gravity * 0.1);
     }
 
     public void setGravity(float gravity) {
@@ -100,8 +100,7 @@ public class SinglePModelRepo {
     }
 
     public static synchronized SinglePModelRepo getInstance() {
-        if(instance==null)
-        {
+        if (instance == null) {
             instance = new SinglePModelRepo();
         }
         return instance;
@@ -109,8 +108,8 @@ public class SinglePModelRepo {
 
     public void resetValues() {
         trace = 100;
-        gravity = (float)9.81;
-        damping = (float)0.999;
+        gravity = (float) 9.81;
+        damping = (float) 0.999;
         r = 300;
         a = Math.PI / 2;
         traceDrawColor = 0xF0000000;

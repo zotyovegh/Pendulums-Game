@@ -18,5 +18,4 @@ public interface DoublePDao {
 
     @Query("DELETE FROM double_table")
     void deleteAllDoublePendulum();
-
 }

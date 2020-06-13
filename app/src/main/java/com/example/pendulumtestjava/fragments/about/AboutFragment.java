@@ -15,7 +15,6 @@ import androidx.fragment.app.Fragment;
 import com.example.pendulumtestjava.R;
 
 public class AboutFragment extends Fragment {
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -33,8 +32,7 @@ public class AboutFragment extends Fragment {
         return v;
     }
 
-    public void openLink(String url)
-    {
+    public void openLink(String url) {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse(url));
         startActivity(intent);

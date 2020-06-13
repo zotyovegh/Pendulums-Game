@@ -116,7 +116,7 @@ public class DoublePModelRepo {
     }
 
     public float getG() {
-        return (float)(g * 0.1);
+        return (float) (g * 0.1);
     }
 
     public void setG(float g) {
@@ -183,7 +183,7 @@ public class DoublePModelRepo {
         r2 = 250;
         a1 = Math.PI / 2;
         a2 = Math.PI / 2;
-        g = (float)9.81;
+        g = (float) 9.81;
         m1 = 40;
         m2 = 30;
         trace1 = 100;

@@ -1,5 +1,6 @@
 package com.example.pendulumtestjava.fragments.pendulumFragments;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -62,7 +63,6 @@ public class PendulumsFragment extends Fragment {
     private void openInfoFragment(String type) {
         Intent intent = new Intent(getActivity(), InfoView.class);
         intent.putExtra("type", type);
-
         startActivity(intent);
     }
 
@@ -70,7 +70,6 @@ public class PendulumsFragment extends Fragment {
     private void openSinglePendulumActivity() {
         Intent intent = new Intent(getActivity(), SinglePendulumView.class);
         dataS.resetValues();
-
         editor.putString("single", getCurrentTime());
         editor.apply();
 
@@ -79,7 +78,6 @@ public class PendulumsFragment extends Fragment {
 
     private void openDoublePendulumActivity() {
         Intent intent = new Intent(getActivity(), DoublePendulumView.class);
-
         dataD.resetValues();
         editor.putString("double", getCurrentTime());
         editor.apply();
@@ -95,9 +93,7 @@ public class PendulumsFragment extends Fragment {
     }
 
     private String getCurrentTime() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return dateFormat.format(new Date());
     }
-
 }

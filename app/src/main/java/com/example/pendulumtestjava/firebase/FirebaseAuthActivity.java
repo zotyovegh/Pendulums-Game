@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.widget.Toast;
 
 import com.example.pendulumtestjava.MainActivity;
 import com.example.pendulumtestjava.R;
@@ -55,13 +55,10 @@ public class FirebaseAuthActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         IdpResponse response = IdpResponse.fromResultIntent(data);
 
         if (requestCode == REQUEST_CODE) {
-
             if (resultCode == RESULT_OK) {
-//                Log.i("TAG", "ID: " + auth.getUid());
                 startActivity(new Intent(this, MainActivity.class));
             }
         } else {
@@ -69,14 +66,12 @@ public class FirebaseAuthActivity extends AppCompatActivity {
                 // User cancelled Sign-in
                 return;
             }
-
             if (response.getError().getErrorCode() == ErrorCodes.NO_NETWORK) {
-                // Device has no network connection
+                Toast.makeText(this, "No network available", Toast.LENGTH_SHORT).show();
                 return;
-            }
-
+            }else
             if (response.getError().getErrorCode() == ErrorCodes.UNKNOWN_ERROR) {
-                // Unknown error occurred
+                Toast.makeText(this, "Unknown ERROR occurred", Toast.LENGTH_SHORT).show();
                 return;
             }
         }

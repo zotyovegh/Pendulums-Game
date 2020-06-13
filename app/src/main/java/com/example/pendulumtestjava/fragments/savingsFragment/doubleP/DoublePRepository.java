@@ -22,37 +22,33 @@ public class DoublePRepository {
         doublePDao = database.doublePDao();
     }
 
-    public void insertDoublePendulum(DoublePObject pendulum)
-    {
+    public void insertDoublePendulum(DoublePObject pendulum) {
         new InsertDoublePendulumAsyncTask(doublePDao).execute(pendulum);
     }
 
-    public void deleteDoublePendulum(DoublePObject pendulum)
-    {
+    public void deleteDoublePendulum(DoublePObject pendulum) {
         new DeleteDoublePendulumAsyncTask(doublePDao).execute(pendulum);
     }
 
-    public DoublePObject getDoublePendulum(int id)
-    {
+    public DoublePObject getDoublePendulum(int id) {
         return doublePDao.getDoublePObject(id);
     }
 
-    public void deleteAllDoublePendulum()
-    {
+    public void deleteAllDoublePendulum() {
         new DeleteAllDoublePendulumsAsyncTask(doublePDao).execute();
     }
 
-    public void installDoublePendulum(DoublePObject pendulum)
-    {
+    public void installDoublePendulum(DoublePObject pendulum) {
         Gson gson = new Gson();
-        Type listType = new TypeToken<List<Float>>(){}.getType();
+        Type listType = new TypeToken<List<Float>>() {
+        }.getType();
         ArrayList<Float> json1 = gson.fromJson(pendulum.getPoints1Json(), listType);
         ArrayList<Float> json2 = gson.fromJson(pendulum.getPoints2Json(), listType);
         dataD.setA1(Math.toDegrees(pendulum.getA1()));
         dataD.setA2(Math.toDegrees(pendulum.getA2()));
         dataD.setR1(pendulum.getR1());
         dataD.setR2(pendulum.getR2());
-        dataD.setG(pendulum.getG()*10);
+        dataD.setG(pendulum.getG() * 10);
         dataD.setM1(pendulum.getM1());
         dataD.setM2(pendulum.getM2());
         dataD.setTrace1(pendulum.getTrace1());
@@ -70,14 +66,13 @@ public class DoublePRepository {
         dataD.setStop(true);
     }
 
-    private static class InsertDoublePendulumAsyncTask extends AsyncTask<DoublePObject, Void, Void>
-    {
+    private static class InsertDoublePendulumAsyncTask extends AsyncTask<DoublePObject, Void, Void> {
         private DoublePDao dbDao;
 
-        private InsertDoublePendulumAsyncTask(DoublePDao dbDao)
-        {
+        private InsertDoublePendulumAsyncTask(DoublePDao dbDao) {
             this.dbDao = dbDao;
         }
+
         @Override
         protected Void doInBackground(DoublePObject... doublePendulumObjects) {
             dbDao.insertDoubleP(doublePendulumObjects[0]);
@@ -85,14 +80,13 @@ public class DoublePRepository {
         }
     }
 
-    private static class DeleteDoublePendulumAsyncTask extends AsyncTask<DoublePObject, Void, Void>
-    {
+    private static class DeleteDoublePendulumAsyncTask extends AsyncTask<DoublePObject, Void, Void> {
         private DoublePDao dbDao;
 
-        private DeleteDoublePendulumAsyncTask(DoublePDao dbDao)
-        {
+        private DeleteDoublePendulumAsyncTask(DoublePDao dbDao) {
             this.dbDao = dbDao;
         }
+
         @Override
         protected Void doInBackground(DoublePObject... doublePendulumObjects) {
             dbDao.deleteDoubleP(doublePendulumObjects[0]);
@@ -103,8 +97,7 @@ public class DoublePRepository {
     private static class DeleteAllDoublePendulumsAsyncTask extends AsyncTask<Void, Void, Void> {
         private DoublePDao dbDao;
 
-        private DeleteAllDoublePendulumsAsyncTask(DoublePDao dbDao)
-        {
+        private DeleteAllDoublePendulumsAsyncTask(DoublePDao dbDao) {
             this.dbDao = dbDao;
         }
 

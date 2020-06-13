@@ -75,8 +75,7 @@ public class DrawingPathView extends View {
         invalidate();
     }
 
-    public void setPath(ArrayList<Float> points)
-    {
+    public void setPath(ArrayList<Float> points) {
         array = points;
     }
 

@@ -77,8 +77,7 @@ public class DoublePendulumViewModel extends ViewModel {
         drawTraces();
     }
 
-    private void optimization()
-    {
+    private void optimization() {
         double a1Degree = (Math.toDegrees(a1)) % 360;
         double a2Degree = (Math.toDegrees(a2)) % 360;
         a1 = Math.toRadians(a1Degree);
@@ -95,8 +94,7 @@ public class DoublePendulumViewModel extends ViewModel {
         y2 = y1 + (r2 * Math.cos(a2));
     }
 
-    public void drawTraces()
-    {
+    public void drawTraces() {
         if (isTrace1On) {
 
             path.setVariables(x1, y1, trace1, trace1Color, endlessTrace1);
@@ -106,45 +104,37 @@ public class DoublePendulumViewModel extends ViewModel {
         }
     }
 
-    public void onHold(boolean check, int newx, int newy)
-    {
-        if(check)
-        {
+    public void onHold(boolean check, int newx, int newy) {
+        if (check) {
             x1 = newx;
             y1 = newy;
             if (newy - heightMiddleBall > 0) {
                 a1 = Math.atan((newx - widthMiddleBall) / (newy - heightMiddleBall));
             }
-            if(newy - heightMiddleBall < 0) {
+            if (newy - heightMiddleBall < 0) {
                 a1 = Math.atan((newx - widthMiddleBall) / (newy - heightMiddleBall)) + Math.PI;
             }
-            if(newy - heightMiddleBall == 0)
-            {
-                if(newx-widthMiddleBall >= 0)
-                {
+            if (newy - heightMiddleBall == 0) {
+                if (newx - widthMiddleBall >= 0) {
                     a1 = Math.PI / 2;
-                } else
-                {
+                } else {
                     a1 = -(Math.PI / 2);
                 }
             }
             r1 = Math.sqrt(((newx - widthMiddleBall) * (newx - widthMiddleBall)) + ((newy - heightMiddleBall) * (newy - heightMiddleBall)));
-        }else{
+        } else {
             x2 = newx;
             y2 = newy;
             if (newy - y1 > 0) {
                 a2 = Math.atan((newx - x1) / (newy - y1));
             }
-            if(newy - y1 < 0) {
+            if (newy - y1 < 0) {
                 a2 = Math.atan((newx - x1) / (newy - y1)) + Math.PI;
             }
-            if(newy - y1 == 0)
-            {
-                if(newx-x1 >= 0)
-                {
+            if (newy - y1 == 0) {
+                if (newx - x1 >= 0) {
                     a2 = Math.PI / 2;
-                } else
-                {
+                } else {
                     a2 = -(Math.PI / 2);
                 }
             }
@@ -236,21 +226,16 @@ public class DoublePendulumViewModel extends ViewModel {
 
     public int getSizeCorrecter(boolean isFirstBall) {
         //original is 60
-
         return (getBallSize(isFirstBall) - 60) / 2;
     }
 
-    public int getBallSize(boolean isFirstBall)
-    {
+    public int getBallSize(boolean isFirstBall) {
         //Calc the new size from mass
-        if(isFirstBall)
-        {
+        if (isFirstBall) {
 
-            return 40 + ((int)(0.8*model.getM1()));
-        }else
-        {
-            return 40 + ((int)(0.8*model.getM2()));
-
+            return 40 + ((int) (0.8 * model.getM1()));
+        } else {
+            return 40 + ((int) (0.8 * model.getM2()));
         }
     }
 }

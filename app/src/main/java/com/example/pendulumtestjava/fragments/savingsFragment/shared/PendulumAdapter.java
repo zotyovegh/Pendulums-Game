@@ -1,7 +1,5 @@
 package com.example.pendulumtestjava.fragments.savingsFragment.shared;
 
-import android.graphics.Color;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +29,7 @@ public class PendulumAdapter extends ListAdapter<SavePendulumModel, PendulumAdap
         @Override
         public boolean areContentsTheSame(SavePendulumModel oldItem, SavePendulumModel newItem) {
             return oldItem.getTimeStamp().equals(newItem.getTimeStamp()) &&
-                   oldItem.getType().equals(newItem.getType()) &&
+                    oldItem.getType().equals(newItem.getType()) &&
                     oldItem.getId() == newItem.getId();
         }
     };
@@ -47,11 +45,9 @@ public class PendulumAdapter extends ListAdapter<SavePendulumModel, PendulumAdap
     @Override
     public void onBindViewHolder(@NonNull PendulumHolder holder, int position) {
         SavePendulumModel currentPendulum = getItem(position);
-        if(currentPendulum.getType().equals("Single"))
-        {
+        if (currentPendulum.getType().equals("Single")) {
             holder.type.setBackgroundResource(R.color.singleType);
-        }else if(currentPendulum.getType().equals("Double"))
-        {
+        } else if (currentPendulum.getType().equals("Double")) {
             holder.type.setBackgroundResource(R.color.doubleType);
         }
 
@@ -59,8 +55,7 @@ public class PendulumAdapter extends ListAdapter<SavePendulumModel, PendulumAdap
         holder.type.setText(currentPendulum.getType());
     }
 
-    public SavePendulumModel getPendulumAt(int position)
-    {
+    public SavePendulumModel getPendulumAt(int position) {
         return getItem(position);
     }
 
@@ -68,8 +63,7 @@ public class PendulumAdapter extends ListAdapter<SavePendulumModel, PendulumAdap
         private TextView timeStamp;
         private TextView type;
 
-        public PendulumHolder(View itemView)
-        {
+        public PendulumHolder(View itemView) {
             super(itemView);
             timeStamp = itemView.findViewById(R.id.time_stamp);
             type = itemView.findViewById(R.id.type);
@@ -87,8 +81,7 @@ public class PendulumAdapter extends ListAdapter<SavePendulumModel, PendulumAdap
         void onItemClick(SavePendulumModel pendulum);
     }
 
-    public void setOnItemClickListener(OnItemClickListener listener)
-    {
+    public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
     }
 }

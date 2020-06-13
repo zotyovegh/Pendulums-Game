@@ -39,9 +39,9 @@ public class RandomizerRepository {
             public void onResponse(Call<SinglePRandom> call, Response<SinglePRandom> response) {
                 if (response.code() == 200) {
                     singlePRandom.setValue(response.body());
-                }else{
+                } else {
                     errorMessage.setValue("Something went wrong!");
-                    Log.i("RandomApi","Response code (single): " + response.code());
+                    Log.i("RandomApi", "Response code (single): " + response.code());
                 }
             }
 
@@ -60,9 +60,9 @@ public class RandomizerRepository {
             public void onResponse(Call<DoublePRandom> call, Response<DoublePRandom> response) {
                 if (response.code() == 200) {
                     doublePRandom.setValue(response.body());
-                }else{
+                } else {
                     errorMessage.setValue("Something went wrong!");
-                    Log.i("RandomApi","Response code (double): " + response.code());
+                    Log.i("RandomApi", "Response code (double): " + response.code());
                 }
             }
 
@@ -81,8 +81,7 @@ public class RandomizerRepository {
         return doublePRandom;
     }
 
-    public LiveData<String> getErrorMessage()
-    {
+    public LiveData<String> getErrorMessage() {
         return errorMessage;
     }
 

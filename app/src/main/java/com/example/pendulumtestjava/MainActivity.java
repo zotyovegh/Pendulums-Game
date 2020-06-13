@@ -24,16 +24,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.squareup.picasso.Picasso;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
-
-
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout drawerLayout;
-    ActionBarDrawerToggle toggle;
-    NavigationView navigationView;
-    FirebaseAuth mAuth;
-    TextView email;
-    TextView name;
-    ImageView profilePic;
+    private TextView email;
+    private TextView name;
+    private ImageView profilePic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
 
         drawerLayout = findViewById(R.id.drawer);
-        navigationView = findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         View headerView = navigationView.getHeaderView(0);
@@ -52,25 +47,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         name = headerView.findViewById(R.id.name);
         profilePic = headerView.findViewById(R.id.profilePic);
 
-        toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
-        if(savedInstanceState == null)
-        {
+        if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MainFragment()).commit();
             navigationView.setCheckedItem(R.id.nav_main);
         }
 
-        mAuth = FirebaseAuth.getInstance();
-
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
         updateDrawer(mAuth.getCurrentUser());
     }
 
-    private void updateDrawer(FirebaseUser user)
-    {
-        if(user != null)
-        {
+    private void updateDrawer(FirebaseUser user) {
+        if (user != null) {
             String name = user.getDisplayName();
             String email = user.getEmail();
             String photo = String.valueOf(user.getPhotoUrl());
@@ -78,10 +69,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             this.name.setText(name);
             this.email.setText(email);
 
-            if(user.getPhotoUrl() == null)
-            {
+            if (user.getPhotoUrl() == null) {
                 Picasso.get().load(R.drawable.logosized).into(this.profilePic);
-            }else {
+            } else {
                 Picasso.get().load(photo).into(this.profilePic);
             }
         }
@@ -89,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        switch (menuItem.getItemId()){
+        switch (menuItem.getItemId()) {
             case R.id.nav_main:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MainFragment()).commit();
                 break;
@@ -107,7 +97,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                 MainActivity.this.finish();
                             } else {
                                 Toast.makeText(MainActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
-                                // Report error to user
                             }
                         });
                 break;
@@ -115,6 +104,4 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout.closeDrawer(GravityCompat.START);
         return false;
     }
-
-
 }

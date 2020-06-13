@@ -9,11 +9,11 @@ import com.example.pendulumtestjava.fragments.savingsFragment.shared.DbViewModel
 import com.example.pendulumtestjava.fragments.savingsFragment.singleP.SinglePObject;
 import com.example.pendulumtestjava.fragments.pendulumFragments.repositories.SinglePModelRepo;
 import com.google.gson.Gson;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class SinglePendulumViewModel extends ViewModel {
-
     private SinglePModelRepo model = SinglePModelRepo.getInstance();
     private double a = model.getA();
     private float gravity = model.getGravity();
@@ -90,7 +90,7 @@ public class SinglePendulumViewModel extends ViewModel {
     }
 
     public void save() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String millisInString = dateFormat.format(new Date());
 
         String json = new Gson().toJson(path.getArray());

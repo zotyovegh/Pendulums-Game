@@ -175,9 +175,7 @@ public class SinglePendulumSettings extends AppCompatDialogFragment {
             trace.setProgress(singlePRandom.getTrace());
         });
 
-        viewModel.getErrorMessage().observe(this, s -> {
-            Toast.makeText(getActivity(), s, Toast.LENGTH_SHORT).show();
-        });
+        viewModel.getErrorMessage().observe(this, s -> Toast.makeText(getActivity(), s, Toast.LENGTH_SHORT).show());
 
         builder.setView(view)
                 .setTitle("Settings")
@@ -207,10 +205,7 @@ public class SinglePendulumSettings extends AppCompatDialogFragment {
                 .setNegativeButton("Cancel",
                         (dialog, whichButton) -> dialog.dismiss()
                 );
-
         return builder.create();
-
-
     }
 
     @SuppressLint("DefaultLocale")
@@ -250,9 +245,7 @@ public class SinglePendulumSettings extends AppCompatDialogFragment {
         final AlertDialog d = (AlertDialog) getDialog();
         if (d != null) {
             Button positiveButton = d.getButton(Dialog.BUTTON_NEUTRAL);
-            positiveButton.setOnClickListener(v -> {
-                viewModel.requestSingleRandom();
-            });
+            positiveButton.setOnClickListener(v -> viewModel.requestSingleRandom());
         }
     }
 }

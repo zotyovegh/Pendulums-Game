@@ -18,7 +18,7 @@
 
     <style name="MainTheme" parent="Theme.AppCompat.Light">
         <item name="colorPrimary">@color/actionBar</item>
-      </style>
+    </style>
 
     <style name="AppTheme.InfoDialog" parent="Base.Theme.AppCompat.Light.Dialog.FixedSize">
         <item name="windowActionBar">false</item>

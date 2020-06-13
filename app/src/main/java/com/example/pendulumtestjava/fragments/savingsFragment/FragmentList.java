@@ -1,6 +1,5 @@
 package com.example.pendulumtestjava.fragments.savingsFragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +9,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -44,8 +43,8 @@ public class FragmentList extends Fragment {
         adapter = new PendulumAdapter();
         recyclerView.setAdapter(adapter);
 
-        viewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity())).get(DbViewModel.class);
-        viewModel.getAllPendulums().observe(getActivity(), adapter::submitList);
+        viewModel = new ViewModelProvider(this).get(DbViewModel.class);
+        viewModel.getAllPendulums().observe(Objects.requireNonNull(getActivity()), adapter::submitList);
 
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
             @Override
@@ -93,5 +92,4 @@ public class FragmentList extends Fragment {
             Toast.makeText(getActivity(), "All Pendulums deleted", Toast.LENGTH_SHORT).show();
         });
     }
-
 }

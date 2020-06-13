@@ -40,4 +40,8 @@
     <string name="author">Created by: Zoltan Vegh</string>
     <string name="name">Pendulum Simulator</string>
     <string name="linkedin">My LinkedId page</string>
+    <string name="_30">30</string>
+    <string name="main">Main</string>
+    <string name="about">About</string>
+    <string name="log_out">Log out</string>
 </resources>

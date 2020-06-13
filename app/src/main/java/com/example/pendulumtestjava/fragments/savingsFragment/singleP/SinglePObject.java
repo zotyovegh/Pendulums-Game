@@ -20,7 +20,6 @@ public class SinglePObject {
     private boolean infinity;
     private boolean isTraceOn;
 
-
     public SinglePObject(double a, double r, float g, float damping, int trace,
                          int ballColor, int traceColor, String pointsJson,
                          String timeStamp, boolean infinity, boolean isTraceOn) {

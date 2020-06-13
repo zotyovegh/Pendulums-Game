@@ -14,7 +14,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.pendulumtestjava.R;
@@ -280,9 +279,7 @@ public class DoublePendulumSettings extends AppCompatDialogFragment {
             trace2b.setProgress(doublePRandom.getTrace2());
         });
 
-        viewModel.getErrorMessage().observe(this, s -> {
-            Toast.makeText(getActivity(), s, Toast.LENGTH_SHORT).show();
-        });
+        viewModel.getErrorMessage().observe(this, s -> Toast.makeText(getActivity(), s, Toast.LENGTH_SHORT).show());
 
         builder.setView(view)
                 .setTitle("Settings")
@@ -401,9 +398,7 @@ public class DoublePendulumSettings extends AppCompatDialogFragment {
         final AlertDialog d = (AlertDialog) getDialog();
         if (d != null) {
             Button positiveButton = d.getButton(Dialog.BUTTON_NEUTRAL);
-            positiveButton.setOnClickListener(v -> {
-                viewModel.requestDoubleRandom();
-            });
+            positiveButton.setOnClickListener(v -> viewModel.requestDoubleRandom());
         }
     }
 }

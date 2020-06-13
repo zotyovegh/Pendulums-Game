@@ -63,8 +63,7 @@ public class DoublePendulumView extends AppCompatActivity implements View.OnClic
         Button save = findViewById(R.id.save);
 
         Intent intent = getIntent();
-        if(intent.hasExtra("path"))
-        {
+        if (intent.hasExtra("path")) {
             path.setPath(model.getPoints1());
             path2.setPath(model.getPoints2());
         }
@@ -73,16 +72,16 @@ public class DoublePendulumView extends AppCompatActivity implements View.OnClic
         heightPoint = getWindowManager().getDefaultDisplay().getHeight() / 8;
         viewModel.defineVariables(widthMiddle, heightPoint, path, path2, dbViewModel);
 
-        ball1Correcter = (float)viewModel.getSizeCorrecter(true);
-        ball2Correcter = (float)viewModel.getSizeCorrecter(false);
+        ball1Correcter = (float) viewModel.getSizeCorrecter(true);
+        ball2Correcter = (float) viewModel.getSizeCorrecter(false);
 
         reset.setOnClickListener(this);
         pause.setOnClickListener(this);
         settings.setOnClickListener(this);
         save.setOnClickListener(this);
 
-        middle.setX((float)(widthMiddle -5));
-        middle.setY((float)(heightPoint - 5));
+        middle.setX((float) (widthMiddle - 5));
+        middle.setY((float) (heightPoint - 5));
         middle.setBackgroundResource(R.color.colorPrimaryDark);
 
         update();
@@ -99,22 +98,22 @@ public class DoublePendulumView extends AppCompatActivity implements View.OnClic
                     drawObjects();
                 });
             }
-        },0, 15);
+        }, 0, 15);
     }
 
     public void drawObjects() {
-        stick.setRotation((float)Math.toDegrees(-viewModel.getA1()));
-        stick.setX((float)(widthMiddle-2));
-        stick.setY((float)(heightPoint));
+        stick.setRotation((float) Math.toDegrees(-viewModel.getA1()));
+        stick.setX((float) (widthMiddle - 2));
+        stick.setY((float) (heightPoint));
 
-        stick2.setRotation((float)Math.toDegrees(-viewModel.getA2()));
-        stick2.setX((float)(viewModel.getX1()+28));
-        stick2.setY((float)(viewModel.getY1()+30));
+        stick2.setRotation((float) Math.toDegrees(-viewModel.getA2()));
+        stick2.setX((float) (viewModel.getX1() + 28));
+        stick2.setY((float) (viewModel.getY1() + 30));
 
-        ball.setX((float)viewModel.getX1()-ball1Correcter);
-        ball.setY((float)viewModel.getY1()-ball1Correcter);
-        ball2.setX((float)viewModel.getX2()-ball2Correcter);
-        ball2.setY((float)viewModel.getY2()-ball2Correcter);
+        ball.setX((float) viewModel.getX1() - ball1Correcter);
+        ball.setY((float) viewModel.getY1() - ball1Correcter);
+        ball2.setX((float) viewModel.getX2() - ball2Correcter);
+        ball2.setY((float) viewModel.getY2() - ball2Correcter);
 
         stick.setLayoutParams(new FrameLayout.LayoutParams(4, (int) viewModel.getR1()));
         stick2.setLayoutParams(new FrameLayout.LayoutParams(4, (int) viewModel.getR2()));
@@ -122,16 +121,14 @@ public class DoublePendulumView extends AppCompatActivity implements View.OnClic
         ball.getBackground().setColorFilter(viewModel.getBall1Color(), PorterDuff.Mode.SRC_ATOP);
         ball2.getBackground().setColorFilter(viewModel.getBall2Color(), PorterDuff.Mode.SRC_ATOP);
 
-        if(model.isStop())
-        {
+        if (model.isStop()) {
             stop = true;
         }
     }
 
-    private void setBallSize()
-    {
-        ball1Correcter = (float)viewModel.getSizeCorrecter(true);
-        ball2Correcter = (float)viewModel.getSizeCorrecter(false);
+    private void setBallSize() {
+        ball1Correcter = (float) viewModel.getSizeCorrecter(true);
+        ball2Correcter = (float) viewModel.getSizeCorrecter(false);
         ball.setLayoutParams(new FrameLayout.LayoutParams(viewModel.getBallSize(true), viewModel.getBallSize(true), FrameLayout.LayoutParams.WRAP_CONTENT));
         ball2.setLayoutParams(new FrameLayout.LayoutParams(viewModel.getBallSize(false), viewModel.getBallSize(false), FrameLayout.LayoutParams.WRAP_CONTENT));
     }
@@ -146,11 +143,10 @@ public class DoublePendulumView extends AppCompatActivity implements View.OnClic
                 double difference1 = Math.sqrt(((newx - viewModel.getX1()) * (newx - viewModel.getX1())) + ((newy - viewModel.getY1()) * (newy - viewModel.getY1())));
                 double difference2 = Math.sqrt(((newx - viewModel.getX2()) * (newx - viewModel.getX2())) + ((newy - viewModel.getY2()) * (newy - viewModel.getY2())));
 
-                if(difference1 < difference2)
-                {
+                if (difference1 < difference2) {
                     viewModel.onHold(true, newx, newy);
                     stick.setLayoutParams(new FrameLayout.LayoutParams(5, (int) viewModel.getR1()));
-                } else{
+                } else {
                     viewModel.onHold(false, newx, newy);
                     stick2.setLayoutParams(new FrameLayout.LayoutParams(5, (int) viewModel.getR2()));
                 }

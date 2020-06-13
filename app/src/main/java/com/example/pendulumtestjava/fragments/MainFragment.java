@@ -17,7 +17,6 @@ import com.example.pendulumtestjava.fragments.savingsFragment.FragmentList;
 import com.google.android.material.tabs.TabLayout;
 
 public class MainFragment extends Fragment {
-
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
 
@@ -31,7 +30,6 @@ public class MainFragment extends Fragment {
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setSelectedTabIndicatorColor(Color.LTGRAY);
 
-        return  view;
+        return view;
     }
-
 }
