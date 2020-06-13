@@ -50,7 +50,6 @@ public abstract class PendulumDatabase extends RoomDatabase {
 
         @Override
         protected Void doInBackground(Void... voids) {
-//            Place to set predefined pendulums
             return null;
         }
     }

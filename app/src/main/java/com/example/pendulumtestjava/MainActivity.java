@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.example.pendulumtestjava.firebase.FirebaseAuthActivity;
 import com.example.pendulumtestjava.fragments.MainFragment;
+import com.example.pendulumtestjava.fragments.about.AboutFragment;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -91,6 +92,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (menuItem.getItemId()){
             case R.id.nav_main:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MainFragment()).commit();
+                break;
+            case R.id.nav_about:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AboutFragment()).commit();
                 break;
             case R.id.nav_logOut:
                 AuthUI.getInstance()

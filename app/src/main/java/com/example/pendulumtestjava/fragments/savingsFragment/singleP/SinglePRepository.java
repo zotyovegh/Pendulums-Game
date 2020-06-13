@@ -25,7 +25,7 @@ public class SinglePRepository {
 
     public void insertSinglePendulum(SinglePObject pendulum)
     {
-        new InsertSinglePendulumAsyncTask(singlePDao).execute(pendulum);
+        new SinglePRepository.InsertSinglePendulumAsyncTask(singlePDao).execute(pendulum);
     }
 
     public void deleteSinglePendulum(SinglePObject pendulum)
