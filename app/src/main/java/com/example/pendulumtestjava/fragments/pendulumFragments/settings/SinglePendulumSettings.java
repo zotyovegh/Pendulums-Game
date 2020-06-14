@@ -3,6 +3,7 @@ package com.example.pendulumtestjava.fragments.pendulumFragments.settings;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -32,6 +33,7 @@ public class SinglePendulumSettings extends AppCompatDialogFragment {
     private SeekBar a, r, g, damp, trace;
     private static int TRACEMAX = 101;
     private SingleSettingsViewModel viewModel;
+    private boolean randomize;
 
     @SuppressLint({"SetTextI18n", "DefaultLocale", "InflateParams"})
     @NonNull
@@ -171,17 +173,21 @@ public class SinglePendulumSettings extends AppCompatDialogFragment {
         ballColorButton.setOnClickListener(v -> openColorPicker2());
 
         viewModel.getSinglePRandom().observe(this, singlePRandom -> {
-            aNum.setText(String.format("%.0f", Math.toDegrees(singlePRandom.getA()) / 100));
-            rNum.setText(String.format("%.0f", singlePRandom.getR()));
-            gNum.setText(String.format("%.2f", singlePRandom.getG()));
-            dampNum.setText(String.format("%.4f", singlePRandom.getDamping()));
-            traceNum.setText(String.valueOf(singlePRandom.getTrace()));
+            if(randomize)
+            {
+                aNum.setText(String.format("%.0f", Math.toDegrees(singlePRandom.getA()) / 100));
+                rNum.setText(String.format("%.0f", singlePRandom.getR()));
+                gNum.setText(String.format("%.2f", singlePRandom.getG()));
+                dampNum.setText(String.format("%.4f", singlePRandom.getDamping()));
+                traceNum.setText(String.valueOf(singlePRandom.getTrace()));
 
-            a.setProgress((int) Math.toDegrees(singlePRandom.getA()) / 100);
-            r.setProgress((int) singlePRandom.getR());
-            g.setProgress((int) (singlePRandom.getG() * 100));
-            damp.setProgress((int) (singlePRandom.getDamping() * 10000));
-            trace.setProgress(singlePRandom.getTrace());
+                a.setProgress((int) Math.toDegrees(singlePRandom.getA()) / 100);
+                r.setProgress((int) singlePRandom.getR());
+                g.setProgress((int) (singlePRandom.getG() * 100));
+                damp.setProgress((int) (singlePRandom.getDamping() * 10000));
+                trace.setProgress(singlePRandom.getTrace());
+            }
+            randomize = false;
         });
 
         viewModel.getErrorMessage().observe(this, s -> Toast.makeText(getActivity(), s, Toast.LENGTH_SHORT).show());
@@ -254,7 +260,10 @@ public class SinglePendulumSettings extends AppCompatDialogFragment {
         final AlertDialog d = (AlertDialog) getDialog();
         if (d != null) {
             Button positiveButton = d.getButton(Dialog.BUTTON_NEUTRAL);
-            positiveButton.setOnClickListener(v -> viewModel.requestSingleRandom());
+            positiveButton.setOnClickListener(v -> {
+                randomize = true;
+                viewModel.requestSingleRandom();
+            });
         }
     }
 }

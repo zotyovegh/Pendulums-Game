@@ -33,6 +33,7 @@ public class DoublePendulumSettings extends AppCompatDialogFragment {
     private static int TRACE1MAX = 101;
     private static int TRACE2MAX = 401;
     private DoubleSettingsViewModel viewModel;
+    private boolean randomize;
 
     @SuppressLint({"SetTextI18n", "DefaultLocale", "InflateParams"})
     @NonNull
@@ -273,23 +274,27 @@ public class DoublePendulumSettings extends AppCompatDialogFragment {
         traceColor2.setOnClickListener(v -> trace2ColorPicker());
 
         viewModel.getDoublePRandom().observe(this, doublePRandom -> {
-            a1num.setText(String.format("%.0f", Math.toDegrees(doublePRandom.getA1())));
-            a2num.setText(String.format("%.0f", Math.toDegrees(doublePRandom.getA2())));
-            r1num.setText(String.format("%.0f", doublePRandom.getR1()));
-            r2num.setText(String.format("%.0f", doublePRandom.getR2()));
-            gnum.setText(String.format("%.2f", doublePRandom.getG()));
-            m1num.setText(String.format("%.0f", doublePRandom.getM1()));
-            m2num.setText(String.format("%.0f", doublePRandom.getM2()));
+            if(randomize)
+            {
+                a1num.setText(String.format("%.0f", Math.toDegrees(doublePRandom.getA1())));
+                a2num.setText(String.format("%.0f", Math.toDegrees(doublePRandom.getA2())));
+                r1num.setText(String.format("%.0f", doublePRandom.getR1()));
+                r2num.setText(String.format("%.0f", doublePRandom.getR2()));
+                gnum.setText(String.format("%.2f", doublePRandom.getG()));
+                m1num.setText(String.format("%.0f", doublePRandom.getM1()));
+                m2num.setText(String.format("%.0f", doublePRandom.getM2()));
 
-            a1b.setProgress((int) Math.toDegrees(doublePRandom.getA1()) / 100);
-            a2b.setProgress((int) Math.toDegrees(doublePRandom.getA2()) / 100);
-            r1b.setProgress((int) doublePRandom.getR1());
-            r2b.setProgress((int) doublePRandom.getR2());
-            gb.setProgress((int) (doublePRandom.getG() * 100));
-            m1b.setProgress((int) doublePRandom.getM1());
-            m2b.setProgress((int) doublePRandom.getM2());
-            trace1b.setProgress(doublePRandom.getTrace1());
-            trace2b.setProgress(doublePRandom.getTrace2());
+                a1b.setProgress((int) Math.toDegrees(doublePRandom.getA1()) / 100);
+                a2b.setProgress((int) Math.toDegrees(doublePRandom.getA2()) / 100);
+                r1b.setProgress((int) doublePRandom.getR1());
+                r2b.setProgress((int) doublePRandom.getR2());
+                gb.setProgress((int) (doublePRandom.getG() * 100));
+                m1b.setProgress((int) doublePRandom.getM1());
+                m2b.setProgress((int) doublePRandom.getM2());
+                trace1b.setProgress(doublePRandom.getTrace1());
+                trace2b.setProgress(doublePRandom.getTrace2());
+            }
+            randomize = false;
         });
 
         viewModel.getErrorMessage().observe(this, s -> Toast.makeText(getActivity(), s, Toast.LENGTH_SHORT).show());
@@ -411,7 +416,10 @@ public class DoublePendulumSettings extends AppCompatDialogFragment {
         final AlertDialog d = (AlertDialog) getDialog();
         if (d != null) {
             Button positiveButton = d.getButton(Dialog.BUTTON_NEUTRAL);
-            positiveButton.setOnClickListener(v -> viewModel.requestDoubleRandom());
+            positiveButton.setOnClickListener(v -> {
+                randomize = true;
+                viewModel.requestDoubleRandom();
+            });
         }
     }
 }
