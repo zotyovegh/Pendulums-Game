@@ -96,7 +96,6 @@ public class DoublePendulumViewModel extends ViewModel {
 
     public void drawTraces() {
         if (isTrace1On) {
-
             path.setVariables(x1, y1, trace1, trace1Color, endlessTrace1);
         }
         if (isTrace2On) {
@@ -232,7 +231,6 @@ public class DoublePendulumViewModel extends ViewModel {
     public int getBallSize(boolean isFirstBall) {
         //Calc the new size from mass
         if (isFirstBall) {
-
             return 40 + ((int) (0.8 * model.getM1()));
         } else {
             return 40 + ((int) (0.8 * model.getM2()));
