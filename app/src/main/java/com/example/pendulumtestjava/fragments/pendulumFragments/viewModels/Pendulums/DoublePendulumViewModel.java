@@ -146,7 +146,7 @@ public class DoublePendulumViewModel extends ViewModel {
     }
 
     public void save() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String millisInString = dateFormat.format(new Date());
 
         String json = new Gson().toJson(path.getArray());

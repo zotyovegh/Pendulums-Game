@@ -3,10 +3,13 @@ package com.example.pendulumtestjava;
 import com.example.pendulumtestjava.fragments.pendulumFragments.repositories.DoublePModelRepo;
 import com.example.pendulumtestjava.fragments.pendulumFragments.repositories.SinglePModelRepo;
 import com.example.pendulumtestjava.fragments.pendulumFragments.viewModels.Pendulums.DoublePendulumViewModel;
+import com.example.pendulumtestjava.fragments.pendulumFragments.viewModels.Pendulums.SinglePendulumViewModel;
 import com.example.pendulumtestjava.fragments.pendulumFragments.views.DrawingPathView;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
 import java.util.ArrayList;
 
@@ -14,9 +17,11 @@ import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.*;
 
+@RunWith(JUnit4.class)
 public class JUnitTest {
     private DrawingPathView drawingView;
     private DoublePendulumViewModel doublePVM;
+    private SinglePendulumViewModel singlePVM;
     private DoublePModelRepo doublePModelRepo;
     private SinglePModelRepo singlePModelRepo;
 
@@ -25,6 +30,7 @@ public class JUnitTest {
     {
         drawingView = new DrawingPathView(null);
         doublePVM = new DoublePendulumViewModel();
+        singlePVM = new SinglePendulumViewModel();
         doublePModelRepo = DoublePModelRepo.getInstance();
         singlePModelRepo = SinglePModelRepo.getInstance();
     }
@@ -110,5 +116,30 @@ public class JUnitTest {
         list.add((float) 9.7);
 
         assertArrayEquals(array, drawingView.convert(list), 0);
+    }
+
+    @Test
+    public void testSinglePositionCals(){
+        singlePVM.defineVariables(200, 300, null, null);
+        singlePModelRepo.setA(100);
+        singlePModelRepo.setR(200);
+        singlePVM.calcPositions();
+        assertEquals(170, singlePVM.getX(), 0);
+        assertEquals(270, singlePVM.getY(), 0);
+
+    }
+
+    @Test
+    public void testDoublePositionCals(){
+        doublePVM.defineVariables(200, 300, null, null, null);
+        doublePModelRepo.setA1(100);
+        doublePModelRepo.setA2(100);
+        doublePModelRepo.setR1(200);
+        doublePModelRepo.setR2(300);
+        doublePVM.calcPositions();
+        assertEquals(170, doublePVM.getX1(), 0);
+        assertEquals(170, doublePVM.getX2(), 0);
+        assertEquals(270, doublePVM.getY1(), 0);
+        assertEquals(270, doublePVM.getY2(), 0);
     }
 }

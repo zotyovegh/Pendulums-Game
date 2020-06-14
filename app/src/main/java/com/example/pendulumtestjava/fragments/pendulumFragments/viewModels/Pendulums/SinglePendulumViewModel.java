@@ -56,7 +56,7 @@ public class SinglePendulumViewModel extends ViewModel {
         angularVel %= 6.00000000000E280;
     }
 
-    private void calcPositions() {
+    public void calcPositions() {
         x = widthMiddleBall + (r * Math.sin(a));
         y = heightMiddleBall + (r * Math.cos(a));
     }
