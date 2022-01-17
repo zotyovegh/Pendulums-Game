@@ -8,3 +8,5 @@ Additional important features:
 * Dynamically interfering with the pendulums: By tapping on the screen, the current position of the pendulum can be adjusted.
 * Save and reload different configurations
 * The final product acquired the highest grade and greatly increased my interest in user-experience based development
+
+Watch demo: https://www.youtube.com/watch?v=hz1Qf-AMDhg
